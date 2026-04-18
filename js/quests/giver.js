@@ -34,9 +34,19 @@ function drawQuestGiver(ctx, e) {
   ctx.fillRect(-4, -3, 8, 7);
   ctx.fillStyle = '#e0c8a0';
   ctx.beginPath(); ctx.arc(0, -7, 3, 0, Math.PI * 2); ctx.fill();
+  // Floating name tag
+  ctx.fillStyle = 'rgba(0,0,0,0.7)';
+  const w = e.name.length * 6 + 8;
+  ctx.fillRect(-w/2, -22, w, 12);
   ctx.fillStyle = PALETTE.gondorGold;
-  ctx.fillRect(-1, -16, 2, 3);
-  ctx.fillRect(-2, -11, 4, 2);
+  ctx.font = 'bold 10px Georgia';
+  ctx.textAlign = 'center';
+  ctx.fillText(e.name, 0, -13);
+  // Quest "!" marker
+  const pulse = 0.5 + Math.sin(state.time * 4) * 0.5;
+  ctx.fillStyle = `rgba(240,200,60,${0.5 + pulse * 0.5})`;
+  ctx.fillRect(-1, -32, 2, 6);
+  ctx.fillRect(-1, -25, 2, 2);
 }
 
 function spawnQuestGivers() {

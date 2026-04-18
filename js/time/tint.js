@@ -1,9 +1,9 @@
 // Full-screen tint overlay keyed to time-of-day phase.
 const _tintTable = {
-  night: { r: 10, g: 10, b: 30, a: 0.55 },
-  dawn:  { r: 220, g: 120, b: 80, a: 0.22 },
+  night: { r: 20, g: 25, b: 60, a: 0.40 },
+  dawn:  { r: 220, g: 120, b: 80, a: 0.18 },
   day:   { r: 0, g: 0, b: 0, a: 0 },
-  dusk:  { r: 180, g: 80, b: 50, a: 0.30 },
+  dusk:  { r: 180, g: 80, b: 50, a: 0.25 },
 };
 
 function drawDayTint(ctx) {
