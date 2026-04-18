@@ -136,16 +136,30 @@ function onEnemyKilled(e) {
   emit('enemyKilled', { entity: e, byPlayer: true });
 }
 
+// Spiral outward from (cx,cy) to find the nearest non-solid spot (up to maxR px).
+// Checks a small cross footprint to avoid placing the player half-inside a wall.
+function _findSafeSpot(cx, cy, maxR) {
+  for (let r = 0; r <= maxR; r += 8) {
+    for (let a = 0; a < Math.PI * 2; a += Math.PI / 8) {
+      const x = cx + Math.cos(a) * r;
+      const y = cy + Math.sin(a) * r;
+      if (!isSolidAt(x - 6, y) && !isSolidAt(x + 6, y) &&
+          !isSolidAt(x, y - 6) && !isSolidAt(x, y + 6)) {
+        return { x, y };
+      }
+    }
+  }
+  return null;
+}
+
 function tryMountOrDismount() {
   const p = state.player;
   if (p.onHorse) {
-    // Dismount: nudge off the saddle perpendicular to facing.
+    // Dismount: spiral outward to a safe tile. Essential for flying mounts
+    // which may have stopped over water or walls.
     p.onHorse.rider = null;
-    const ox = Math.cos(p.angle + Math.PI / 2) * 16;
-    const oy = Math.sin(p.angle + Math.PI / 2) * 16;
-    if (!isSolidAt(p.x + ox, p.y + oy)) {
-      p.x += ox; p.y += oy;
-    }
+    const safe = _findSafeSpot(p.x, p.y, 128);
+    if (safe) { p.x = safe.x; p.y = safe.y; }
     p.onHorse = null;
     return;
   }
