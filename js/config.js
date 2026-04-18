@@ -4,8 +4,8 @@
 const TILE = 32;
 
 const MAP = {
-  W: 40,
-  H: 40,
+  W: 128,
+  H: 128,
 };
 
 const TILES = {
@@ -70,10 +70,10 @@ const CONFIG = {
   RENOWN_PER_GUARD: 120,
   WANTED_PER_GUARD_KILL: 1,
   WANTED_MAX: 5,
-  NUM_ORCS: 30,
-  NUM_GUARDS: 18,
-  NUM_HORSES: 10,
-  NUM_PICKUPS: 24,
+  NUM_ORCS: 140,
+  NUM_GUARDS: 40,
+  NUM_HORSES: 35,
+  NUM_PICKUPS: 80,
 };
 
 const TEAM = {

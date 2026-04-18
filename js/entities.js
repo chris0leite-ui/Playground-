@@ -86,16 +86,18 @@ function makePickup(x, y, kind) {
 }
 
 function initEntities() {
-  // Player starts on central plaza.
+  // Player is spawned at center here; world/spawn.js relocates them to the
+  // outer ring. Use the eventual spawn position (south of the wall) as the
+  // "don't spawn enemies on top of the player" anchor.
   const cx = (MAP.W / 2) * TILE;
   const cy = (MAP.H / 2) * TILE;
+  const playerSpawnY = (MAP.H / 2 + 20) * TILE;
   state.player = makePlayer(cx, cy);
   state.entities.push(state.player);
 
   for (let i = 0; i < CONFIG.NUM_ORCS; i++) {
     const p = findOpenTile();
-    // Orcs avoid spawning right on top of player.
-    if (dist(p.x, p.y, cx, cy) < 6 * TILE) continue;
+    if (dist(p.x, p.y, cx, playerSpawnY) < 8 * TILE) continue;
     state.entities.push(makeOrc(p.x, p.y));
   }
   for (let i = 0; i < CONFIG.NUM_GUARDS; i++) {

@@ -183,7 +183,9 @@ function findOpenTile() {
 }
 
 function findOpenRoadTile() {
-  for (let tries = 0; tries < 200; tries++) {
+  // With a large map, roads are a small fraction of tiles; give the search
+  // a bigger budget before falling back to any open tile.
+  for (let tries = 0; tries < 800; tries++) {
     const x = randInt(1, MAP.W - 4);
     const y = randInt(1, MAP.H - 2);
     if (state.map[y][x] === TILES.ROAD) {

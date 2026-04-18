@@ -12,11 +12,16 @@ function _snapAll(types) {
   }
 }
 
+// Player spawn sits just outside the south wall (tier 7), regardless of
+// how large the map is. Keeps the start near the city on any map size.
+const SPAWN_X = (MAP.W / 2) * TILE;
+const SPAWN_Y = (MAP.H / 2 + 20) * TILE;
+
 function _spawnWorldContent() {
   // Relocate the player to the outer tier 7 so the inner gates have meaning.
   if (state.player) {
-    state.player.x = (MAP.W / 2) * TILE;
-    state.player.y = (MAP.H - 2) * TILE;
+    state.player.x = SPAWN_X;
+    state.player.y = SPAWN_Y;
   }
   spawnDoors();
   spawnProps();
@@ -32,9 +37,8 @@ function _spawnWorldContent() {
 }
 
 function spawnStarterLoot() {
-  const cx = (MAP.W / 2) * TILE, cy = (MAP.H - 2) * TILE;
-  state.entities.push(makeItemPickup(cx - 40, cy - 30, 'weapon', 'bow'));
-  state.entities.push(makeItemPickup(cx + 40, cy - 30, 'weapon', 'throwingAxe'));
-  state.entities.push(makeItemPickup(cx + 60, cy, 'armor', 'mail'));
+  state.entities.push(makeItemPickup(SPAWN_X - 40, SPAWN_Y - 30, 'weapon', 'bow'));
+  state.entities.push(makeItemPickup(SPAWN_X + 40, SPAWN_Y - 30, 'weapon', 'throwingAxe'));
+  state.entities.push(makeItemPickup(SPAWN_X + 60, SPAWN_Y, 'armor', 'mail'));
 }
 on('reset', _spawnWorldContent);
