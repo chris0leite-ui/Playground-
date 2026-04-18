@@ -12,5 +12,14 @@ function _spawnWorldContent() {
   spawnGates();
   spawnQuestGivers();
   spawnBosses();
+  spawnStarterLoot();
+}
+
+function spawnStarterLoot() {
+  // Two weapons + an armor on the grass near the tier 7 spawn.
+  const cx = (MAP.W / 2) * TILE, cy = (MAP.H - 2) * TILE;
+  state.entities.push(makeItemPickup(cx - 40, cy - 30, 'weapon', 'bow'));
+  state.entities.push(makeItemPickup(cx + 40, cy - 30, 'weapon', 'throwingAxe'));
+  state.entities.push(makeItemPickup(cx + 60, cy, 'armor', 'mail'));
 }
 on('reset', _spawnWorldContent);

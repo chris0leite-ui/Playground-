@@ -82,7 +82,12 @@ function togglePause() {
 function showIntro() {
   showMessage(
     'Middle-earth: Streets of Minas Tirith',
-    'You are a Ranger of the North. Slay orcs, gather gold, eat lembas to heal. Mount steeds to travel swiftly. Strike Citadel Guards at your peril — they will hunt you. Use the joystick to move and the buttons to attack and mount.',
+    'Goal: earn Renown to unlock the seven tiers of the city and defeat the Witch-King at the summit.\n\n' +
+    '• Joystick = move/steer  · Red = Attack  · Green = Mount/Dismount  · Gold Use = Interact\n' +
+    '• Talk to the three NPCs near your spawn (tap Use) to take quests — a gold arrow points the way.\n' +
+    '• Kill orcs/uruks/trolls to drop weapons and armor you pick up automatically.\n' +
+    '• Light beacons (Use) to summon Rohirrim allies. Avoid Citadel Guards — they hunt you if you hurt them.\n' +
+    '• Night brings Nazgûl. Stay alert.',
     'Ride out'
   );
 }

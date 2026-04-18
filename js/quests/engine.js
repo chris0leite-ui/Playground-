@@ -15,7 +15,7 @@ function startQuest(id) {
   if (state.quests.active.find(q => q.id === id)) return;
   if (state.quests.completed.indexOf(id) >= 0) return;
   state.quests.active.push({ id, progress: 0, def });
-  toast('Quest started: ' + def.title, 3);
+  toast('Quest: ' + def.title + ' — ' + def.brief, 5);
 }
 
 function _completeQuest(q) {
