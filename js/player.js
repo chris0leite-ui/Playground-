@@ -181,7 +181,8 @@ function tryMountOrDismount() {
 
 function damagePlayer(amount) {
   const p = state.player;
-  if (p.hp <= 0) return;
+  if (!p || p.hp <= 0) return;
+  if (!isFinite(amount) || amount < 0) return;
   const armor = (typeof armorReduction === 'function') ? armorReduction() : 0;
   // Apply armor without a forced floor so DoT ticks don't bypass it each frame.
   amount = Math.max(0, amount - armor);

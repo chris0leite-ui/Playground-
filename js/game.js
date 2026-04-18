@@ -38,8 +38,16 @@ function updateCamera() {
 }
 
 function update(dt) {
-  // Trigger death screen even when HP hits 0 in a setTimeout callback
-  // (e.g. boss slam telegraph), which could fire between update() runs.
+  // Watchdog: force death flow if HP somehow reached 0 without setting
+  // gameOver (e.g. direct mutation, Nazgul DoT, projectile race).
+  if (state.player && state.player.hp <= 0 && !state.gameOver) {
+    state.player.hp = 0;
+    state.gameOver = true;
+    if (state.player.onHorse) {
+      state.player.onHorse.rider = null;
+      state.player.onHorse = null;
+    }
+  }
   if (state.gameOver) {
     if (!_deathShown) { _deathShown = true; showDeath(); }
     return;
