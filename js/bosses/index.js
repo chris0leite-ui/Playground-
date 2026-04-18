@@ -1,12 +1,14 @@
 // Boss registry and spawning at tier-appropriate anchor points.
+// Uses _findSafeSpot (from player.js) to snap to the nearest reachable tile
+// so bosses don't anchor inside a building.
 function spawnBosses() {
   const cx = (MAP.W / 2) * TILE, cy = (MAP.H / 2) * TILE;
-  // Tier 6 arena (outer ring): cave troll
-  state.entities.push(makeBossTroll(cx - 320, cy + 60));
-  // Tier 4 arena: Uruk captain
-  state.entities.push(makeBossUruk(cx + 200, cy - 40));
-  // Citadel (tier 1): Witch-King
-  state.entities.push(makeBossWK(cx, cy - 64));
+  const troll = _findSafeSpot(cx - 320, cy + 60, 160) || { x: cx - 320, y: cy + 60 };
+  const uruk  = _findSafeSpot(cx + 200, cy - 40, 160) || { x: cx + 200, y: cy - 40 };
+  const wk    = _findSafeSpot(cx, cy - 64, 120)       || { x: cx, y: cy - 64 };
+  state.entities.push(makeBossTroll(troll.x, troll.y));
+  state.entities.push(makeBossUruk(uruk.x, uruk.y));
+  state.entities.push(makeBossWK(wk.x, wk.y));
 }
 
 // Listen for boss death to emit a canonical event & reward renown.
