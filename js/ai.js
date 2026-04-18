@@ -1,0 +1,93 @@
+// AI and per-type update functions for non-player entities.
+
+function updateEntities(dt) {
+  for (const e of state.entities) {
+    if (e === state.player) continue;
+    if (e.hurtFlash > 0) e.hurtFlash -= dt;
+    switch (e.type) {
+      case 'orc':    updateHostile(e, dt, false); break;
+      case 'guard':  updateHostile(e, dt, true); break;
+      case 'horse':  updateHorse(e, dt); break;
+      case 'pickup': updatePickup(e, dt); break;
+    }
+  }
+  // Prune corpses (leave pickups alone even when "dead" — pickups have no hp).
+  state.entities = state.entities.filter((e) => {
+    if (e.type === 'pickup') return e.alive !== false;
+    if (e === state.player) return true;
+    return e.hp > 0;
+  });
+}
+
+// Shared orc/guard behavior. Guards are inert unless wantedLevel > 0.
+function updateHostile(e, dt, isGuard) {
+  const p = state.player;
+  if (!p || p.hp <= 0) {
+    wander(e, dt);
+    return;
+  }
+
+  const active = isGuard ? p.wantedLevel > 0 : true;
+  const d = distEnt(e, p);
+
+  if (e.attackTimer > 0) e.attackTimer -= dt;
+
+  if (active && d < e.aggroRange) {
+    const ang = Math.atan2(p.y - e.y, p.x - e.x);
+    e.angle = ang;
+    if (d > e.attackRange - 2) {
+      const sp = e.speed * (isGuard ? 1 + 0.08 * p.wantedLevel : 1);
+      tryMove(e, Math.cos(ang) * sp * dt, Math.sin(ang) * sp * dt);
+    } else if (e.attackTimer <= 0) {
+      e.attackTimer = isGuard ? CONFIG.GUARD_ATTACK_COOLDOWN : CONFIG.ORC_ATTACK_COOLDOWN;
+      damagePlayer(e.damage);
+    }
+  } else {
+    wander(e, dt);
+  }
+}
+
+function wander(e, dt) {
+  e.wanderTimer -= dt;
+  if (e.wanderTimer <= 0) {
+    e.wanderTimer = rand(1.2, 3.5);
+    e.wanderAngle = rand(0, Math.PI * 2);
+    // Half the time, stand still.
+    if (Math.random() < 0.4) e.wanderAngle = null;
+  }
+  if (e.wanderAngle == null) return;
+  const sp = (e.speed || 40) * 0.35;
+  tryMove(e, Math.cos(e.wanderAngle) * sp * dt, Math.sin(e.wanderAngle) * sp * dt);
+  e.angle = e.wanderAngle;
+}
+
+function updateHorse(e, dt) {
+  if (e.rider) {
+    // Ridden: position & angle driven by player.
+    return;
+  }
+  e.wanderTimer -= dt;
+  if (e.wanderTimer <= 0) {
+    e.wanderTimer = rand(2, 5);
+    e.wanderAngle = rand(0, Math.PI * 2);
+    if (Math.random() < 0.5) e.wanderAngle = null;
+  }
+  if (e.wanderAngle == null) return;
+  const sp = CONFIG.HORSE_WANDER_SPEED;
+  tryMove(e, Math.cos(e.wanderAngle) * sp * dt, Math.sin(e.wanderAngle) * sp * dt);
+  e.angle = e.wanderAngle;
+}
+
+function updatePickup(e, dt) {
+  const p = state.player;
+  if (!p || p.hp <= 0) return;
+  if (distEnt(e, p) < 16) {
+    if (e.kind === 'lembas') {
+      p.hp = Math.min(p.maxHp, p.hp + CONFIG.LEMBAS_HEAL);
+    } else if (e.kind === 'gold') {
+      p.gold += CONFIG.GOLD_VALUE;
+      state.renown += 5;
+    }
+    e.alive = false;
+  }
+}

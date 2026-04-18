@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#1a1a1a">
+  <title>Middle-earth: Streets of Minas Tirith</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <div id="hud">
+    <div id="hud-top">
+      <div id="title">Middle-earth: Streets of Minas Tirith</div>
+      <div id="stats">
+        <span id="gold">Gold: 0</span>
+        <span id="renown">Renown: 0</span>
+        <span id="wanted"></span>
+      </div>
+      <button id="pause-btn" type="button" aria-label="Pause">II</button>
+    </div>
+    <div id="hp-wrap"><div id="hp-bar"></div><div id="hp-text">100 / 100</div></div>
+    <div id="mount-indicator"></div>
+  </div>
+
+  <div id="touch-overlay">
+    <div id="stick-zone">
+      <div id="stick-base"><div id="stick-knob"></div></div>
+    </div>
+    <div id="buttons">
+      <button id="mount-btn" type="button" aria-label="Mount horse">Mount</button>
+      <button id="attack-btn" type="button" aria-label="Attack">Attack</button>
+    </div>
+  </div>
+
+  <div id="message-overlay" class="hidden">
+    <div id="message-box">
+      <h1 id="message-title">Middle-earth</h1>
+      <p id="message-body">Press Start to ride out.</p>
+      <button id="message-btn" type="button">Start</button>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/entities.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/hud.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

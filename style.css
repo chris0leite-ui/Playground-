@@ -1,0 +1,265 @@
+:root {
+  --gondor-white: #f0e8d0;
+  --gondor-gold: #d4a82a;
+  --mordor-red: #8a1a1a;
+  --mordor-black: #1a1a1a;
+  --grass: #3a5f3a;
+  --stone: #8a8a88;
+  --road: #4a4a4a;
+  --anduin: #2a4a7a;
+  --lembas: #5a8a3a;
+  --blood: #6a1010;
+  --ink: rgba(0, 0, 0, 0.55);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--mordor-black);
+  color: var(--gondor-white);
+  font-family: Georgia, "Times New Roman", serif;
+  touch-action: none;
+  overscroll-behavior: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#game {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  background: #000;
+}
+
+/* ---- HUD ---- */
+#hud {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  padding: env(safe-area-inset-top, 8px) env(safe-area-inset-right, 8px) 0 env(safe-area-inset-left, 8px);
+  font-size: 14px;
+  text-shadow: 0 1px 2px #000;
+}
+
+#hud-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+}
+
+#title {
+  font-weight: bold;
+  color: var(--gondor-gold);
+  font-size: 15px;
+  max-width: 50%;
+  line-height: 1.1;
+}
+
+#stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  background: var(--ink);
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(212, 168, 42, 0.4);
+}
+
+#pause-btn {
+  pointer-events: auto;
+  background: var(--ink);
+  color: var(--gondor-white);
+  border: 1px solid var(--gondor-gold);
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+}
+
+#hp-wrap {
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  width: min(240px, 50vw);
+  height: 18px;
+  background: var(--ink);
+  border: 1px solid var(--gondor-gold);
+  border-radius: 4px;
+  overflow: hidden;
+}
+#hp-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #c13030, #7a1010);
+  transition: width 0.15s linear;
+}
+#hp-text {
+  position: absolute;
+  inset: 0;
+  text-align: center;
+  line-height: 18px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+#mount-indicator {
+  position: absolute;
+  top: 84px;
+  left: 10px;
+  font-size: 12px;
+  color: var(--gondor-gold);
+  background: var(--ink);
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: none;
+}
+#mount-indicator.on { display: inline-block; }
+
+/* ---- Touch overlay ---- */
+#touch-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+#stick-zone {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  height: 55%;
+  pointer-events: auto;
+}
+
+#stick-base {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  width: clamp(120px, 34vmin, 180px);
+  height: clamp(120px, 34vmin, 180px);
+  border-radius: 50%;
+  background: rgba(240, 232, 208, 0.08);
+  border: 2px solid rgba(240, 232, 208, 0.35);
+  transition: opacity 0.15s;
+  opacity: 0.7;
+}
+#stick-knob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45%;
+  height: 45%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(212, 168, 42, 0.55);
+  border: 2px solid var(--gondor-gold);
+  pointer-events: none;
+}
+
+#buttons {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 16px;
+  pointer-events: auto;
+}
+
+#buttons button {
+  border-radius: 50%;
+  border: 2px solid var(--gondor-gold);
+  color: var(--gondor-white);
+  font-family: inherit;
+  font-weight: bold;
+  text-shadow: 0 1px 2px #000;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  padding: 0;
+}
+
+#attack-btn {
+  width: clamp(80px, 22vmin, 120px);
+  height: clamp(80px, 22vmin, 120px);
+  background: radial-gradient(circle at 35% 35%, #c13030, #6a1010);
+  font-size: clamp(14px, 3.2vmin, 18px);
+}
+#attack-btn:active { transform: scale(0.94); background: radial-gradient(circle at 35% 35%, #e04848, #8a1a1a); }
+
+#mount-btn {
+  width: clamp(62px, 16vmin, 90px);
+  height: clamp(62px, 16vmin, 90px);
+  background: radial-gradient(circle at 35% 35%, #6a9a4a, #3a5f3a);
+  font-size: clamp(11px, 2.4vmin, 14px);
+}
+#mount-btn:active { transform: scale(0.94); }
+
+/* ---- Message overlay (intro, death, pause) ---- */
+#message-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  pointer-events: auto;
+}
+#message-overlay.hidden { display: none; }
+
+#message-box {
+  background: #1a1a1a;
+  border: 2px solid var(--gondor-gold);
+  border-radius: 10px;
+  padding: 24px 28px;
+  max-width: min(440px, 86vw);
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+}
+
+#message-title {
+  margin: 0 0 10px 0;
+  color: var(--gondor-gold);
+  font-size: 22px;
+}
+
+#message-body {
+  margin: 0 0 18px 0;
+  line-height: 1.45;
+  font-size: 14px;
+}
+
+#message-btn {
+  background: var(--gondor-gold);
+  color: var(--mordor-black);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+}
+#message-btn:active { transform: scale(0.96); }
+
+@media (min-width: 900px) {
+  #title { font-size: 18px; }
+  #stats { font-size: 14px; }
+}
