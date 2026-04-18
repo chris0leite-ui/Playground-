@@ -151,4 +151,10 @@ function bindActionButtons() {
 
   mount.addEventListener('touchstart', press(() => { state.edge.mount = true; }), { passive: false });
   mount.addEventListener('mousedown', press(() => { state.edge.mount = true; }));
+
+  const interact = document.getElementById('interact-btn');
+  if (interact) {
+    interact.addEventListener('touchstart', press(() => { state.edge.interact = true; }), { passive: false });
+    interact.addEventListener('mousedown', press(() => { state.edge.interact = true; }));
+  }
 }

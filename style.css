@@ -211,6 +211,15 @@ html, body {
 }
 #mount-btn:active { transform: scale(0.94); }
 
+#interact-btn {
+  width: clamp(62px, 16vmin, 90px);
+  height: clamp(62px, 16vmin, 90px);
+  background: radial-gradient(circle at 35% 35%, #d4a82a, #8a6a1a);
+  color: var(--mordor-black);
+  font-size: clamp(11px, 2.4vmin, 14px);
+}
+#interact-btn:active { transform: scale(0.94); }
+
 /* ---- Message overlay (intro, death, pause) ---- */
 #message-overlay {
   position: fixed;
