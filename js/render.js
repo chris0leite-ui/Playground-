@@ -64,19 +64,9 @@ function drawPlayer(ctx, e) {
   ctx.fillRect(-4, -10, 8, 3);
   ctx.globalAlpha = 1;
 
-  // Sword swing
-  if (e.attackSwing > 0) {
-    ctx.save();
-    ctx.rotate(e.angle);
-    ctx.strokeStyle = PALETTE.gondorWhite;
-    ctx.lineWidth = 2.5;
-    ctx.beginPath();
-    ctx.moveTo(4, 0);
-    ctx.lineTo(22, 0);
-    ctx.stroke();
-    ctx.fillStyle = PALETTE.gondorGold;
-    ctx.fillRect(3, -2, 3, 4);
-    ctx.restore();
+  // Weapon swing FX (dispatch on current weapon's `anim`).
+  if (e.attackSwing > 0 && typeof drawWeaponFx === 'function') {
+    drawWeaponFx(ctx, e);
   }
 
   // Facing indicator (small arrow tip)

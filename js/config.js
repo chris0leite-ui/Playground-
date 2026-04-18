@@ -15,6 +15,12 @@ const TILES = {
   BUILDING: 3,
   WATER: 4,
   WALL: 5,
+  // Middle-earth regional ground tiles (all walkable):
+  SHIRE: 6,        // bright green hills
+  RIVENDELL: 7,    // pale stone flagging
+  ROHAN: 8,        // pale golden plains
+  MORDOR: 9,       // ashen ground
+  FANGORN: 10,     // dark forest floor
 };
 
 const PALETTE = {
@@ -40,6 +46,17 @@ const PALETTE = {
   orcSkin: '#5a6a3a',
   horseBrown: '#6a4a2a',
   horseMane: '#3a2a1a',
+  // Region tile colors
+  shire: '#5a8a3a',
+  shireFlower: '#d4e890',
+  rivendell: '#c8cec8',
+  rivendellVein: '#a8aeae',
+  rohan: '#9a8a4a',
+  rohanDark: '#7a6a3a',
+  mordor: '#2a241e',
+  mordorCrack: '#5a1a10',
+  fangorn: '#1a2a18',
+  fangornMoss: '#3a4a2a',
 };
 
 const CONFIG = {

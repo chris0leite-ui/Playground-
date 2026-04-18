@@ -80,9 +80,10 @@ function tryMove(e, dx, dy) {
 function tryAttack() {
   const p = state.player;
   const stats = (typeof weaponStats === 'function') ? weaponStats() : null;
+  const bonus = (typeof levelBonusDamage === 'function') ? levelBonusDamage() : 0;
   const cd = stats ? stats.cooldown : CONFIG.PLAYER_ATTACK_COOLDOWN;
   const range = stats ? stats.range : CONFIG.PLAYER_ATTACK_RANGE;
-  const dmg = stats ? stats.damage : CONFIG.PLAYER_ATTACK_DAMAGE;
+  const dmg = (stats ? stats.damage : CONFIG.PLAYER_ATTACK_DAMAGE) + bonus;
   if (p.attackTimer > 0) return;
   p.attackTimer = cd;
   p.attackSwing = 0.22;

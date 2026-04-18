@@ -32,7 +32,12 @@ function updateExtraHUD() {
     return `• ${q.def.title}${prog}`;
   }).join('<br>');
   const f = state.factions;
+  const p = state.player || {};
+  const lvl = p.level || 1;
+  const xp = p.xp || 0;
+  const next = (typeof xpToNext === 'function') ? xpToNext() : 100;
   _hudExtraEl.innerHTML = `
+    <div><strong>Lv ${lvl}</strong> · XP ${xp}/${next}</div>
     <div><strong>${tod.phase.toUpperCase()}</strong> (${(tod.t*100|0)}%)</div>
     <div>G ${f.gondor|0} · R ${f.rohan|0} · M ${f.mordor|0}</div>
     <div>Weapon: ${WEAPONS[state.inventory.weapon||'sword'].name}</div>

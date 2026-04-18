@@ -166,16 +166,66 @@ function drawTile(ctx, t, sx, sy, tx, ty) {
       ctx.fillRect(sx, sy, 3, TILE);
       break;
     }
+    case TILES.SHIRE: {
+      ctx.fillStyle = PALETTE.shire;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      if (((tx * 19 + ty * 13) & 7) === 0) {
+        ctx.fillStyle = PALETTE.shireFlower;
+        ctx.fillRect(sx + 8, sy + 6, 3, 3);
+        ctx.fillRect(sx + 20, sy + 18, 3, 3);
+      }
+      break;
+    }
+    case TILES.RIVENDELL: {
+      ctx.fillStyle = PALETTE.rivendell;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      ctx.strokeStyle = PALETTE.rivendellVein;
+      ctx.lineWidth = 1;
+      ctx.strokeRect(sx + 0.5, sy + 0.5, TILE - 1, TILE - 1);
+      break;
+    }
+    case TILES.ROHAN: {
+      ctx.fillStyle = PALETTE.rohan;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      if (((tx * 17 + ty * 11) & 5) === 0) {
+        ctx.fillStyle = PALETTE.rohanDark;
+        ctx.fillRect(sx + 4, sy + 10, 4, 2);
+        ctx.fillRect(sx + 16, sy + 22, 5, 2);
+      }
+      break;
+    }
+    case TILES.MORDOR: {
+      ctx.fillStyle = PALETTE.mordor;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      if (((tx * 23 + ty * 7) & 3) === 0) {
+        ctx.fillStyle = PALETTE.mordorCrack;
+        ctx.fillRect(sx + 6, sy + 14, 10, 2);
+      }
+      break;
+    }
+    case TILES.FANGORN: {
+      ctx.fillStyle = PALETTE.fangorn;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      ctx.fillStyle = PALETTE.fangornMoss;
+      ctx.fillRect(sx + 3, sy + 3, 4, 4);
+      ctx.fillRect(sx + 22, sy + 20, 5, 4);
+      break;
+    }
   }
 }
 
 // Helper used by entity spawning to scatter units onto non-solid tiles.
+function _openTileType(t) {
+  return t === TILES.ROAD || t === TILES.PAVEMENT || t === TILES.GRASS
+      || t === TILES.SHIRE || t === TILES.RIVENDELL || t === TILES.ROHAN
+      || t === TILES.MORDOR || t === TILES.FANGORN;
+}
+
 function findOpenTile() {
   for (let tries = 0; tries < 200; tries++) {
     const x = randInt(1, MAP.W - 4);
     const y = randInt(1, MAP.H - 2);
-    const t = state.map[y][x];
-    if (t === TILES.ROAD || t === TILES.PAVEMENT || t === TILES.GRASS) {
+    if (_openTileType(state.map[y][x])) {
       return { x: x * TILE + TILE / 2, y: y * TILE + TILE / 2 };
     }
   }
