@@ -43,6 +43,7 @@ function update(dt) {
   state.frame++;
   updatePlayer(dt);
   updateEntities(dt);
+  runUpdates(dt);
   updateCamera();
 
   if (state.gameOver && !_deathShown) {
@@ -59,6 +60,7 @@ function draw() {
 
   drawMap(ctx);
   drawEntities(ctx);
+  drawOverlays(ctx);
   updateHUD();
 }
 
@@ -89,6 +91,7 @@ function boot() {
   window.addEventListener('orientationchange', () => setTimeout(resizeCanvas, 100));
 
   initHUD();
+  if (typeof loadProfile === 'function') loadProfile();
   bindInput();
   resetRun();
   showIntro();

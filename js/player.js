@@ -5,7 +5,11 @@ function updatePlayer(dt) {
   if (!p || p.hp <= 0) return;
 
   const input = moveInput();
-  const speed = p.onHorse ? CONFIG.HORSE_SPEED : CONFIG.PLAYER_SPEED;
+  if (state.nazgul && state.nazgul.fear > 0) {
+    input.dx = -input.dx; input.dy = -input.dy;
+  }
+  const mountSp = (typeof mountSpeed === 'function') ? mountSpeed() : null;
+  const speed = p.onHorse ? (mountSp || CONFIG.HORSE_SPEED) : CONFIG.PLAYER_SPEED;
   const mag = Math.hypot(input.dx, input.dy);
   if (mag > 0.1) {
     p.angle = Math.atan2(input.dy, input.dx);
@@ -13,7 +17,13 @@ function updatePlayer(dt) {
   p.vx = input.dx * speed;
   p.vy = input.dy * speed;
 
-  tryMove(p, p.vx * dt, p.vy * dt);
+  if (p.onHorse && p.onHorse.flies) {
+    // Eagles ignore terrain entirely.
+    p.x = clamp(p.x + p.vx * dt, 10, MAP.W * TILE - 10);
+    p.y = clamp(p.y + p.vy * dt, 10, MAP.H * TILE - 10);
+  } else {
+    tryMove(p, p.vx * dt, p.vy * dt);
+  }
 
   if (p.onHorse) {
     p.onHorse.x = p.x;
@@ -69,24 +79,35 @@ function tryMove(e, dx, dy) {
 
 function tryAttack() {
   const p = state.player;
+  const stats = (typeof weaponStats === 'function') ? weaponStats() : null;
+  const cd = stats ? stats.cooldown : CONFIG.PLAYER_ATTACK_COOLDOWN;
+  const range = stats ? stats.range : CONFIG.PLAYER_ATTACK_RANGE;
+  const dmg = stats ? stats.damage : CONFIG.PLAYER_ATTACK_DAMAGE;
   if (p.attackTimer > 0) return;
-  p.attackTimer = CONFIG.PLAYER_ATTACK_COOLDOWN;
+  p.attackTimer = cd;
   p.attackSwing = 0.22;
 
-  const range = CONFIG.PLAYER_ATTACK_RANGE;
+  // Ranged weapons (bow) fire a projectile; melee sweeps a cone.
+  if (stats && stats.ranged && typeof spawnProjectile === 'function') {
+    spawnProjectile(p, p.angle, stats);
+    return;
+  }
+
   const fx = p.x + Math.cos(p.angle) * range * 0.5;
   const fy = p.y + Math.sin(p.angle) * range * 0.5;
 
   let killed = false;
   for (const e of state.entities) {
     if (e === p || e.type === 'pickup' || e === p.onHorse) continue;
+    if (e.friendly) continue;
     if (!('hp' in e)) continue;
     if (e.hp <= 0) continue;
     const d = dist(e.x, e.y, fx, fy);
     if (d < range) {
-      e.hp -= CONFIG.PLAYER_ATTACK_DAMAGE;
+      let damage = dmg;
+      if (stats && stats.bonusVs && stats.bonusVs[e.type]) damage += stats.bonusVs[e.type];
+      e.hp -= damage;
       e.hurtFlash = 0.15;
-      // Small knockback.
       const ang = Math.atan2(e.y - p.y, e.x - p.x);
       e.x += Math.cos(ang) * 4;
       e.y += Math.sin(ang) * 4;
@@ -110,9 +131,9 @@ function onEnemyKilled(e) {
     );
     state.player.wantedDecay = 0;
   } else if (e.type === 'horse') {
-    // Killing a horse is a minor crime.
     state.player.wantedLevel = Math.min(CONFIG.WANTED_MAX, state.player.wantedLevel + 1);
   }
+  emit('enemyKilled', { entity: e, byPlayer: true });
 }
 
 function tryMountOrDismount() {
@@ -128,10 +149,11 @@ function tryMountOrDismount() {
     p.onHorse = null;
     return;
   }
-  // Find nearest free horse within MOUNT_RANGE.
+  // Find nearest free mount within MOUNT_RANGE.
+  const MOUNT_TYPES = ['horse', 'eagle', 'warg', 'mumak'];
   let best = null, bestD = CONFIG.MOUNT_RANGE;
   for (const e of state.entities) {
-    if (e.type !== 'horse' || e.hp <= 0 || e.rider) continue;
+    if (MOUNT_TYPES.indexOf(e.type) < 0 || e.hp <= 0 || e.rider) continue;
     const d = distEnt(e, p);
     if (d < bestD) { bestD = d; best = e; }
   }
@@ -146,6 +168,8 @@ function tryMountOrDismount() {
 function damagePlayer(amount) {
   const p = state.player;
   if (p.hp <= 0) return;
+  const armor = (typeof armorReduction === 'function') ? armorReduction() : 0;
+  amount = Math.max(1, amount - armor);
   p.hp -= amount;
   p.hurtFlash = 0.2;
   state.shake = Math.min(10, state.shake + amount * 0.25);

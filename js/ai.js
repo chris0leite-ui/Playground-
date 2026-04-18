@@ -4,6 +4,7 @@ function updateEntities(dt) {
   for (const e of state.entities) {
     if (e === state.player) continue;
     if (e.hurtFlash > 0) e.hurtFlash -= dt;
+    if (typeof e.update === 'function') { e.update(dt, e); continue; }
     switch (e.type) {
       case 'orc':    updateHostile(e, dt, false); break;
       case 'guard':  updateHostile(e, dt, true); break;
@@ -11,11 +12,13 @@ function updateEntities(dt) {
       case 'pickup': updatePickup(e, dt); break;
     }
   }
-  // Prune corpses (leave pickups alone even when "dead" — pickups have no hp).
+  // Prune corpses (leave pickups/props with explicit alive flag).
   state.entities = state.entities.filter((e) => {
-    if (e.type === 'pickup') return e.alive !== false;
+    if (e.alive === false) return false;
+    if (e.type === 'pickup' || e.noHp) return e.alive !== false;
     if (e === state.player) return true;
-    return e.hp > 0;
+    if ('hp' in e) return e.hp > 0;
+    return true;
   });
 }
 
@@ -27,7 +30,8 @@ function updateHostile(e, dt, isGuard) {
     return;
   }
 
-  const active = isGuard ? p.wantedLevel > 0 : true;
+  const repHostile = (typeof rep === 'function') && isGuard && rep('gondor') < -30;
+  const active = isGuard ? (p.wantedLevel > 0 || repHostile) : true;
   const d = distEnt(e, p);
 
   if (e.attackTimer > 0) e.attackTimer -= dt;
@@ -89,5 +93,6 @@ function updatePickup(e, dt) {
       state.renown += 5;
     }
     e.alive = false;
+    emit('pickup', { kind: e.kind });
   }
 }

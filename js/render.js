@@ -18,6 +18,8 @@ function drawEntities(ctx) {
 }
 
 function drawEntity(ctx, e) {
+  // Custom draw (bosses, companions, props, etc.)
+  if (typeof e.draw === 'function') { e.draw(ctx, e); return; }
   switch (e.type) {
     case 'player':  drawPlayer(ctx, e); break;
     case 'orc':     drawOrc(ctx, e); break;

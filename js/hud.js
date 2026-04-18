@@ -88,6 +88,7 @@ function showIntro() {
 }
 
 function showDeath() {
+  if (typeof recordDeath === 'function') recordDeath();
   showMessage(
     'You have fallen',
     `Your saga ends. Renown earned: ${state.renown}. Gold gathered: ${state.player.gold}.`,
