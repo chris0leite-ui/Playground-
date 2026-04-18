@@ -38,7 +38,13 @@ function updateCamera() {
 }
 
 function update(dt) {
-  if (!state.started || state.paused || state.gameOver) return;
+  // Trigger death screen even when HP hits 0 in a setTimeout callback
+  // (e.g. boss slam telegraph), which could fire between update() runs.
+  if (state.gameOver) {
+    if (!_deathShown) { _deathShown = true; showDeath(); }
+    return;
+  }
+  if (!state.started || state.paused) return;
   state.time += dt;
   state.frame++;
   updatePlayer(dt);

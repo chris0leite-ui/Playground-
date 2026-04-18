@@ -169,7 +169,9 @@ function damagePlayer(amount) {
   const p = state.player;
   if (p.hp <= 0) return;
   const armor = (typeof armorReduction === 'function') ? armorReduction() : 0;
-  amount = Math.max(1, amount - armor);
+  // Apply armor without a forced floor so DoT ticks don't bypass it each frame.
+  amount = Math.max(0, amount - armor);
+  if (amount <= 0) return;
   p.hp -= amount;
   p.hurtFlash = 0.2;
   state.shake = Math.min(10, state.shake + amount * 0.25);
