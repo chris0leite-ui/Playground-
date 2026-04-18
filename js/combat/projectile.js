@@ -1,4 +1,12 @@
 // Projectiles for bows and enemy ranged attacks.
+//
+// Side check: an entity is "player-side" if it IS the player, has team
+// PLAYER, or carries the friendly flag (rohirrim, recruited companions).
+// Projectiles only damage entities on the opposite side.
+function _isPlayerSide(e) {
+  return e === state.player || e.team === TEAM.PLAYER || e.friendly === true;
+}
+
 function spawnProjectile(owner, angle, stats) {
   const p = {
     type: 'projectile', noHp: true, alive: true,
@@ -10,6 +18,7 @@ function spawnProjectile(owner, angle, stats) {
     damage: stats.damage || 20,
     team: owner.team,
     ownerIsPlayer: owner === state.player,
+    ownerIsPlayerSide: _isPlayerSide(owner),
     morgul: !!stats.morgul,
     traveled: 0,
     draw: drawProjectile,
@@ -25,13 +34,12 @@ function updateProjectile(dt, p) {
   p.traveled += step;
   if (p.traveled > p.range) { p.alive = false; return; }
   if (isSolidAt(p.x, p.y)) { p.alive = false; return; }
-  // Hit test.
+  // Hit test — only damage entities on the opposite side from the shooter.
   for (const e of state.entities) {
     if (e === p) continue;
     if (!('hp' in e) || e.hp <= 0) continue;
-    if (p.ownerIsPlayer && e.friendly) continue;
-    if (!p.ownerIsPlayer && e !== state.player) continue;
-    if (p.ownerIsPlayer && e === state.player) continue;
+    if (e.type === 'horse' || e.type === 'eagle' || e.type === 'warg' || e.type === 'mumak') continue;
+    if (_isPlayerSide(e) === p.ownerIsPlayerSide) continue;
     const dx = e.x - p.x, dy = e.y - p.y;
     if (dx * dx + dy * dy < (10 + e.w / 2) * (10 + e.w / 2)) {
       if (e === state.player) {
