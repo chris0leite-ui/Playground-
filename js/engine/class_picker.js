@@ -7,7 +7,19 @@ function showClassPicker() {
   const W = window.W || {};
   const classes = W.classes || {};
   const ids = Object.keys(classes).sort();
-  if (ids.length === 0) { showIntro(); return; }
+  if (ids.length === 0) {
+    // World content missing — almost always a stale cache. Show a loud
+    // diagnostic instead of silently falling back to the legacy intro.
+    if (typeof showToast === 'function') {
+      showToast('World content missing. Clear browser cache or reload.', 6000);
+    }
+    showIntro();
+    return;
+  }
+  const regCount = Object.keys((window.W && window.W.regions) || {}).length;
+  if (regCount === 0 && typeof showToast === 'function') {
+    showToast('World regions missing. Clear cache and reload.', 6000);
+  }
 
   const panel = document.getElementById('dialogue-overlay');
   const textEl = document.getElementById('dialogue-text');
