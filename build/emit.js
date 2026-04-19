@@ -38,6 +38,7 @@ function emitShard(type, records) {
 function namespaceFor(type) {
   // Map type -> W.<namespace>.
   if (type === 'overworld') return null;
+  if (type === 'class') return 'classes';
   return type + 's'; // region -> regions, npc -> npcs, etc.
 }
 

@@ -55,6 +55,37 @@ function updateHUD() {
       talkBtn.classList.add('hidden');
     }
   }
+
+  updateQuestLog();
+}
+
+function updateQuestLog() {
+  const log = document.getElementById('quest-log');
+  if (!log) return;
+  const W = (window.W && window.W.quests) || {};
+  const rows = [];
+  for (const id in state.quests) {
+    const q = state.quests[id];
+    if (q.status !== 'active') continue;
+    const def = W[id];
+    const title = (def && def.title) || id;
+    let hint = '';
+    if (def && def.steps && def.steps[q.stepIdx]) {
+      const s = def.steps[q.stepIdx];
+      hint = s.hint || s.target || s.id || '';
+    }
+    rows.push(`<div class="qrow"><div class="qtitle">${escapeHtml(title)}</div>` +
+              (hint ? `<div class="qhint">${escapeHtml(String(hint))}</div>` : '') +
+              `</div>`);
+  }
+  if (rows.length === 0) { log.classList.add('hidden'); return; }
+  log.innerHTML = rows.join('');
+  log.classList.remove('hidden');
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, (c) =>
+    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]);
 }
 
 function showToast(text, ms) {

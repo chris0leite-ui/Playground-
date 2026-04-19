@@ -1,7 +1,5 @@
-// Dialogue runtime. Tree-walks W.dialogues[id] via the #dialogue-overlay
-// modal. Freezes world input by setting state.inputMode = 'dialogue'.
-// Condition + effect evaluators are kept tiny here and extended by
-// quest/faction listeners in T0.6.
+// Dialogue runtime. Tree-walks W.dialogues[id] via #dialogue-overlay; sets
+// state.inputMode='dialogue' so the world freezes during conversation.
 
 let currentDialogue = null;
 
@@ -63,6 +61,8 @@ function renderDialogue() {
 function evalCond(cond) {
   if (!cond) return true;
   switch (cond.type) {
+    case 'and': return (cond.clauses || []).every(evalCond);
+    case 'or':  return (cond.clauses || []).some(evalCond);
     case 'flag':     return !!state.flags[cond.name];
     case 'not_flag': return !state.flags[cond.name];
     case 'quest_step_cmp': {

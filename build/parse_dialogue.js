@@ -39,7 +39,9 @@ function splitSections(body) {
 }
 
 function flush(sec, textBuf, out) {
-  sec.text = textBuf.join('\n');
+  // Body prose may include in-flow [if: ...] hints from authoring; strip
+  // them — only choice-line conditions are evaluated by the engine.
+  sec.text = textBuf.join('\n').replace(/\s*\[if:[^\]]+\]\s*/g, ' ').trim();
   out.push(sec);
 }
 
@@ -57,6 +59,18 @@ function parseChoice(line) {
 
 function parseCondition(s) {
   s = s.trim();
+  // Top-level OR (||) has lowest precedence. Split, then parse each clause
+  // as an AND. Bare clauses are leaves.
+  if (s.includes('||')) {
+    return { type: 'or', clauses: s.split('||').map((p) => parseCondition(p.trim())) };
+  }
+  if (s.includes('&&')) {
+    return { type: 'and', clauses: s.split('&&').map((p) => parseCondition(p.trim())) };
+  }
+  return parseLeafCondition(s);
+}
+
+function parseLeafCondition(s) {
   let m = s.match(/^flag:([A-Za-z0-9_-]+)$/);
   if (m) return { type: 'flag', name: m[1] };
   m = s.match(/^!flag:([A-Za-z0-9_-]+)$/);

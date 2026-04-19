@@ -18,6 +18,7 @@ Well met, traveller. [if: !flag:iron-started] We've a caravan bound for Gondor â
 - "I'll ride with them." -> accept [if: !flag:iron-started]
 - "Road clear?" -> progress [if: flag:iron-started && !flag:iron-delivered]
 - "Thanks again." -> reward [if: flag:iron-delivered]
+- "I bear a Keeper's packet." -> errand-receive [if: flag:errand-leg-4 && !flag:errand-leg-5]
 - "Fare well." -> END
 
 ## node: accept
@@ -31,4 +32,9 @@ Mind the hills east of the Anduin.
 ## node: reward
 A purse of Ereborian silver, well earned.
 - "My thanks." -> END {effects: flag:iron-rewarded=true, faction:dwarves-of-erebor.rep +15, gold +30}
+
+## node: errand-receive
+Hand it here. I add an Ereborian script. Bear the packet now south to the Reeve at Edoras.
+- "I will." -> END {effects: flag:errand-leg-4-delivered=true, flag:errand-leg-5=true, quest:keepers-errand-4.complete, quest:keepers-errand-5.start}
+- "A moment." -> start
 ```

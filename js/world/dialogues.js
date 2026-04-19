@@ -18,6 +18,31 @@ W.dialogues["bard-iron"] = {
         }],
       "text": "The wagons leave at dawn. Keep the axle wheels unbroken."
     },
+    "errand-receive": {
+      "choices": [{
+          "effects": [{
+              "name": "errand-leg-4-delivered",
+              "type": "flag",
+              "value": true
+            }, {
+              "name": "errand-leg-5",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "keepers-errand-4",
+              "type": "quest_complete"
+            }, {
+              "id": "keepers-errand-5",
+              "type": "quest_start"
+            }],
+          "next": null,
+          "text": "I will."
+        }, {
+          "next": "start",
+          "text": "A moment."
+        }],
+      "text": "Hand it here. I add an Ereborian script. Bear the packet now south to the Reeve at Edoras."
+    },
     "progress": {
       "choices": [{
           "next": "start",
@@ -54,8 +79,14 @@ W.dialogues["bard-iron"] = {
           "text": "I'll ride with them."
         }, {
           "cond": {
-            "raw": "flag:iron-started && !flag:iron-delivered",
-            "type": "raw"
+            "clauses": [{
+                "name": "iron-started",
+                "type": "flag"
+              }, {
+                "name": "iron-delivered",
+                "type": "not_flag"
+              }],
+            "type": "and"
           },
           "next": "progress",
           "text": "Road clear?"
@@ -67,10 +98,23 @@ W.dialogues["bard-iron"] = {
           "next": "reward",
           "text": "Thanks again."
         }, {
+          "cond": {
+            "clauses": [{
+                "name": "errand-leg-4",
+                "type": "flag"
+              }, {
+                "name": "errand-leg-5",
+                "type": "not_flag"
+              }],
+            "type": "and"
+          },
+          "next": "errand-receive",
+          "text": "I bear a Keeper's packet."
+        }, {
           "next": null,
           "text": "Fare well."
         }],
-      "text": "Well met, traveller. [if: !flag:iron-started] We've a caravan bound for Gondor — could use another sword."
+      "text": "Well met, traveller. We've a caravan bound for Gondor — could use another sword."
     }
   },
   "speaker": "bard-iii",
@@ -85,6 +129,24 @@ W.dialogues["barliman-welcome"] = {
           "text": "Aye."
         }],
       "text": "The Greenway runs south from the crossroads. Ride safe."
+    },
+    "errand-1": {
+      "choices": [{
+          "effects": [{
+              "name": "errand-leg-1",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "keepers-errand-1",
+              "type": "quest_start"
+            }],
+          "next": null,
+          "text": "I'll bear it."
+        }, {
+          "next": "start",
+          "text": "Not now."
+        }],
+      "text": "Hush, then. Halbarad left this sealed letter — bear it east to Elrohir at Rivendell."
     },
     "news": {
       "choices": [{
@@ -143,8 +205,14 @@ W.dialogues["barliman-welcome"] = {
           "text": "What's the word?"
         }, {
           "cond": {
-            "raw": "flag:accepted-greenway && !flag:greenway-clear",
-            "type": "raw"
+            "clauses": [{
+                "name": "accepted-greenway",
+                "type": "flag"
+              }, {
+                "name": "greenway-clear",
+                "type": "not_flag"
+              }],
+            "type": "and"
           },
           "next": "progress",
           "text": "Any progress on the Greenway?"
@@ -170,10 +238,17 @@ W.dialogues["barliman-welcome"] = {
           "next": "room",
           "text": "A room, please."
         }, {
+          "cond": {
+            "name": "errand-leg-1",
+            "type": "not_flag"
+          },
+          "next": "errand-1",
+          "text": "Heard of the Keeper's Errand?"
+        }, {
           "next": null,
           "text": "Another time."
         }],
-      "text": "Well met! [if: !flag:accepted-greenway] The roads have been restless of late. Care to hear what I've heard?"
+      "text": "Well met! The roads have been restless of late. Care to hear what I've heard?"
     }
   },
   "speaker": "barliman-butterbur-ii",
@@ -196,6 +271,31 @@ W.dialogues["beregond-bridge"] = {
           "text": "I shall."
         }],
       "text": "The south span. Keep the king's peace."
+    },
+    "errand-receive": {
+      "choices": [{
+          "effects": [{
+              "name": "errand-leg-6-delivered",
+              "type": "flag",
+              "value": true
+            }, {
+              "name": "errand-leg-7",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "keepers-errand-6",
+              "type": "quest_complete"
+            }, {
+              "id": "keepers-errand-7",
+              "type": "quest_start"
+            }],
+          "next": null,
+          "text": "I will."
+        }, {
+          "next": "start",
+          "text": "A moment."
+        }],
+      "text": "Hand it here. The white tree, sealed. Bear the packet now east to the Warden at the Morannon."
     },
     "progress": {
       "choices": [{
@@ -233,8 +333,14 @@ W.dialogues["beregond-bridge"] = {
           "text": "Point the way."
         }, {
           "cond": {
-            "raw": "flag:bridge-started && !flag:bridge-done",
-            "type": "raw"
+            "clauses": [{
+                "name": "bridge-started",
+                "type": "flag"
+              }, {
+                "name": "bridge-done",
+                "type": "not_flag"
+              }],
+            "type": "and"
           },
           "next": "progress",
           "text": "Bridge held?"
@@ -246,10 +352,23 @@ W.dialogues["beregond-bridge"] = {
           "next": "reward",
           "text": "Bridge is open?"
         }, {
+          "cond": {
+            "clauses": [{
+                "name": "errand-leg-6",
+                "type": "flag"
+              }, {
+                "name": "errand-leg-7",
+                "type": "not_flag"
+              }],
+            "type": "and"
+          },
+          "next": "errand-receive",
+          "text": "I bear a Keeper's packet."
+        }, {
           "next": null,
           "text": "Later."
         }],
-      "text": "Hail, friend of the Kingdom. [if: !flag:bridge-started] Bandits set on the new bridge at dusk. Would you lend a blade?"
+      "text": "Hail, friend of the Kingdom. Bandits set on the new bridge at dusk. Would you lend a blade?"
     }
   },
   "speaker": "faramirs-steward",
@@ -272,6 +391,31 @@ W.dialogues["deorwin-hoofbeats"] = {
           "text": "I will."
         }],
       "text": "Take a Rohirric spear. Return ere the moon turns."
+    },
+    "errand-receive": {
+      "choices": [{
+          "effects": [{
+              "name": "errand-leg-5-delivered",
+              "type": "flag",
+              "value": true
+            }, {
+              "name": "errand-leg-6",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "keepers-errand-5",
+              "type": "quest_complete"
+            }, {
+              "id": "keepers-errand-6",
+              "type": "quest_start"
+            }],
+          "next": null,
+          "text": "I will."
+        }, {
+          "next": "start",
+          "text": "A moment."
+        }],
+      "text": "Hand it here. The white horse-seal of the Mark, added. Bear the packet now east to Beregond at Osgiliath."
     },
     "progress": {
       "choices": [{
@@ -309,8 +453,14 @@ W.dialogues["deorwin-hoofbeats"] = {
           "text": "I'll ride."
         }, {
           "cond": {
-            "raw": "flag:hoofbeats-started && !flag:hoofbeats-done",
-            "type": "raw"
+            "clauses": [{
+                "name": "hoofbeats-started",
+                "type": "flag"
+              }, {
+                "name": "hoofbeats-done",
+                "type": "not_flag"
+              }],
+            "type": "and"
           },
           "next": "progress",
           "text": "Raiders still out?"
@@ -322,10 +472,23 @@ W.dialogues["deorwin-hoofbeats"] = {
           "next": "reward",
           "text": "Wold is quiet."
         }, {
+          "cond": {
+            "clauses": [{
+                "name": "errand-leg-5",
+                "type": "flag"
+              }, {
+                "name": "errand-leg-6",
+                "type": "not_flag"
+              }],
+            "type": "and"
+          },
+          "next": "errand-receive",
+          "text": "I bear a Keeper's packet."
+        }, {
           "next": null,
           "text": "Another day."
         }],
-      "text": "Hail, rider. [if: !flag:hoofbeats-started] Easterling raiders trouble the Wold. Would you ride north?"
+      "text": "Hail, rider. Easterling raiders trouble the Wold. Would you ride north?"
     }
   },
   "speaker": "eomers-reeve",
@@ -348,6 +511,31 @@ W.dialogues["elrohir-books"] = {
           "text": "I shall."
         }],
       "text": "Bring them to the library. Handle them gently."
+    },
+    "errand-receive": {
+      "choices": [{
+          "effects": [{
+              "name": "errand-leg-1-delivered",
+              "type": "flag",
+              "value": true
+            }, {
+              "name": "errand-leg-2",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "keepers-errand-1",
+              "type": "quest_complete"
+            }, {
+              "id": "keepers-errand-2",
+              "type": "quest_start"
+            }],
+          "next": null,
+          "text": "I will."
+        }, {
+          "next": "start",
+          "text": "A moment."
+        }],
+      "text": "Hand it here. I add a leaf of counsel. Bear the packet now to Thorin IV at Moria's West-gate."
     },
     "progress": {
       "choices": [{
@@ -382,8 +570,14 @@ W.dialogues["elrohir-books"] = {
           "text": "I will search."
         }, {
           "cond": {
-            "raw": "flag:books-started && !flag:books-done",
-            "type": "raw"
+            "clauses": [{
+                "name": "books-started",
+                "type": "flag"
+              }, {
+                "name": "books-done",
+                "type": "not_flag"
+              }],
+            "type": "and"
           },
           "next": "progress",
           "text": "Still searching?"
@@ -395,10 +589,23 @@ W.dialogues["elrohir-books"] = {
           "next": "reward",
           "text": "They are safe."
         }, {
+          "cond": {
+            "clauses": [{
+                "name": "errand-leg-1",
+                "type": "flag"
+              }, {
+                "name": "errand-leg-2",
+                "type": "not_flag"
+              }],
+            "type": "and"
+          },
+          "next": "errand-receive",
+          "text": "I bear a sealed letter."
+        }, {
           "next": null,
           "text": "Another time."
         }],
-      "text": "Mae govannen. [if: !flag:books-started] Some annals of my father were left behind in the hills. Would you fetch them?"
+      "text": "Mae govannen. Some annals of my father were left behind in the hills. Would you fetch them?"
     }
   },
   "speaker": "elrohir",
@@ -455,8 +662,14 @@ W.dialogues["goldberry-wight"] = {
           "text": "I'll put it down."
         }, {
           "cond": {
-            "raw": "flag:wight-started && !flag:wight-done",
-            "type": "raw"
+            "clauses": [{
+                "name": "wight-started",
+                "type": "flag"
+              }, {
+                "name": "wight-done",
+                "type": "not_flag"
+              }],
+            "type": "and"
           },
           "next": "progress",
           "text": "Still restless?"
@@ -471,7 +684,7 @@ W.dialogues["goldberry-wight"] = {
           "next": null,
           "text": "Go well."
         }],
-      "text": "Come, merry dol. [if: !flag:wight-started] A barrow stirs on the Downs — it should not."
+      "text": "Come, merry dol. A barrow stirs on the Downs — it should not."
     }
   },
   "speaker": "goldberry",
@@ -494,6 +707,31 @@ W.dialogues["orophin-mallorn"] = {
           "text": "I will."
         }],
       "text": "Take this bow. Strike any who lay hand on the sapling."
+    },
+    "errand-receive": {
+      "choices": [{
+          "effects": [{
+              "name": "errand-leg-3-delivered",
+              "type": "flag",
+              "value": true
+            }, {
+              "name": "errand-leg-4",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "keepers-errand-3",
+              "type": "quest_complete"
+            }, {
+              "id": "keepers-errand-4",
+              "type": "quest_start"
+            }],
+          "next": null,
+          "text": "I will."
+        }, {
+          "next": "start",
+          "text": "A moment."
+        }],
+      "text": "Hand it here. I wrap it in mallorn-leaf — it will not lose its way. Bear it now to Bard III in Dale."
     },
     "progress": {
       "choices": [{
@@ -528,8 +766,14 @@ W.dialogues["orophin-mallorn"] = {
           "text": "I will."
         }, {
           "cond": {
-            "raw": "flag:mallorn-started && !flag:mallorn-saved",
-            "type": "raw"
+            "clauses": [{
+                "name": "mallorn-started",
+                "type": "flag"
+              }, {
+                "name": "mallorn-saved",
+                "type": "not_flag"
+              }],
+            "type": "and"
           },
           "next": "progress",
           "text": "Has it held?"
@@ -541,10 +785,23 @@ W.dialogues["orophin-mallorn"] = {
           "next": "reward",
           "text": "The wood is well?"
         }, {
+          "cond": {
+            "clauses": [{
+                "name": "errand-leg-3",
+                "type": "flag"
+              }, {
+                "name": "errand-leg-4",
+                "type": "not_flag"
+              }],
+            "type": "and"
+          },
+          "next": "errand-receive",
+          "text": "I bear a Keeper's packet."
+        }, {
           "next": null,
           "text": "Another time."
         }],
-      "text": "Mae govannen. [if: !flag:mallorn-started] A young mallorn falters. Would you guard it a while?"
+      "text": "Mae govannen. A young mallorn falters. Would you guard it a while?"
     }
   },
   "speaker": "haldirs-successor",
@@ -629,8 +886,14 @@ W.dialogues["sam-missing-mathom"] = {
           "text": "I have."
         }, {
           "cond": {
-            "raw": "flag:accepted-mathom && !flag:found-mathom",
-            "type": "raw"
+            "clauses": [{
+                "name": "accepted-mathom",
+                "type": "flag"
+              }, {
+                "name": "found-mathom",
+                "type": "not_flag"
+              }],
+            "type": "and"
           },
           "next": "ask-found",
           "text": "Have you found it yet?"
@@ -645,7 +908,7 @@ W.dialogues["sam-missing-mathom"] = {
           "next": null,
           "text": "Not today."
         }],
-      "text": "Ah, good day to you! Ah — [if: !flag:accepted-mathom] have you a moment to help an old hobbit?"
+      "text": "Ah, good day to you! Ah — have you a moment to help an old hobbit?"
     }
   },
   "speaker": "sam-gamgee-the-younger",
@@ -660,6 +923,31 @@ W.dialogues["thorin-relight"] = {
           "text": "Aye."
         }],
       "text": "May the flame hold, friend."
+    },
+    "errand-receive": {
+      "choices": [{
+          "effects": [{
+              "name": "errand-leg-2-delivered",
+              "type": "flag",
+              "value": true
+            }, {
+              "name": "errand-leg-3",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "keepers-errand-2",
+              "type": "quest_complete"
+            }, {
+              "id": "keepers-errand-3",
+              "type": "quest_start"
+            }],
+          "next": null,
+          "text": "I will."
+        }, {
+          "next": "start",
+          "text": "A moment."
+        }],
+      "text": "Hand it here. I'll seal a Dwarven rune to it. Bear the packet now to Orophin in Lothlórien."
     },
     "progress": {
       "choices": [{
@@ -694,8 +982,14 @@ W.dialogues["thorin-relight"] = {
           "text": "Tell me."
         }, {
           "cond": {
-            "raw": "flag:relight-lamps-started && !flag:relight-lamps-done",
-            "type": "raw"
+            "clauses": [{
+                "name": "relight-lamps-started",
+                "type": "flag"
+              }, {
+                "name": "relight-lamps-done",
+                "type": "not_flag"
+              }],
+            "type": "and"
           },
           "next": "progress",
           "text": "Still at it?"
@@ -707,10 +1001,23 @@ W.dialogues["thorin-relight"] = {
           "next": "reward",
           "text": "Mithril for ye."
         }, {
+          "cond": {
+            "clauses": [{
+                "name": "errand-leg-2",
+                "type": "flag"
+              }, {
+                "name": "errand-leg-3",
+                "type": "not_flag"
+              }],
+            "type": "and"
+          },
+          "next": "errand-receive",
+          "text": "I bear a Keeper's packet."
+        }, {
           "next": null,
           "text": "Farewell."
         }],
-      "text": "Welcome to the Doors of Durin, stranger. [if: !flag:relight-lamps-started] We've a task a stout arm might lend to."
+      "text": "Welcome to the Doors of Durin, stranger. We've a task a stout arm might lend to."
     },
     "task": {
       "choices": [{
@@ -752,6 +1059,42 @@ W.dialogues["warden-ash"] = {
         }],
       "text": "South of the watchfort. Burn it out."
     },
+    "errand-final": {
+      "choices": [{
+          "effects": [{
+              "name": "errand-leg-7-delivered",
+              "type": "flag",
+              "value": true
+            }, {
+              "name": "errand-leg-8",
+              "type": "flag",
+              "value": true
+            }, {
+              "name": "errand-leg-8-delivered",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "keepers-errand-7",
+              "type": "quest_complete"
+            }, {
+              "id": "keepers-errand-8",
+              "type": "quest_start"
+            }, {
+              "id": "keepers-errand-8",
+              "type": "quest_complete"
+            }, {
+              "delta": 100,
+              "type": "gold"
+            }, {
+              "delta": 25,
+              "faction": "reunited-kingdom",
+              "type": "faction_rep"
+            }],
+          "next": null,
+          "text": "It is done."
+        }],
+      "text": "At last. The seven seals — Bree, Imladris, Khazad, Lórien, Erebor, Mark, Anor — and now the Black Gate. The packet bears a single line: 'The watch endures.' You have woven the realms anew, Keeper."
+    },
     "progress": {
       "choices": [{
           "next": "start",
@@ -788,8 +1131,14 @@ W.dialogues["warden-ash"] = {
           "text": "Where?"
         }, {
           "cond": {
-            "raw": "flag:ash-started && !flag:ash-done",
-            "type": "raw"
+            "clauses": [{
+                "name": "ash-started",
+                "type": "flag"
+              }, {
+                "name": "ash-done",
+                "type": "not_flag"
+              }],
+            "type": "and"
           },
           "next": "progress",
           "text": "Still stirring?"
@@ -801,10 +1150,23 @@ W.dialogues["warden-ash"] = {
           "next": "reward",
           "text": "Fire is out?"
         }, {
+          "cond": {
+            "clauses": [{
+                "name": "errand-leg-7",
+                "type": "flag"
+              }, {
+                "name": "errand-leg-8",
+                "type": "not_flag"
+              }],
+            "type": "and"
+          },
+          "next": "errand-final",
+          "text": "I bear a Keeper's packet."
+        }, {
           "next": null,
           "text": "Not today."
         }],
-      "text": "You pass the gate at a good hour. [if: !flag:ash-started] We've a warren that must be cleared."
+      "text": "You pass the gate at a good hour. We've a warren that must be cleared."
     }
   },
   "speaker": "warden-of-morannon",

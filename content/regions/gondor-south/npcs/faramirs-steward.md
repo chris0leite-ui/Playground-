@@ -18,6 +18,7 @@ Hail, friend of the Kingdom. [if: !flag:bridge-started] Bandits set on the new b
 - "Point the way." -> accept [if: !flag:bridge-started]
 - "Bridge held?" -> progress [if: flag:bridge-started && !flag:bridge-done]
 - "Bridge is open?" -> reward [if: flag:bridge-done]
+- "I bear a Keeper's packet." -> errand-receive [if: flag:errand-leg-6 && !flag:errand-leg-7]
 - "Later." -> END
 
 ## node: accept
@@ -31,4 +32,9 @@ Swift strike, sure foot.
 ## node: reward
 A Citadel commendation. And coin besides.
 - "My thanks." -> END {effects: flag:bridge-rewarded=true, faction:reunited-kingdom.rep +20, gold +25}
+
+## node: errand-receive
+Hand it here. The white tree, sealed. Bear the packet now east to the Warden at the Morannon.
+- "I will." -> END {effects: flag:errand-leg-6-delivered=true, flag:errand-leg-7=true, quest:keepers-errand-6.complete, quest:keepers-errand-7.start}
+- "A moment." -> start
 ```

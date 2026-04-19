@@ -140,6 +140,27 @@ html, body {
 }
 #mount-indicator.on { display: inline-block; }
 
+/* ---- Quest log (top-left, below mount indicator) ---- */
+#quest-log {
+  position: absolute;
+  top: 110px;
+  left: 10px;
+  max-width: min(260px, 60vw);
+  background: var(--ink);
+  border: 1px solid var(--gondor-gold);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 11px;
+  line-height: 1.35;
+  pointer-events: none;
+  color: var(--gondor-white);
+}
+#quest-log.hidden { display: none; }
+#quest-log .qtitle { color: var(--gondor-gold); font-weight: bold; }
+#quest-log .qhint { opacity: 0.85; }
+#quest-log .qrow { margin-top: 4px; }
+#quest-log .qrow:first-child { margin-top: 0; }
+
 /* ---- Touch overlay ---- */
 #touch-overlay {
   position: fixed;

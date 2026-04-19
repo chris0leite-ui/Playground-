@@ -19,6 +19,7 @@ You pass the gate at a good hour. [if: !flag:ash-started] We've a warren that mu
 - "Where?" -> accept [if: !flag:ash-started]
 - "Still stirring?" -> progress [if: flag:ash-started && !flag:ash-done]
 - "Fire is out?" -> reward [if: flag:ash-done]
+- "I bear a Keeper's packet." -> errand-final [if: flag:errand-leg-7 && !flag:errand-leg-8]
 - "Not today." -> END
 
 ## node: accept
@@ -32,4 +33,8 @@ No shade must follow you back.
 ## node: reward
 The Kingdom sends her thanks — and a sword.
 - "My thanks." -> END {effects: flag:ash-rewarded=true, faction:reunited-kingdom.rep +25, gold +30}
+
+## node: errand-final
+At last. The seven seals — Bree, Imladris, Khazad, Lórien, Erebor, Mark, Anor — and now the Black Gate. The packet bears a single line: 'The watch endures.' You have woven the realms anew, Keeper.
+- "It is done." -> END {effects: flag:errand-leg-7-delivered=true, flag:errand-leg-8=true, flag:errand-leg-8-delivered=true, quest:keepers-errand-7.complete, quest:keepers-errand-8.start, quest:keepers-errand-8.complete, gold +100, faction:reunited-kingdom.rep +25}
 ```

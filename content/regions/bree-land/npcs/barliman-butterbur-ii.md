@@ -20,6 +20,7 @@ Well met! [if: !flag:accepted-greenway] The roads have been restless of late. Ca
 - "Any progress on the Greenway?" -> progress [if: flag:accepted-greenway && !flag:greenway-clear]
 - "It's quiet now." -> reward [if: flag:greenway-clear]
 - "A room, please." -> room {effects: gold -5, hp +30, flag:slept-at-pony=true}
+- "Heard of the Keeper's Errand?" -> errand-1 [if: !flag:errand-leg-1]
 - "Another time." -> END
 
 ## node: news
@@ -42,4 +43,9 @@ Word came back: the road's clear. Here — a traveller's pouch on the house.
 ## node: room
 A fine room, as always. Sleep well.
 - "My thanks." -> start
+
+## node: errand-1
+Hush, then. Halbarad left this sealed letter — bear it east to Elrohir at Rivendell.
+- "I'll bear it." -> END {effects: flag:errand-leg-1=true, quest:keepers-errand-1.start}
+- "Not now." -> start
 ```

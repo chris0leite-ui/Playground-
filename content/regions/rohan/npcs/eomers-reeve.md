@@ -18,6 +18,7 @@ Hail, rider. [if: !flag:hoofbeats-started] Easterling raiders trouble the Wold. 
 - "I'll ride." -> accept [if: !flag:hoofbeats-started]
 - "Raiders still out?" -> progress [if: flag:hoofbeats-started && !flag:hoofbeats-done]
 - "Wold is quiet." -> reward [if: flag:hoofbeats-done]
+- "I bear a Keeper's packet." -> errand-receive [if: flag:errand-leg-5 && !flag:errand-leg-6]
 - "Another day." -> END
 
 ## node: accept
@@ -31,4 +32,9 @@ Fast hooves, truer spears.
 ## node: reward
 The Mark remembers you, friend.
 - "My thanks." -> END {effects: flag:hoofbeats-rewarded=true, faction:rohirrim.rep +15, gold +20}
+
+## node: errand-receive
+Hand it here. The white horse-seal of the Mark, added. Bear the packet now east to Beregond at Osgiliath.
+- "I will." -> END {effects: flag:errand-leg-5-delivered=true, flag:errand-leg-6=true, quest:keepers-errand-5.complete, quest:keepers-errand-6.start}
+- "A moment." -> start
 ```

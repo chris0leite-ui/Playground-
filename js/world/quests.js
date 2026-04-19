@@ -70,6 +70,169 @@ W.quests["iron-for-the-south"] = {
   "summary": "Escort a caravan of iron-work from Dale toward Gondor.",
   "title": "Iron for the South"
 };
+W.quests["keepers-errand-1"] = {
+  "arc": "keepers-errand",
+  "giver": "npc:barliman-butterbur-ii",
+  "id": "keepers-errand-1",
+  "rewards": {
+    "gold": 10,
+    "rep": [{
+        "delta": 5,
+        "faction": "rangers-of-the-north"
+      }]
+  },
+  "steps": [{
+      "hint": "Bring the letter to Elrohir in Rivendell.",
+      "id": "travel",
+      "target": "errand-leg-1-delivered",
+      "type": "flag"
+    }],
+  "summary": "Carry Halbarad's sealed letter east to Elrohir at Rivendell.",
+  "title": "The Letter Sealed"
+};
+W.quests["keepers-errand-2"] = {
+  "arc": "keepers-errand",
+  "giver": "npc:elrohir",
+  "id": "keepers-errand-2",
+  "rewards": {
+    "gold": 10,
+    "rep": [{
+        "delta": 5,
+        "faction": "imladris-elves"
+      }]
+  },
+  "steps": [{
+      "hint": "Bring the packet to Thorin IV at the Doors of Durin.",
+      "id": "travel",
+      "target": "errand-leg-2-delivered",
+      "type": "flag"
+    }],
+  "summary": "Carry the packet — now bearing Elven counsel — east to Thorin IV at Moria's West-gate.",
+  "title": "To the Doors of Durin"
+};
+W.quests["keepers-errand-3"] = {
+  "arc": "keepers-errand",
+  "giver": "npc:thorin-iv",
+  "id": "keepers-errand-3",
+  "rewards": {
+    "gold": 10,
+    "rep": [{
+        "delta": 5,
+        "faction": "dwarves-of-erebor"
+      }]
+  },
+  "steps": [{
+      "hint": "Bring the packet to Orophin in Lothlórien.",
+      "id": "travel",
+      "target": "errand-leg-3-delivered",
+      "type": "flag"
+    }],
+  "summary": "Carry the packet — now sealed with Dwarven runes — south to Orophin in Lothlórien.",
+  "title": "To the Golden Wood"
+};
+W.quests["keepers-errand-4"] = {
+  "arc": "keepers-errand",
+  "giver": "npc:haldirs-successor",
+  "id": "keepers-errand-4",
+  "rewards": {
+    "gold": 10,
+    "rep": [{
+        "delta": 5,
+        "faction": "galadhrim"
+      }]
+  },
+  "steps": [{
+      "hint": "Bring the packet to Bard III in Dale.",
+      "id": "travel",
+      "target": "errand-leg-4-delivered",
+      "type": "flag"
+    }],
+  "summary": "Carry the packet — wrapped in mallorn-leaf — east to Bard III in Dale.",
+  "title": "To the Lonely Mountain"
+};
+W.quests["keepers-errand-5"] = {
+  "arc": "keepers-errand",
+  "giver": "npc:bard-iii",
+  "id": "keepers-errand-5",
+  "rewards": {
+    "gold": 10,
+    "rep": [{
+        "delta": 5,
+        "faction": "dwarves-of-erebor"
+      }]
+  },
+  "steps": [{
+      "hint": "Bring the packet to the Reeve of Edoras.",
+      "id": "travel",
+      "target": "errand-leg-5-delivered",
+      "type": "flag"
+    }],
+  "summary": "Carry the packet — now thicker with Ereborian script — south to Déorwin at Edoras.",
+  "title": "To the Mark"
+};
+W.quests["keepers-errand-6"] = {
+  "arc": "keepers-errand",
+  "giver": "npc:eomers-reeve",
+  "id": "keepers-errand-6",
+  "rewards": {
+    "gold": 10,
+    "rep": [{
+        "delta": 5,
+        "faction": "rohirrim"
+      }]
+  },
+  "steps": [{
+      "hint": "Bring the packet to Beregond the Younger in Osgiliath.",
+      "id": "travel",
+      "target": "errand-leg-6-delivered",
+      "type": "flag"
+    }],
+  "summary": "Carry the packet — now bound with the white horse seal — east to Beregond at Osgiliath.",
+  "title": "To the White Tower"
+};
+W.quests["keepers-errand-7"] = {
+  "arc": "keepers-errand",
+  "giver": "npc:faramirs-steward",
+  "id": "keepers-errand-7",
+  "rewards": {
+    "gold": 10,
+    "rep": [{
+        "delta": 10,
+        "faction": "reunited-kingdom"
+      }]
+  },
+  "steps": [{
+      "hint": "Bring the packet to the Warden of the Black Gate.",
+      "id": "travel",
+      "target": "errand-leg-7-delivered",
+      "type": "flag"
+    }],
+  "summary": "Carry the packet — now sealed with the white tree — east to the Warden at Morannon.",
+  "title": "To the Black Gate"
+};
+W.quests["keepers-errand-8"] = {
+  "arc": "keepers-errand",
+  "giver": "npc:warden-of-morannon",
+  "id": "keepers-errand-8",
+  "rewards": {
+    "gold": 100,
+    "rep": [{
+        "delta": 25,
+        "faction": "reunited-kingdom"
+      }, {
+        "delta": 25,
+        "faction": "rangers-of-the-north"
+      }]
+  },
+  "steps": [{
+      "hint": "Receive the Warden's charge.",
+      "id": "capstone",
+      "target": "errand-leg-8-delivered",
+      "type": "flag"
+    }],
+  "summary": "The Warden opens the packet at last. Its contents will shape the next age.",
+  "title": "The Keeper's Charge"
+};
 W.quests["missing-mathom"] = {
   "classes_eligible": ["hobbit", "ranger-of-the-north"],
   "giver": "npc:sam-gamgee-the-younger",

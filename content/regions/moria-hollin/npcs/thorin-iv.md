@@ -19,6 +19,7 @@ Welcome to the Doors of Durin, stranger. [if: !flag:relight-lamps-started] We've
 - "Tell me." -> task [if: !flag:relight-lamps-started]
 - "Still at it?" -> progress [if: flag:relight-lamps-started && !flag:relight-lamps-done]
 - "Mithril for ye." -> reward [if: flag:relight-lamps-done]
+- "I bear a Keeper's packet." -> errand-receive [if: flag:errand-leg-2 && !flag:errand-leg-3]
 - "Farewell." -> END
 
 ## node: task
@@ -37,4 +38,9 @@ Keep to the lamps and the lamps to you.
 ## node: reward
 Durin's sign shines again. Here, a rune-stone for your troubles.
 - "My thanks." -> END {effects: flag:relight-lamps-rewarded=true, faction:dwarves-of-erebor.rep +20}
+
+## node: errand-receive
+Hand it here. I'll seal a Dwarven rune to it. Bear the packet now to Orophin in Lothlórien.
+- "I will." -> END {effects: flag:errand-leg-2-delivered=true, flag:errand-leg-3=true, quest:keepers-errand-2.complete, quest:keepers-errand-3.start}
+- "A moment." -> start
 ```
