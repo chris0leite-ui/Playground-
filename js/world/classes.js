@@ -11,10 +11,6 @@ W.classs["dwarf"] = {
   "name": "Dwarf of Erebor",
   "signature_ability": "forage",
   "starting_inventory": ["axe-dwarven", "shield-dwarven", "dwarf-bread", "rune-stone"],
-  "starting_pos": {
-    "x": 20,
-    "y": 20
-  },
   "starting_region": "dale-erebor",
   "stats": {
     "atk": 16,
@@ -35,10 +31,6 @@ W.classs["elf-noldor"] = {
   "name": "Noldor Elf",
   "signature_ability": "track",
   "starting_inventory": ["sword-elven", "bow-yew", "lembas", "phial-of-galadriel"],
-  "starting_pos": {
-    "x": 20,
-    "y": 20
-  },
   "starting_region": "eriador-rivendell",
   "stats": {
     "atk": 13,
@@ -59,10 +51,6 @@ W.classs["gondorian"] = {
   "name": "Gondorian Soldier",
   "signature_ability": "shieldwall",
   "starting_inventory": ["sword-gondor", "shield-gondor", "waybread"],
-  "starting_pos": {
-    "x": 20,
-    "y": 20
-  },
   "starting_region": "gondor-south",
   "stats": {
     "atk": 14,
@@ -83,10 +71,6 @@ W.classs["hobbit"] = {
   "name": "Hobbit of the Shire",
   "signature_ability": "stealth",
   "starting_inventory": ["short-blade", "sling", "lembas", "rope", "mathom"],
-  "starting_pos": {
-    "x": 20,
-    "y": 20
-  },
   "starting_region": "shire",
   "stats": {
     "atk": 9,
@@ -107,10 +91,6 @@ W.classs["ranger-of-the-north"] = {
   "name": "Ranger of the North",
   "signature_ability": "stealth",
   "starting_inventory": ["sword-elven", "bow-yew", "lembas", "rope", "elven-cloak"],
-  "starting_pos": {
-    "x": 20,
-    "y": 18
-  },
   "starting_region": "bree-land",
   "stats": {
     "atk": 14,
@@ -131,10 +111,6 @@ W.classs["rohirrim"] = {
   "name": "Rohirrim Rider",
   "signature_ability": "shieldwall",
   "starting_inventory": ["spear-rohan", "shield-rohan", "waybread"],
-  "starting_pos": {
-    "x": 20,
-    "y": 20
-  },
   "starting_region": "rohan",
   "stats": {
     "atk": 15,

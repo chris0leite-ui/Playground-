@@ -2,7 +2,7 @@
 id: eriador-rivendell
 name: Eriador & Rivendell
 tilemap: ./map.md
-neighbors: { west: bree-land, east: null, north: null, south: null }
+neighbors: { west: bree-land, east: moria-hollin, north: null, south: null }
 climate: temperate
 era: fourth-age-early
 tone: melancholy-quiet

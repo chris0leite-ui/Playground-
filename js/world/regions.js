@@ -23,6 +23,29 @@ W.regions["bree-land"] = {
   "tilemap": "bree-land",
   "tone": "crossroads-bustle"
 };
+W.regions["dale-erebor"] = {
+  "climate": "cold",
+  "era": "fourth-age-early",
+  "factions_present": ["dwarves-of-erebor"],
+  "id": "dale-erebor",
+  "name": "Dale & Erebor",
+  "neighbors": {
+    "east": null,
+    "north": null,
+    "south": null,
+    "west": "lothlorien-anduin"
+  },
+  "overworld_pos": {
+    "x": 13,
+    "y": 6
+  },
+  "spawn_point": {
+    "x": 24,
+    "y": 24
+  },
+  "tilemap": "dale-erebor",
+  "tone": "bustling-market"
+};
 W.regions["eriador-rivendell"] = {
   "climate": "temperate",
   "era": "fourth-age-early",
@@ -30,7 +53,7 @@ W.regions["eriador-rivendell"] = {
   "id": "eriador-rivendell",
   "name": "Eriador & Rivendell",
   "neighbors": {
-    "east": null,
+    "east": "moria-hollin",
     "north": null,
     "south": null,
     "west": "bree-land"
@@ -45,6 +68,98 @@ W.regions["eriador-rivendell"] = {
   },
   "tilemap": "eriador-rivendell",
   "tone": "melancholy-quiet"
+};
+W.regions["gondor-south"] = {
+  "climate": "temperate",
+  "era": "fourth-age-early",
+  "factions_present": ["reunited-kingdom", "citadel-guard"],
+  "id": "gondor-south",
+  "name": "Osgiliath & Ithilien",
+  "neighbors": {
+    "east": "mordor-ruin",
+    "north": null,
+    "south": null,
+    "west": "rohan"
+  },
+  "overworld_pos": {
+    "x": 13,
+    "y": 13
+  },
+  "spawn_point": {
+    "x": 24,
+    "y": 24
+  },
+  "tilemap": "gondor-south",
+  "tone": "rebuilt-stone"
+};
+W.regions["lothlorien-anduin"] = {
+  "climate": "temperate",
+  "era": "fourth-age-early",
+  "factions_present": ["galadhrim"],
+  "id": "lothlorien-anduin",
+  "name": "Lothlórien & Anduin Vales",
+  "neighbors": {
+    "east": "dale-erebor",
+    "north": "moria-hollin",
+    "south": "rohan",
+    "west": null
+  },
+  "overworld_pos": {
+    "x": 11,
+    "y": 11
+  },
+  "spawn_point": {
+    "x": 24,
+    "y": 24
+  },
+  "tilemap": "lothlorien-anduin",
+  "tone": "fading-gold"
+};
+W.regions["mordor-ruin"] = {
+  "climate": "ash",
+  "era": "fourth-age-early",
+  "factions_present": ["reunited-kingdom", "orc-remnant", "easterling-holdouts"],
+  "id": "mordor-ruin",
+  "name": "Mordor (Ruined)",
+  "neighbors": {
+    "east": null,
+    "north": null,
+    "south": null,
+    "west": "gondor-south"
+  },
+  "overworld_pos": {
+    "x": 14,
+    "y": 12
+  },
+  "spawn_point": {
+    "x": 24,
+    "y": 24
+  },
+  "tilemap": "mordor-ruin",
+  "tone": "slow-healing"
+};
+W.regions["moria-hollin"] = {
+  "climate": "cold",
+  "era": "fourth-age-early",
+  "factions_present": ["dwarves-of-erebor", "orc-remnant"],
+  "id": "moria-hollin",
+  "name": "Moria & Hollin",
+  "neighbors": {
+    "east": null,
+    "north": null,
+    "south": "lothlorien-anduin",
+    "west": "eriador-rivendell"
+  },
+  "overworld_pos": {
+    "x": 10,
+    "y": 10
+  },
+  "spawn_point": {
+    "x": 24,
+    "y": 24
+  },
+  "tilemap": "moria-hollin",
+  "tone": "lamplit-industry"
 };
 W.regions["old-forest"] = {
   "climate": "temperate",
@@ -68,6 +183,29 @@ W.regions["old-forest"] = {
   },
   "tilemap": "old-forest",
   "tone": "haunted-green"
+};
+W.regions["rohan"] = {
+  "climate": "temperate",
+  "era": "fourth-age-early",
+  "factions_present": ["rohirrim", "easterling-holdouts"],
+  "id": "rohan",
+  "name": "Rohan",
+  "neighbors": {
+    "east": "gondor-south",
+    "north": "lothlorien-anduin",
+    "south": null,
+    "west": null
+  },
+  "overworld_pos": {
+    "x": 11,
+    "y": 13
+  },
+  "spawn_point": {
+    "x": 24,
+    "y": 24
+  },
+  "tilemap": "rohan",
+  "tone": "wide-wind"
 };
 W.regions["shire"] = {
   "climate": "temperate",
