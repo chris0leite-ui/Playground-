@@ -10,10 +10,6 @@ function makePlayer(x, y) {
     attackSwing: 0,
     onHorse: null,
     gold: 0,
-    // wantedLevel/wantedDecay are a temporary Minas-Tirith-specific shim
-    // kept until T0.6 replaces them with faction reputation.
-    wantedLevel: 0,
-    wantedDecay: 0,
   });
 }
 

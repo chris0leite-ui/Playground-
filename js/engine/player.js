@@ -33,15 +33,7 @@ function updatePlayer(dt) {
     state.edge.mount = false;
     tryMountOrDismount();
   }
-
-  // Wanted level slowly decays while you're not being chased.
-  if (p.wantedLevel > 0) {
-    p.wantedDecay += dt;
-    if (p.wantedDecay > 18) {
-      p.wantedLevel = Math.max(0, p.wantedLevel - 1);
-      p.wantedDecay = 0;
-    }
-  }
+  // Faction rep decay is driven by updateFactions(dt) in loop.js.
 }
 
 // Axis-separated tile collision. Moves the entity by dx, dy without phasing
@@ -100,22 +92,12 @@ function tryAttack() {
 }
 
 function onEnemyKilled(e) {
-  // Emit for any subsystem (quests, factions, save…). T0.4 just emits;
-  // T0.6 attaches listeners. The legacy scoring below stays until then.
+  // Faction listeners handle rep hits; quest listeners advance objectives.
+  // Renown is a global score kept here for now; moves to a data-driven
+  // on_killed reward table in a later tier.
   eventBus.emit('entity_killed', e, state.player);
-  if (e.type === 'orc') {
-    state.renown += CONFIG.RENOWN_PER_ORC;
-  } else if (e.type === 'guard') {
-    state.renown += CONFIG.RENOWN_PER_GUARD;
-    state.player.wantedLevel = Math.min(
-      CONFIG.WANTED_MAX,
-      state.player.wantedLevel + CONFIG.WANTED_PER_GUARD_KILL
-    );
-    state.player.wantedDecay = 0;
-  } else if (e.type === 'horse') {
-    // Killing a horse is a minor crime.
-    state.player.wantedLevel = Math.min(CONFIG.WANTED_MAX, state.player.wantedLevel + 1);
-  }
+  if (e.type === 'orc')        state.renown += CONFIG.RENOWN_PER_ORC;
+  else if (e.type === 'guard') state.renown += CONFIG.RENOWN_PER_GUARD;
 }
 
 function tryMountOrDismount() {

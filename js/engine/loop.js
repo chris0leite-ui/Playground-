@@ -46,6 +46,7 @@ function update(dt) {
   state.frame++;
   updatePlayer(dt);
   updateEntities(dt);
+  updateFactions(dt);
   updateCamera();
 
   if (state.gameOver && !_deathShown) {
@@ -93,6 +94,8 @@ function boot() {
 
   initHUD();
   bindInput();
+  bindFactionListeners();
+  bindQuestListeners();
   resetRun();
   showIntro();
 

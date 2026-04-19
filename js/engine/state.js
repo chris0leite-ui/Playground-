@@ -24,6 +24,8 @@ const state = {
   inputMode: 'world',
 
   flags: {},          // persistent boolean flags set by dialogue/quest effects
+  reputation: {},     // faction-id -> number in [-100, 100]
+  quests: {},         // quest-id -> { status, stepIdx, flags }
 
   renown: 0,
   time: 0,
@@ -42,6 +44,8 @@ function resetRun() {
   state.shake = 0;
   state.inputMode = 'world';
   state.flags = {};
+  state.reputation = {};
+  state.quests = {};
   // Rebuild the world from scratch. Entities belong to the current region.
   state.world.regions = {};
   state.world.currentRegionId = null;

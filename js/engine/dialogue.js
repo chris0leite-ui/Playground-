@@ -81,9 +81,14 @@ function applyEffect(eff) {
       break;
     case 'flag':
       state.flags[eff.name] = eff.value !== undefined ? eff.value : true;
+      eventBus.emit('flag_set', eff.name, state.flags[eff.name]);
       break;
+    case 'quest_start':    startQuest(eff.id); break;
+    case 'quest_advance':  advanceQuest(eff.id, eff.step); break;
+    case 'quest_complete': completeQuest(eff.id); break;
+    case 'faction_rep':    modRep(eff.faction, eff.delta); break;
+    // 'item' is deferred to inventory work in T2.
     default:
-      // Deferred types (quest, faction, item) — T0.6+ listeners handle these.
       eventBus.emit('dialogue_effect', eff);
   }
 }

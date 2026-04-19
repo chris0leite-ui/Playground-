@@ -19,7 +19,8 @@ function updateEntities(dt) {
   }
 }
 
-// Shared orc/guard behavior. Guards are inert unless wantedLevel > 0.
+// Shared orc/guard behavior. Guards aggro only when rep[citadel-guard]
+// is negative (the Fourth-Age view of the old wanted system).
 function updateHostile(e, dt, isGuard) {
   const p = state.player;
   if (!p || p.hp <= 0) {
@@ -27,7 +28,8 @@ function updateHostile(e, dt, isGuard) {
     return;
   }
 
-  const active = isGuard ? p.wantedLevel > 0 : true;
+  const stars = hostileTier('citadel-guard');
+  const active = isGuard ? stars > 0 : true;
   const d = distEnt(e, p);
 
   if (e.attackTimer > 0) e.attackTimer -= dt;
@@ -36,7 +38,7 @@ function updateHostile(e, dt, isGuard) {
     const ang = Math.atan2(p.y - e.y, p.x - e.x);
     e.angle = ang;
     if (d > e.attackRange - 2) {
-      const sp = e.speed * (isGuard ? 1 + 0.08 * p.wantedLevel : 1);
+      const sp = e.speed * (isGuard ? 1 + 0.08 * stars : 1);
       tryMove(e, Math.cos(ang) * sp * dt, Math.sin(ang) * sp * dt);
     } else if (e.attackTimer <= 0) {
       e.attackTimer = isGuard ? CONFIG.GUARD_ATTACK_COOLDOWN : CONFIG.ORC_ATTACK_COOLDOWN;

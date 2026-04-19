@@ -28,9 +28,10 @@ function updateHUD() {
   HUD.gold.textContent = `Gold: ${p.gold}`;
   HUD.renown.textContent = `Renown: ${state.renown}`;
 
-  const stars = '\u2022'.repeat(p.wantedLevel);
+  const tier = hostileTier('citadel-guard');
+  const stars = '\u2022'.repeat(tier);
   HUD.wanted.textContent = stars ? `Wanted: ${stars}` : '';
-  HUD.wanted.style.color = p.wantedLevel > 0 ? '#ff6060' : '';
+  HUD.wanted.style.color = tier > 0 ? '#ff6060' : '';
 
   const pct = clamp(p.hp / p.maxHp, 0, 1) * 100;
   HUD.hpBar.style.width = pct + '%';
