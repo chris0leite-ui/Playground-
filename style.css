@@ -54,9 +54,29 @@ html, body {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 8px;
+  gap: 6px;
   padding: 8px 10px;
 }
+
+#hud-top .hud-buttons-wrap, #stats { flex-shrink: 0; }
+
+/* HUD top-right buttons (Save/Load/Map/Pause). */
+#hud-top button {
+  pointer-events: auto;
+  background: var(--ink);
+  color: var(--gondor-white);
+  border: 1px solid var(--gondor-gold);
+  border-radius: 6px;
+  height: 36px;
+  min-width: 38px;
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  margin-left: 4px;
+}
+#hud-top button:active { transform: scale(0.95); }
 
 #title {
   font-weight: bold;
@@ -77,19 +97,9 @@ html, body {
   border: 1px solid rgba(212, 168, 42, 0.4);
 }
 
-#pause-btn {
-  pointer-events: auto;
-  background: var(--ink);
-  color: var(--gondor-white);
-  border: 1px solid var(--gondor-gold);
-  border-radius: 6px;
-  width: 36px;
-  height: 36px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 0;
-}
+/* Top-right HUD buttons share the rule above; #pause-btn just needs a
+   slightly bigger glyph since its label is "II". */
+#pause-btn { font-size: 14px; }
 
 #hp-wrap {
   position: absolute;
@@ -129,6 +139,27 @@ html, body {
   display: none;
 }
 #mount-indicator.on { display: inline-block; }
+
+/* ---- Quest log (top-left, below mount indicator) ---- */
+#quest-log {
+  position: absolute;
+  top: 110px;
+  left: 10px;
+  max-width: min(260px, 60vw);
+  background: var(--ink);
+  border: 1px solid var(--gondor-gold);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 11px;
+  line-height: 1.35;
+  pointer-events: none;
+  color: var(--gondor-white);
+}
+#quest-log.hidden { display: none; }
+#quest-log .qtitle { color: var(--gondor-gold); font-weight: bold; }
+#quest-log .qhint { opacity: 0.85; }
+#quest-log .qrow { margin-top: 4px; }
+#quest-log .qrow:first-child { margin-top: 0; }
 
 /* ---- Touch overlay ---- */
 #touch-overlay {
@@ -174,11 +205,11 @@ html, body {
 
 #buttons {
   position: absolute;
-  right: 24px;
-  bottom: 24px;
+  right: 18px;
+  bottom: 18px;
   display: flex;
   flex-direction: column-reverse;
-  gap: 16px;
+  gap: 10px;
   pointer-events: auto;
 }
 
@@ -210,6 +241,25 @@ html, body {
   font-size: clamp(11px, 2.4vmin, 14px);
 }
 #mount-btn:active { transform: scale(0.94); }
+
+#bow-btn {
+  width: clamp(62px, 16vmin, 90px);
+  height: clamp(62px, 16vmin, 90px);
+  background: radial-gradient(circle at 35% 35%, #d4a82a, #8a6a1a);
+  color: #1a1a1a;
+  font-size: clamp(11px, 2.4vmin, 14px);
+}
+#bow-btn:active { transform: scale(0.94); }
+
+#talk-btn {
+  width: clamp(62px, 16vmin, 90px);
+  height: clamp(62px, 16vmin, 90px);
+  background: radial-gradient(circle at 35% 35%, #c8d8e8, #5a7090);
+  color: #1a1a1a;
+  font-size: clamp(11px, 2.4vmin, 14px);
+}
+#talk-btn:active { transform: scale(0.94); }
+#talk-btn.hidden { display: none; }
 
 /* ---- Message overlay (intro, death, pause) ---- */
 #message-overlay {
@@ -258,6 +308,74 @@ html, body {
   cursor: pointer;
 }
 #message-btn:active { transform: scale(0.96); }
+
+/* ---- Toast ---- */
+#toast {
+  position: fixed;
+  bottom: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(26, 26, 26, 0.9);
+  color: var(--gondor-white);
+  border: 1px solid var(--gondor-gold);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 25;
+}
+#toast.hidden { display: none; }
+
+/* ---- Dialogue overlay ---- */
+#dialogue-overlay {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  padding: 0 10px 10px 10px;
+  z-index: 22;
+  pointer-events: auto;
+  display: flex;
+  justify-content: center;
+}
+#dialogue-overlay.hidden { display: none; }
+
+#dialogue-box {
+  background: rgba(26, 26, 26, 0.95);
+  border: 2px solid var(--gondor-gold);
+  border-radius: 10px;
+  padding: 14px 16px;
+  max-width: min(640px, 92vw);
+  width: 100%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+}
+
+#dialogue-text {
+  margin: 0 0 10px 0;
+  line-height: 1.45;
+  font-size: 14px;
+  color: var(--gondor-white);
+}
+
+#dialogue-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#dialogue-choices button {
+  background: transparent;
+  color: var(--gondor-white);
+  border: 1px solid var(--gondor-gold);
+  border-radius: 6px;
+  padding: 8px 12px;
+  text-align: left;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+#dialogue-choices button:hover,
+#dialogue-choices button:focus { background: rgba(212, 168, 42, 0.2); }
+#dialogue-choices button:active { transform: scale(0.98); }
 
 @media (min-width: 900px) {
   #title { font-size: 18px; }
