@@ -86,18 +86,15 @@ function makePickup(x, y, kind) {
 }
 
 function initEntities() {
-  // Player is spawned at center here; world/spawn.js relocates them to the
-  // outer ring. Use the eventual spawn position (south of the wall) as the
-  // "don't spawn enemies on top of the player" anchor.
-  const cx = (MAP.W / 2) * TILE;
-  const cy = (MAP.H / 2) * TILE;
-  const playerSpawnY = (MAP.H / 2 + 20) * TILE;
-  state.player = makePlayer(cx, cy);
+  // Player spawns at Hobbiton (see js/world/spawn.js relocator). Use that
+  // landmark as the "no-enemy-within-N-tiles" buffer anchor.
+  const h = LANDMARK_PX('hobbiton');
+  state.player = makePlayer(h.x, h.y);
   state.entities.push(state.player);
 
   for (let i = 0; i < CONFIG.NUM_ORCS; i++) {
     const p = findOpenTile();
-    if (dist(p.x, p.y, cx, playerSpawnY) < 8 * TILE) continue;
+    if (dist(p.x, p.y, h.x, h.y) < 10 * TILE) continue;
     state.entities.push(makeOrc(p.x, p.y));
   }
   for (let i = 0; i < CONFIG.NUM_GUARDS; i++) {

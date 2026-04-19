@@ -50,9 +50,9 @@ function drawQuestGiver(ctx, e) {
 }
 
 function spawnQuestGivers() {
-  const cx = (MAP.W / 2) * TILE, cy = (MAP.H / 2) * TILE;
-  // Starting NPCs just outside the outer wall (tier 7).
-  state.entities.push(makeQuestGiver(cx - 40, cy + 16 * TILE, 'Beregond', 'pelennor-patrol'));
-  state.entities.push(makeQuestGiver(cx + 40, cy + 16 * TILE, 'Stablemaster', 'captains-horse'));
-  state.entities.push(makeQuestGiver(cx, cy + 15 * TILE, 'Faramir', 'faramir-message'));
+  const s = LANDMARK_PX('hobbiton');
+  // Starting NPCs right inside Hobbiton so the player can take quests on turn 1.
+  state.entities.push(makeQuestGiver(s.x - 30, s.y + 20, 'Rosie',     'faramir-message'));
+  state.entities.push(makeQuestGiver(s.x + 30, s.y + 20, 'Hamfast',   'pelennor-patrol'));
+  state.entities.push(makeQuestGiver(s.x,      s.y - 30, 'Traveller', 'captains-horse'));
 }

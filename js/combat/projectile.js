@@ -20,6 +20,7 @@ function spawnProjectile(owner, angle, stats) {
     ownerIsPlayer: owner === state.player,
     ownerIsPlayerSide: _isPlayerSide(owner),
     morgul: !!stats.morgul,
+    web: !!stats.web,
     traveled: 0,
     draw: drawProjectile,
     update: updateProjectile,
@@ -42,7 +43,9 @@ function updateProjectile(dt, p) {
     if (_isPlayerSide(e) === p.ownerIsPlayerSide) continue;
     const dx = e.x - p.x, dy = e.y - p.y;
     if (dx * dx + dy * dy < (10 + e.w / 2) * (10 + e.w / 2)) {
-      if (e === state.player) {
+      if (p.web && e === state.player) {
+        e.webbed = 1.6;
+      } else if (e === state.player) {
         damagePlayer(p.damage);
       } else {
         e.hp -= p.damage;
@@ -58,9 +61,23 @@ function updateProjectile(dt, p) {
 function drawProjectile(ctx, p) {
   ctx.save();
   ctx.rotate(p.angle);
-  ctx.fillStyle = p.morgul ? '#c0a0ff' : '#f0e0a0';
-  ctx.fillRect(-6, -1, 12, 2);
-  ctx.fillStyle = '#8a6a2a';
-  ctx.fillRect(4, -2, 3, 4);
+  if (p.web) {
+    // Sticky-web clump
+    ctx.fillStyle = 'rgba(220,220,230,0.8)';
+    ctx.beginPath();
+    ctx.arc(0, 0, 5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.6)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(-6, 0); ctx.lineTo(6, 0);
+    ctx.moveTo(0, -6); ctx.lineTo(0, 6);
+    ctx.stroke();
+  } else {
+    ctx.fillStyle = p.morgul ? '#c0a0ff' : '#f0e0a0';
+    ctx.fillRect(-6, -1, 12, 2);
+    ctx.fillStyle = '#8a6a2a';
+    ctx.fillRect(4, -2, 3, 4);
+  }
   ctx.restore();
 }

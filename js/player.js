@@ -8,8 +8,12 @@ function updatePlayer(dt) {
   if (state.nazgul && state.nazgul.fear > 0) {
     input.dx = -input.dx; input.dy = -input.dy;
   }
+  if (p.webbed > 0) p.webbed = Math.max(0, p.webbed - dt);
   const mountSp = (typeof mountSpeed === 'function') ? mountSpeed() : null;
-  const speed = p.onHorse ? (mountSp || CONFIG.HORSE_SPEED) : CONFIG.PLAYER_SPEED;
+  let speed = p.onHorse ? (mountSp || CONFIG.HORSE_SPEED) : CONFIG.PLAYER_SPEED;
+  // Swamp slows foot travel by 40%; spider web by 50%.
+  if (!p.onHorse && isSwampTile(tileAt(p.x, p.y))) speed *= 0.6;
+  if (p.webbed > 0) speed *= 0.5;
   const mag = Math.hypot(input.dx, input.dy);
   if (mag > 0.1) {
     p.angle = Math.atan2(input.dy, input.dx);

@@ -10,7 +10,9 @@
 const TIER_RADII = [3, 6, 9, 12, 15, 18];
 
 function tierAtTile(tx, ty) {
-  const cx = (MAP.W - 1) / 2, cy = (MAP.H - 1) / 2;
+  // Tiers are measured from Minas Tirith — the rest of Middle-earth sits
+  // outside the wall, which is "tier 7".
+  const cx = LANDMARKS.minasTirith.tx, cy = LANDMARKS.minasTirith.ty;
   const d = Math.hypot(tx - cx, ty - cy);
   for (let i = 0; i < TIER_RADII.length; i++) {
     if (d < TIER_RADII[i]) return i + 1;

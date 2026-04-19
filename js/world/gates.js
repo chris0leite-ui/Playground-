@@ -50,8 +50,9 @@ function drawGate(ctx, g) {
 }
 
 function spawnGates() {
-  const cx = (MAP.W - 1) / 2, cy = (MAP.H - 1) / 2;
-  // North spoke (dy = -1), place a gate just inside each ring's inner edge.
+  // North spoke of Minas Tirith — a gate just inside each ring's inner edge.
+  const cx = LANDMARKS.minasTirith.tx;
+  const cy = LANDMARKS.minasTirith.ty;
   for (let t = 2; t <= 6; t++) {
     const r = TIER_RADII[t - 2] - 0.2;
     const x = cx * TILE;

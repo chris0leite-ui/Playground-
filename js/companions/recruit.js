@@ -64,9 +64,15 @@ function drawRecruit(ctx, e) {
 }
 
 function spawnRecruiters() {
-  const cx = (MAP.W / 2) * TILE, cy = (MAP.H / 2) * TILE;
-  state.entities.push(makeRecruit(cx - 70, cy + 17 * TILE, 'Legolas'));
-  state.entities.push(makeRecruit(cx - 90, cy - 10, 'Gimli'));
-  state.entities.push(makeRecruit(cx, cy - 2 * TILE, 'Gandalf'));
+  // Thematic recruit locations along the journey east:
+  //   Gandalf: outside Hobbiton (found at the start)
+  //   Gimli:   Moria East-gate
+  //   Legolas: eaves of Mirkwood
+  const h = LANDMARK_PX('hobbiton');
+  const m = LANDMARK_PX('moriaGate');
+  const mk = LANDMARK_PX('lothlorien'); // Legolas scouts from Lórien
+  state.entities.push(makeRecruit(h.x + 60, h.y, 'Gandalf'));
+  state.entities.push(makeRecruit(m.x + 40, m.y, 'Gimli'));
+  state.entities.push(makeRecruit(mk.x, mk.y + 40, 'Legolas'));
 }
 on('reset', spawnRecruiters);

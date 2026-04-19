@@ -23,8 +23,10 @@ function tileAt(px, py) {
 }
 
 function isSolidTile(t) {
-  return t === TILES.BUILDING || t === TILES.WATER || t === TILES.WALL;
+  return t === TILES.BUILDING || t === TILES.WATER || t === TILES.WALL || t === TILES.MOUNTAIN;
 }
+
+function isSwampTile(t) { return t === TILES.SWAMP; }
 
 function isSolidAt(px, py) { return isSolidTile(tileAt(px, py)); }
 

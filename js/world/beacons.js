@@ -53,9 +53,11 @@ function drawBeacon(ctx, b) {
 }
 
 function spawnBeacons() {
-  // One outside the wall (accessible), two on inner tiers.
-  const cx = (MAP.W / 2) * TILE, cy = (MAP.H / 2) * TILE;
-  state.entities.push(makeBeacon(cx, cy + 18 * TILE - 10));  // tier 7
-  state.entities.push(makeBeacon(cx - 60, cy - 20));          // inner
-  state.entities.push(makeBeacon(cx + 60, cy - 20));          // inner
+  // One beacon per realm — Shire (near spawn), Rohan, Gondor.
+  const h = LANDMARK_PX('hobbiton');
+  const e = LANDMARK_PX('edoras');
+  const mt = LANDMARK_PX('minasTirith');
+  state.entities.push(makeBeacon(h.x + 80, h.y));
+  state.entities.push(makeBeacon(e.x + 40, e.y));
+  state.entities.push(makeBeacon(mt.x, mt.y + 22 * TILE));
 }

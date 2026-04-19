@@ -4,8 +4,8 @@
 const TILE = 32;
 
 const MAP = {
-  W: 128,
-  H: 128,
+  W: 320,
+  H: 192,
 };
 
 const TILES = {
@@ -21,6 +21,12 @@ const TILES = {
   ROHAN: 8,        // pale golden plains
   MORDOR: 9,       // ashen ground
   FANGORN: 10,     // dark forest floor
+  // New tiles for a full Middle-earth:
+  MOUNTAIN: 11,    // solid, snow-capped stone
+  FOREST: 12,      // dark-canopy walkable (Mirkwood / Fangorn)
+  SAND: 13,        // Harad desert
+  SWAMP: 14,       // Dead Marshes — walkable, slows movement
+  BRIDGE: 15,      // stone bridge over water
 };
 
 const PALETTE = {
@@ -57,6 +63,18 @@ const PALETTE = {
   mordorCrack: '#5a1a10',
   fangorn: '#1a2a18',
   fangornMoss: '#3a4a2a',
+  mountain: '#7a7068',
+  mountainSnow: '#e8e4d8',
+  mountainDark: '#3a3530',
+  forest: '#1a2a18',
+  forestTrunk: '#3a2a1a',
+  forestLeaf: '#2a4a2a',
+  sand: '#d4b880',
+  sandDark: '#b09860',
+  swamp: '#3a4830',
+  swampMuck: '#5a4a2a',
+  bridge: '#7a6a4a',
+  bridgeTrim: '#4a3a2a',
 };
 
 const CONFIG = {
@@ -87,10 +105,12 @@ const CONFIG = {
   RENOWN_PER_GUARD: 120,
   WANTED_PER_GUARD_KILL: 1,
   WANTED_MAX: 5,
-  NUM_ORCS: 140,
-  NUM_GUARDS: 40,
-  NUM_HORSES: 35,
-  NUM_PICKUPS: 80,
+  NUM_ORCS: 240,
+  NUM_GUARDS: 60,
+  NUM_HORSES: 60,
+  NUM_PICKUPS: 140,
+  NUM_SPIDERS: 40,
+  NUM_HARADRIM: 25,
 };
 
 const TEAM = {

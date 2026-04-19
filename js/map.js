@@ -1,94 +1,5 @@
-// Builds a Minas Tirith-inspired concentric map with spoke roads and an Anduin strip.
-
-function initMap() {
-  const W = MAP.W, H = MAP.H;
-  const cx = (W - 1) / 2, cy = (H - 1) / 2;
-  const map = [];
-
-  for (let y = 0; y < H; y++) {
-    const row = [];
-    for (let x = 0; x < W; x++) {
-      row.push(TILES.GRASS);
-    }
-    map.push(row);
-  }
-
-  // Core circular city inside radius 18. Fill everything inside with buildings,
-  // then carve roads out of it.
-  const ringRadius = 18;
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const d = Math.hypot(x - cx, y - cy);
-      if (d <= ringRadius) map[y][x] = TILES.BUILDING;
-    }
-  }
-
-  // Ring walls at radius ~18 (a 1-tile-thick fortification).
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const d = Math.hypot(x - cx, y - cy);
-      if (d > ringRadius - 0.5 && d < ringRadius + 0.7) map[y][x] = TILES.WALL;
-    }
-  }
-
-  // Concentric ROAD rings at radii 5, 9, 14. Pavement bands on either side.
-  const ringRoads = [5, 9, 14];
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const d = Math.hypot(x - cx, y - cy);
-      for (const r of ringRoads) {
-        if (Math.abs(d - r) < 0.6) map[y][x] = TILES.ROAD;
-        else if (Math.abs(d - r) < 1.3 && map[y][x] === TILES.BUILDING) {
-          map[y][x] = TILES.PAVEMENT;
-        }
-      }
-    }
-  }
-
-  // Eight radial spoke roads (cardinals + diagonals).
-  for (let a = 0; a < 8; a++) {
-    const angle = (a * Math.PI) / 4;
-    const dx = Math.cos(angle), dy = Math.sin(angle);
-    for (let r = 0; r < ringRadius + 0.2; r += 0.25) {
-      const x = Math.round(cx + dx * r);
-      const y = Math.round(cy + dy * r);
-      if (x < 0 || y < 0 || x >= W || y >= H) continue;
-      // Spokes carve through buildings and walls (gates in the walls).
-      if (map[y][x] !== TILES.GRASS) map[y][x] = TILES.ROAD;
-    }
-  }
-
-  // Inner plaza: tiny open pavement at the very center.
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const d = Math.hypot(x - cx, y - cy);
-      if (d < 2.5) map[y][x] = TILES.PAVEMENT;
-    }
-  }
-
-  // Citadel: a 3x3 BUILDING cluster at the top (just above center) with a
-  // pavement skirt. Acts as a landmark.
-  const ccx = Math.round(cx);
-  const ccy = Math.round(cy - 2);
-  for (let y = ccy - 1; y <= ccy + 1; y++) {
-    for (let x = ccx - 1; x <= ccx + 1; x++) {
-      if (x >= 0 && y >= 0 && x < W && y < H) map[y][x] = TILES.BUILDING;
-    }
-  }
-
-  // Anduin river: 2-tile strip on the far east edge.
-  for (let y = 0; y < H; y++) {
-    for (let x = W - 2; x < W; x++) map[y][x] = TILES.WATER;
-  }
-  // Grass buffer one tile inside the river.
-  for (let y = 0; y < H; y++) {
-    if (map[y][W - 3] === TILES.BUILDING || map[y][W - 3] === TILES.WALL) {
-      map[y][W - 3] = TILES.GRASS;
-    }
-  }
-
-  state.map = map;
-}
+// Thin wrapper — actual world generation lives in js/world/middleEarth.js.
+function initMap() { generateWorld(); }
 
 function drawMap(ctx) {
   const cam = state.camera;
@@ -211,6 +122,67 @@ function drawTile(ctx, t, sx, sy, tx, ty) {
       ctx.fillRect(sx + 22, sy + 20, 5, 4);
       break;
     }
+    case TILES.MOUNTAIN: {
+      ctx.fillStyle = PALETTE.mountain;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      ctx.fillStyle = PALETTE.mountainSnow;
+      ctx.beginPath();
+      ctx.moveTo(sx + TILE / 2, sy + 4);
+      ctx.lineTo(sx + TILE - 4, sy + TILE - 6);
+      ctx.lineTo(sx + 4, sy + TILE - 6);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = PALETTE.mountainDark;
+      ctx.fillRect(sx + TILE - 3, sy, 3, TILE);
+      break;
+    }
+    case TILES.FOREST: {
+      ctx.fillStyle = PALETTE.forest;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      // Scatter 2-3 small tree canopies by hash.
+      const seed = (tx * 31 + ty * 17) & 15;
+      const trees = 1 + (seed & 2);
+      for (let i = 0; i < trees; i++) {
+        const ox = 4 + ((seed * (i + 1) * 13) % 22);
+        const oy = 4 + ((seed * (i + 1) * 7) % 22);
+        ctx.fillStyle = PALETTE.forestTrunk;
+        ctx.fillRect(sx + ox, sy + oy + 3, 2, 4);
+        ctx.fillStyle = PALETTE.forestLeaf;
+        ctx.beginPath();
+        ctx.arc(sx + ox + 1, sy + oy + 1, 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      break;
+    }
+    case TILES.SAND: {
+      ctx.fillStyle = PALETTE.sand;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      ctx.fillStyle = PALETTE.sandDark;
+      if (((tx * 29 + ty * 5) & 3) === 0) {
+        ctx.fillRect(sx + 6, sy + 14, 10, 2);
+        ctx.fillRect(sx + 16, sy + 22, 8, 2);
+      }
+      break;
+    }
+    case TILES.SWAMP: {
+      ctx.fillStyle = PALETTE.swamp;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      ctx.fillStyle = PALETTE.swampMuck;
+      ctx.beginPath();
+      ctx.arc(sx + 10, sy + 10, 4, 0, Math.PI * 2);
+      ctx.arc(sx + 22, sy + 22, 3, 0, Math.PI * 2);
+      ctx.fill();
+      break;
+    }
+    case TILES.BRIDGE: {
+      ctx.fillStyle = PALETTE.bridge;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      ctx.fillStyle = PALETTE.bridgeTrim;
+      ctx.fillRect(sx, sy, TILE, 2);
+      ctx.fillRect(sx, sy + TILE - 2, TILE, 2);
+      ctx.fillRect(sx + TILE / 2 - 1, sy + 4, 2, TILE - 8);
+      break;
+    }
   }
 }
 
@@ -218,7 +190,8 @@ function drawTile(ctx, t, sx, sy, tx, ty) {
 function _openTileType(t) {
   return t === TILES.ROAD || t === TILES.PAVEMENT || t === TILES.GRASS
       || t === TILES.SHIRE || t === TILES.RIVENDELL || t === TILES.ROHAN
-      || t === TILES.MORDOR || t === TILES.FANGORN;
+      || t === TILES.MORDOR || t === TILES.FANGORN || t === TILES.FOREST
+      || t === TILES.SAND || t === TILES.SWAMP || t === TILES.BRIDGE;
 }
 
 function findOpenTile() {

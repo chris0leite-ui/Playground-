@@ -45,8 +45,9 @@ function drawDoor(ctx, d) {
 }
 
 function spawnDoors() {
-  // Place a door at the four cardinal gate positions in the outer wall.
-  const cx = (MAP.W - 1) / 2, cy = (MAP.H - 1) / 2;
+  // Four doors in Minas Tirith's outer wall (cardinal spokes).
+  const cx = LANDMARKS.minasTirith.tx;
+  const cy = LANDMARKS.minasTirith.ty;
   const R = 18 * TILE;
   const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
   for (const [dx, dy] of dirs) {

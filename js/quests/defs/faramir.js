@@ -1,13 +1,13 @@
-// Tutorial "go-to" quest. Target sits on the outer ring road just inside the
-// south wall gap — reachable from the spawn with no gate in the way.
+// Tutorial quest: reach Bree. Short walk east from Hobbiton so new players
+// learn the waypoint arrow and the region-enter toast.
 registerQuest({
   id: 'faramir-message',
-  title: 'Faramir’s Message',
-  brief: 'Deliver the sealed message inside the outer wall.',
+  title: 'Rosie: Deliver the Letter',
+  brief: 'Walk east and reach Bree. Follow the gold waypoint arrow.',
   objective: { type: 'reach', target: {
-    x: (MAP.W / 2) * TILE,
-    y: ((MAP.H / 2) + 9) * TILE,
-    r: 40,
+    x: LANDMARKS.bree.tx * TILE,
+    y: LANDMARKS.bree.ty * TILE,
+    r: 48,
   } },
   reward: { renown: 200, gold: 40 },
 });
