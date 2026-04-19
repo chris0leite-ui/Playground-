@@ -1,94 +1,6 @@
-// Builds a Minas Tirith-inspired concentric map with spoke roads and an Anduin strip.
-
-function initMap() {
-  const W = MAP.W, H = MAP.H;
-  const cx = (W - 1) / 2, cy = (H - 1) / 2;
-  const map = [];
-
-  for (let y = 0; y < H; y++) {
-    const row = [];
-    for (let x = 0; x < W; x++) {
-      row.push(TILES.GRASS);
-    }
-    map.push(row);
-  }
-
-  // Core circular city inside radius 18. Fill everything inside with buildings,
-  // then carve roads out of it.
-  const ringRadius = 18;
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const d = Math.hypot(x - cx, y - cy);
-      if (d <= ringRadius) map[y][x] = TILES.BUILDING;
-    }
-  }
-
-  // Ring walls at radius ~18 (a 1-tile-thick fortification).
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const d = Math.hypot(x - cx, y - cy);
-      if (d > ringRadius - 0.5 && d < ringRadius + 0.7) map[y][x] = TILES.WALL;
-    }
-  }
-
-  // Concentric ROAD rings at radii 5, 9, 14. Pavement bands on either side.
-  const ringRoads = [5, 9, 14];
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const d = Math.hypot(x - cx, y - cy);
-      for (const r of ringRoads) {
-        if (Math.abs(d - r) < 0.6) map[y][x] = TILES.ROAD;
-        else if (Math.abs(d - r) < 1.3 && map[y][x] === TILES.BUILDING) {
-          map[y][x] = TILES.PAVEMENT;
-        }
-      }
-    }
-  }
-
-  // Eight radial spoke roads (cardinals + diagonals).
-  for (let a = 0; a < 8; a++) {
-    const angle = (a * Math.PI) / 4;
-    const dx = Math.cos(angle), dy = Math.sin(angle);
-    for (let r = 0; r < ringRadius + 0.2; r += 0.25) {
-      const x = Math.round(cx + dx * r);
-      const y = Math.round(cy + dy * r);
-      if (x < 0 || y < 0 || x >= W || y >= H) continue;
-      // Spokes carve through buildings and walls (gates in the walls).
-      if (map[y][x] !== TILES.GRASS) map[y][x] = TILES.ROAD;
-    }
-  }
-
-  // Inner plaza: tiny open pavement at the very center.
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const d = Math.hypot(x - cx, y - cy);
-      if (d < 2.5) map[y][x] = TILES.PAVEMENT;
-    }
-  }
-
-  // Citadel: a 3x3 BUILDING cluster at the top (just above center) with a
-  // pavement skirt. Acts as a landmark.
-  const ccx = Math.round(cx);
-  const ccy = Math.round(cy - 2);
-  for (let y = ccy - 1; y <= ccy + 1; y++) {
-    for (let x = ccx - 1; x <= ccx + 1; x++) {
-      if (x >= 0 && y >= 0 && x < W && y < H) map[y][x] = TILES.BUILDING;
-    }
-  }
-
-  // Anduin river: 2-tile strip on the far east edge.
-  for (let y = 0; y < H; y++) {
-    for (let x = W - 2; x < W; x++) map[y][x] = TILES.WATER;
-  }
-  // Grass buffer one tile inside the river.
-  for (let y = 0; y < H; y++) {
-    if (map[y][W - 3] === TILES.BUILDING || map[y][W - 3] === TILES.WALL) {
-      map[y][W - 3] = TILES.GRASS;
-    }
-  }
-
-  state.map = map;
-}
+// Tile rendering + spawn helpers. Map generation lives in
+// engine/map_minas_tirith.js (T0 holdover) and will eventually be replaced
+// by compiled per-region tilemaps at W.tilemaps[region-id].
 
 function drawMap(ctx) {
   const cam = state.camera;
@@ -113,7 +25,6 @@ function drawTile(ctx, t, sx, sy, tx, ty) {
     case TILES.GRASS: {
       ctx.fillStyle = PALETTE.grass;
       ctx.fillRect(sx, sy, TILE, TILE);
-      // Sparse darker tufts (deterministic by coord).
       if (((tx * 31 + ty * 17) & 7) === 0) {
         ctx.fillStyle = PALETTE.grassDark;
         ctx.fillRect(sx + 6, sy + 8, 4, 4);
@@ -143,7 +54,6 @@ function drawTile(ctx, t, sx, sy, tx, ty) {
       ctx.fillRect(sx, sy, TILE, 3);
       ctx.fillRect(sx, sy + TILE - 3, TILE, 3);
       ctx.fillStyle = PALETTE.mordorBlack;
-      // Window grid.
       ctx.fillRect(sx + 6, sy + 8, 4, 4);
       ctx.fillRect(sx + 18, sy + 8, 4, 4);
       ctx.fillRect(sx + 6, sy + 20, 4, 4);
@@ -170,7 +80,7 @@ function drawTile(ctx, t, sx, sy, tx, ty) {
   }
 }
 
-// Helper used by entity spawning to scatter units onto non-solid tiles.
+// Spawn helpers. Used by initEntities and by future scatter encounters.
 function findOpenTile() {
   const w = regionW(), h = regionH();
   for (let tries = 0; tries < 200; tries++) {
