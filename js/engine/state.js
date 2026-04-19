@@ -6,6 +6,10 @@ const state = {
   viewW: 0,
   viewH: 0,
 
+  // World. `region` is the active region; `map` and `entities` are
+  // back-compat alias pointers assigned by loadRegion().
+  world: { regions: {}, currentRegionId: null },
+  region: null,
   map: [],
   entities: [],
   player: null,
@@ -25,12 +29,15 @@ const state = {
 };
 
 function resetRun() {
-  state.entities = [];
   state.renown = 0;
   state.time = 0;
   state.paused = false;
   state.gameOver = false;
   state.shake = 0;
-  initMap();
+  // Rebuild the world from scratch. Entities belong to the current region.
+  state.world.regions = {};
+  state.world.currentRegionId = null;
+  state.region = null;
+  initDefaultRegion();
   initEntities();
 }

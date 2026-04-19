@@ -92,10 +92,11 @@ function initMap() {
 
 function drawMap(ctx) {
   const cam = state.camera;
+  const w = regionW(), h = regionH();
   const x0 = Math.max(0, Math.floor(cam.x / TILE));
   const y0 = Math.max(0, Math.floor(cam.y / TILE));
-  const x1 = Math.min(MAP.W - 1, Math.ceil((cam.x + state.viewW) / TILE));
-  const y1 = Math.min(MAP.H - 1, Math.ceil((cam.y + state.viewH) / TILE));
+  const x1 = Math.min(w - 1, Math.ceil((cam.x + state.viewW) / TILE));
+  const y1 = Math.min(h - 1, Math.ceil((cam.y + state.viewH) / TILE));
 
   for (let y = y0; y <= y1; y++) {
     for (let x = x0; x <= x1; x++) {
@@ -171,9 +172,10 @@ function drawTile(ctx, t, sx, sy, tx, ty) {
 
 // Helper used by entity spawning to scatter units onto non-solid tiles.
 function findOpenTile() {
+  const w = regionW(), h = regionH();
   for (let tries = 0; tries < 200; tries++) {
-    const x = randInt(1, MAP.W - 4);
-    const y = randInt(1, MAP.H - 2);
+    const x = randInt(1, w - 4);
+    const y = randInt(1, h - 2);
     const t = state.map[y][x];
     if (t === TILES.ROAD || t === TILES.PAVEMENT || t === TILES.GRASS) {
       return { x: x * TILE + TILE / 2, y: y * TILE + TILE / 2 };
@@ -183,9 +185,10 @@ function findOpenTile() {
 }
 
 function findOpenRoadTile() {
+  const w = regionW(), h = regionH();
   for (let tries = 0; tries < 200; tries++) {
-    const x = randInt(1, MAP.W - 4);
-    const y = randInt(1, MAP.H - 2);
+    const x = randInt(1, w - 4);
+    const y = randInt(1, h - 2);
     if (state.map[y][x] === TILES.ROAD) {
       return { x: x * TILE + TILE / 2, y: y * TILE + TILE / 2 };
     }

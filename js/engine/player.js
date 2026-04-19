@@ -62,9 +62,9 @@ function tryMove(e, dx, dy) {
     e.y = ny;
   }
 
-  // Clamp to world bounds.
-  e.x = clamp(e.x, halfW + 1, MAP.W * TILE - halfW - 1);
-  e.y = clamp(e.y, halfH + 1, MAP.H * TILE - halfH - 1);
+  // Clamp to region bounds.
+  e.x = clamp(e.x, halfW + 1, regionW() * TILE - halfW - 1);
+  e.y = clamp(e.y, halfH + 1, regionH() * TILE - halfH - 1);
 }
 
 function tryAttack() {

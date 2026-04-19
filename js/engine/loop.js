@@ -22,11 +22,12 @@ function updateCamera() {
   if (!p) return;
   let cx = p.x - state.viewW / 2;
   let cy = p.y - state.viewH / 2;
-  cx = clamp(cx, 0, MAP.W * TILE - state.viewW);
-  cy = clamp(cy, 0, MAP.H * TILE - state.viewH);
-  // If view exceeds world size, center the world.
-  if (state.viewW > MAP.W * TILE) cx = (MAP.W * TILE - state.viewW) / 2;
-  if (state.viewH > MAP.H * TILE) cy = (MAP.H * TILE - state.viewH) / 2;
+  const wPx = regionW() * TILE, hPx = regionH() * TILE;
+  cx = clamp(cx, 0, wPx - state.viewW);
+  cy = clamp(cy, 0, hPx - state.viewH);
+  // If view exceeds region size, center the region.
+  if (state.viewW > wPx) cx = (wPx - state.viewW) / 2;
+  if (state.viewH > hPx) cy = (hPx - state.viewH) / 2;
   if (state.shake > 0) {
     cx += (Math.random() - 0.5) * state.shake;
     cy += (Math.random() - 0.5) * state.shake;

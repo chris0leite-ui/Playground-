@@ -11,12 +11,17 @@ function updateEntities(dt) {
       case 'pickup': updatePickup(e, dt); break;
     }
   }
-  // Prune corpses (leave pickups alone even when "dead" — pickups have no hp).
-  state.entities = state.entities.filter((e) => {
-    if (e.type === 'pickup') return e.alive !== false;
-    if (e === state.player) return true;
-    return e.hp > 0;
-  });
+  // Prune corpses in place so state.entities and state.region.entities stay
+  // pointing at the same array. (Pickups have no hp; keep them unless dead.)
+  for (let i = state.entities.length - 1; i >= 0; i--) {
+    const e = state.entities[i];
+    if (e === state.player) continue;
+    if (e.type === 'pickup') {
+      if (e.alive === false) state.entities.splice(i, 1);
+      continue;
+    }
+    if (e.hp <= 0) state.entities.splice(i, 1);
+  }
 }
 
 // Shared orc/guard behavior. Guards are inert unless wantedLevel > 0.

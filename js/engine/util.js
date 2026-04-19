@@ -18,7 +18,8 @@ function rectsOverlap(ax, ay, aw, ah, bx, by, bw, bh) {
 function tileAt(px, py) {
   const tx = Math.floor(px / TILE);
   const ty = Math.floor(py / TILE);
-  if (tx < 0 || ty < 0 || tx >= MAP.W || ty >= MAP.H) return TILES.WALL;
+  const w = regionW(), h = regionH();
+  if (tx < 0 || ty < 0 || tx >= w || ty >= h) return TILES.WALL;
   return state.map[ty][tx];
 }
 
