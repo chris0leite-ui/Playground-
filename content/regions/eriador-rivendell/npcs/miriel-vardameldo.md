@@ -7,7 +7,7 @@ role: healer
 disposition: friendly
 dialogue: miriel-heal
 quest_hooks: [kingsfoil-for-imladris]
-spawn_pos: { x: 25, y: 27 }
+spawn_pos: { x: 22, y: 25 }
 ---
 
 The last healer of the Hall who learned her craft of Arwen's household.

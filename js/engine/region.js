@@ -69,10 +69,41 @@ function transitionToRegion(neighborId, fromDir, p) {
   } else {
     p.x = clamp(p.x, halfW + 1, wPx - halfW - 1);
   }
+  ensureWalkable(p, fromDir);
   if (!state.entities.includes(p)) state.entities.push(p);
   state.player = p;
   state.flags['region_visited:' + neighborId] = true;
   eventBus.emit('region_entered', neighborId);
+}
+
+// If the spawn tile (or the player's body) sits on a solid tile — walls on
+// an edge, a pond, etc. — slide the player along the entry edge, then scan
+// inward, until a clear tile is found. Prevents transitions from trapping
+// the player against a decorative wall.
+function ensureWalkable(p, fromDir) {
+  if (!isSolidAt(p.x, p.y)) return;
+  const halfW = p.w / 2, halfH = p.h / 2;
+  const wPx = regionW() * TILE, hPx = regionH() * TILE;
+  const edgeAxis = (fromDir === 'west' || fromDir === 'east') ? 'y' : 'x';
+  const origX = p.x, origY = p.y;
+  for (let slide = TILE; slide < TILE * 24; slide += TILE) {
+    for (const sign of [-1, 1]) {
+      if (edgeAxis === 'y') p.y = clamp(origY + sign * slide, halfH + 1, hPx - halfH - 1);
+      else                  p.x = clamp(origX + sign * slide, halfW + 1, wPx - halfW - 1);
+      if (!isSolidAt(p.x, p.y)) return;
+    }
+    p.x = origX; p.y = origY;
+  }
+  // Last resort: walk perpendicular inward a few tiles.
+  for (let push = TILE; push < TILE * 12; push += TILE) {
+    if (fromDir === 'west')       p.x = origX + push;
+    else if (fromDir === 'east')  p.x = origX - push;
+    else if (fromDir === 'north') p.y = origY + push;
+    else if (fromDir === 'south') p.y = origY - push;
+    p.x = clamp(p.x, halfW + 1, wPx - halfW - 1);
+    p.y = clamp(p.y, halfH + 1, hPx - halfH - 1);
+    if (!isSolidAt(p.x, p.y)) return;
+  }
 }
 
 // T0.2: one hardcoded region wraps the existing Minas Tirith map.

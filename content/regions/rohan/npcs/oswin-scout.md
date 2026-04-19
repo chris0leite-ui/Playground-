@@ -7,7 +7,7 @@ role: scout
 disposition: friendly
 dialogue: oswin-watch
 quest_hooks: [easterling-spies]
-spawn_pos: { x: 29, y: 27 }
+spawn_pos: { x: 28, y: 25 }
 ---
 
 Young, sharp-eyed, always half-leaning on the parapet. Has climbed more

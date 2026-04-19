@@ -7,7 +7,7 @@ role: archivist
 disposition: wary
 dialogue: culunedhel-archive
 quest_hooks: [the-lost-page]
-spawn_pos: { x: 18, y: 27 }
+spawn_pos: { x: 16, y: 25 }
 ---
 
 Slight and grey-robed. Keeps the south archive without much patience for

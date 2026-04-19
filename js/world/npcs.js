@@ -10,8 +10,8 @@ W.npcs["aethelrun-smith"] = {
   "quest_hooks": [],
   "role": "smith",
   "spawn_pos": {
-    "x": 17,
-    "y": 27
+    "x": 16,
+    "y": 25
   }
 };
 W.npcs["bard-iii"] = {
@@ -52,8 +52,8 @@ W.npcs["culunedhel"] = {
   "quest_hooks": ["the-lost-page"],
   "role": "archivist",
   "spawn_pos": {
-    "x": 18,
-    "y": 27
+    "x": 16,
+    "y": 25
   }
 };
 W.npcs["elrohir"] = {
@@ -67,7 +67,7 @@ W.npcs["elrohir"] = {
   "role": "lore-keeper",
   "spawn_pos": {
     "x": 22,
-    "y": 22
+    "y": 23
   }
 };
 W.npcs["eomers-reeve"] = {
@@ -80,8 +80,8 @@ W.npcs["eomers-reeve"] = {
   "quest_hooks": ["hoofbeats-in-the-wold"],
   "role": "reeve",
   "spawn_pos": {
-    "x": 23,
-    "y": 22
+    "x": 22,
+    "y": 23
   }
 };
 W.npcs["erestor-the-younger"] = {
@@ -94,8 +94,8 @@ W.npcs["erestor-the-younger"] = {
   "quest_hooks": ["a-forgotten-verse", "the-lost-page"],
   "role": "scriptorium-keeper",
   "spawn_pos": {
-    "x": 18,
-    "y": 20
+    "x": 16,
+    "y": 23
   }
 };
 W.npcs["faramirs-steward"] = {
@@ -150,8 +150,8 @@ W.npcs["hildwyn-hearth-warden"] = {
   "quest_hooks": [],
   "role": "hearth-warden",
   "spawn_pos": {
-    "x": 29,
-    "y": 20
+    "x": 28,
+    "y": 23
   }
 };
 W.npcs["leofric-stablemaster"] = {
@@ -164,8 +164,8 @@ W.npcs["leofric-stablemaster"] = {
   "quest_hooks": ["horse-of-the-mark"],
   "role": "stablemaster",
   "spawn_pos": {
-    "x": 17,
-    "y": 20
+    "x": 16,
+    "y": 23
   }
 };
 W.npcs["lindir"] = {
@@ -178,8 +178,8 @@ W.npcs["lindir"] = {
   "quest_hooks": ["a-forgotten-verse"],
   "role": "loremaster-singer",
   "spawn_pos": {
-    "x": 29,
-    "y": 22
+    "x": 28,
+    "y": 23
   }
 };
 W.npcs["miriel-vardameldo"] = {
@@ -192,8 +192,8 @@ W.npcs["miriel-vardameldo"] = {
   "quest_hooks": ["kingsfoil-for-imladris"],
   "role": "healer",
   "spawn_pos": {
-    "x": 25,
-    "y": 27
+    "x": 22,
+    "y": 25
   }
 };
 W.npcs["old-willowbark"] = {
@@ -220,8 +220,8 @@ W.npcs["oswin-scout"] = {
   "quest_hooks": ["easterling-spies"],
   "role": "scout",
   "spawn_pos": {
-    "x": 29,
-    "y": 27
+    "x": 28,
+    "y": 25
   }
 };
 W.npcs["rosie-cotton-the-younger"] = {

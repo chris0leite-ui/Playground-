@@ -78,7 +78,7 @@ registerQuestStepType('kill', {
     const want = (step.target && step.target.tag) || step.target;
     if (!victim || (victim.tag !== want && victim.type !== want)) return false;
     q.flags._kills = (q.flags._kills || 0) + 1;
-    const need = (step.target && step.target.count) || 1;
+    const need = step.count || (step.target && step.target.count) || 1;
     return q.flags._kills >= need;
   },
 });

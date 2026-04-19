@@ -7,7 +7,7 @@ role: smith
 disposition: neutral
 dialogue: aethelrun-armory
 quest_hooks: []
-spawn_pos: { x: 17, y: 27 }
+spawn_pos: { x: 16, y: 25 }
 ---
 
 Soot-scarred, broad-armed, speaks when struck. Forges the slender spear-heads

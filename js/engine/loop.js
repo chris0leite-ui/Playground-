@@ -99,6 +99,7 @@ function boot() {
   bindFactionListeners();
   bindQuestListeners();
   bindSaveHooks();
+  bindEncounterListeners();
   resetRun();
   showClassPicker();
 

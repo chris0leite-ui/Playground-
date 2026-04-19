@@ -7,7 +7,7 @@ role: loremaster-singer
 disposition: friendly
 dialogue: lindir-verse
 quest_hooks: [a-forgotten-verse]
-spawn_pos: { x: 29, y: 22 }
+spawn_pos: { x: 28, y: 23 }
 ---
 
 Keeper of songs, last of the high-voiced minstrels of Imladris.

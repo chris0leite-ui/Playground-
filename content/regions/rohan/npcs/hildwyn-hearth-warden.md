@@ -7,7 +7,7 @@ role: hearth-warden
 disposition: friendly
 dialogue: hildwyn-mead
 quest_hooks: []
-spawn_pos: { x: 29, y: 20 }
+spawn_pos: { x: 28, y: 23 }
 ---
 
 Tall, grey-plaited, keeps the Mead Hall's fire and its stories. Will pour a

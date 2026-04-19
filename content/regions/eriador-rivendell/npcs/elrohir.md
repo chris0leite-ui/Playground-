@@ -7,7 +7,7 @@ role: lore-keeper
 disposition: friendly
 dialogue: elrohir-books
 quest_hooks: [the-books-of-elrond]
-spawn_pos: { x: 22, y: 22 }
+spawn_pos: { x: 22, y: 23 }
 ---
 
 Son of Elrond, stayed when the others sailed. Keeps the great libraries

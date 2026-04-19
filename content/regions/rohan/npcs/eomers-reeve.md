@@ -7,7 +7,7 @@ role: reeve
 disposition: friendly
 dialogue: deorwin-hoofbeats
 quest_hooks: [hoofbeats-in-the-wold]
-spawn_pos: { x: 23, y: 22 }
+spawn_pos: { x: 22, y: 23 }
 ---
 
 Lean as a spear-haft, watches the Wold from Meduseld's steps.

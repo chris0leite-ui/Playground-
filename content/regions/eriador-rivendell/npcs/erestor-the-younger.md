@@ -7,7 +7,7 @@ role: scriptorium-keeper
 disposition: friendly
 dialogue: erestor-scriptorium
 quest_hooks: [a-forgotten-verse, the-lost-page]
-spawn_pos: { x: 18, y: 20 }
+spawn_pos: { x: 16, y: 23 }
 ---
 
 Named for his grandsire, he keeps the vellum and ink of Imladris. Grave,

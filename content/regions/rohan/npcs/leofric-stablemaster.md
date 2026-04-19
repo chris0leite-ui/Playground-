@@ -7,7 +7,7 @@ role: stablemaster
 disposition: friendly
 dialogue: leofric-stables
 quest_hooks: [horse-of-the-mark]
-spawn_pos: { x: 17, y: 20 }
+spawn_pos: { x: 16, y: 23 }
 ---
 
 Short-bearded, wind-burned, and fond of the horses more than the men. Knows
