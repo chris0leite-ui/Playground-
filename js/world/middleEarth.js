@@ -317,4 +317,18 @@ function generateWorld() {
     _placeLandmark(LANDMARKS[key]);
   }
   _placeBridges();
+  _scatterTrees();
+}
+
+// Turn ~18% of FOREST and FANGORN tiles into solid TREEs. Deterministic via
+// tile-coord hash so regen is stable; avoids road/bridge tiles.
+function _scatterTrees() {
+  for (let y = 0; y < MAP.H; y++) {
+    for (let x = 0; x < MAP.W; x++) {
+      const t = state.map[y][x];
+      if (t !== TILES.FOREST && t !== TILES.FANGORN) continue;
+      const n = ((x * 73856093) ^ (y * 83492791)) & 31;
+      if (n < 6) state.map[y][x] = TILES.TREE;
+    }
+  }
 }

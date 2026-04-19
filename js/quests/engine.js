@@ -21,10 +21,14 @@ function startQuest(id) {
 function _completeQuest(q) {
   state.quests.active = state.quests.active.filter(x => x !== q);
   state.quests.completed.push(q.id);
-  if (q.def.reward && q.def.reward.renown) state.renown += q.def.reward.renown;
-  if (q.def.reward && q.def.reward.gold) state.player.gold += q.def.reward.gold;
-  if (q.def.reward && q.def.reward.weapon) equipWeapon(q.def.reward.weapon);
-  toast('Quest complete: ' + q.def.title + ` (+${q.def.reward.renown||0} Renown)`, 4);
+  const r = q.def.reward || {};
+  const parts = [];
+  if (r.renown) { state.renown += r.renown; parts.push(`+${r.renown} Renown`); }
+  if (r.gold)   { state.player.gold += r.gold; parts.push(`+${r.gold} Gold`); }
+  if (r.weapon) { equipWeapon(r.weapon); parts.push(`Weapon: ${WEAPONS[r.weapon].name}`); }
+  if (r.armor)  { equipArmor(r.armor); parts.push(`Armor: ${ARMORS[r.armor].name}`); }
+  const reward = parts.length ? '  [' + parts.join(' · ') + ']' : '';
+  toast('QUEST COMPLETE · ' + q.def.title + reward, 5);
   emit('questCompleted', { id: q.id });
 }
 

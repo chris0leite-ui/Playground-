@@ -57,7 +57,7 @@ function updateExtraHUD() {
     ? regionAt(state.player.x, state.player.y) : null;
   _locationEl.textContent = region || 'Middle-earth';
 
-  // 2. Quest banner — first active quest, its objective, and a direction hint.
+  // 2. Quest banner — first active quest, its objective, direction, reward.
   const q = state.quests.active[0];
   if (q) {
     const o = q.def.objective;
@@ -68,8 +68,16 @@ function updateExtraHUD() {
       const tgt = _activeQuestTarget();
       if (tgt) hint = ` — ${_distanceLabel(tgt.x, tgt.y)}`;
     }
+    const r = q.def.reward || {};
+    const rewards = [];
+    if (r.renown) rewards.push(`${r.renown} Renown`);
+    if (r.gold)   rewards.push(`${r.gold} Gold`);
+    if (r.weapon) rewards.push(WEAPONS[r.weapon].name);
+    if (r.armor)  rewards.push(ARMORS[r.armor].name);
+    const rewardLine = rewards.length
+      ? `<br><span class="q-reward">Reward: ${rewards.join(' · ')}</span>` : '';
     _questBarEl.innerHTML =
-      `<strong>${q.def.title}</strong>${progress}<br><span class="q-sub">${q.def.brief}${hint}</span>`;
+      `<strong>${q.def.title}</strong>${progress}<br><span class="q-sub">${q.def.brief}${hint}</span>${rewardLine}`;
   } else {
     _questBarEl.innerHTML =
       '<em>No active quest — look for NPCs with a gold "!" above their head.</em>';

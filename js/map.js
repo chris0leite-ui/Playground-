@@ -183,6 +183,23 @@ function drawTile(ctx, t, sx, sy, tx, ty) {
       ctx.fillRect(sx + TILE / 2 - 1, sy + 4, 2, TILE - 8);
       break;
     }
+    case TILES.TREE: {
+      // Dark forest floor as backdrop, then a big trunk and canopy.
+      ctx.fillStyle = PALETTE.forest;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      ctx.fillStyle = PALETTE.forestTrunk;
+      ctx.fillRect(sx + TILE / 2 - 2, sy + 14, 4, 12);
+      ctx.fillStyle = '#1a3a1a';
+      ctx.beginPath();
+      ctx.arc(sx + TILE / 2, sy + 11, 11, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = PALETTE.forestLeaf;
+      ctx.beginPath();
+      ctx.arc(sx + TILE / 2 - 3, sy + 8, 6, 0, Math.PI * 2);
+      ctx.arc(sx + TILE / 2 + 4, sy + 10, 5, 0, Math.PI * 2);
+      ctx.fill();
+      break;
+    }
   }
 }
 

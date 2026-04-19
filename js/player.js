@@ -4,6 +4,17 @@ function updatePlayer(dt) {
   const p = state.player;
   if (!p || p.hp <= 0) return;
 
+  // Auto-dismount if our mount has died (kept-alive with hp=1 briefly here
+  // so the player lands safely instead of sharing the corpse's fate).
+  if (p.onHorse && p.onHorse.hp != null && p.onHorse.hp <= 0) {
+    const dead = p.onHorse;
+    dead.rider = null;
+    p.onHorse = null;
+    const safe = (typeof _findSafeSpot === 'function') ? _findSafeSpot(p.x, p.y, 96) : null;
+    if (safe) { p.x = safe.x; p.y = safe.y; }
+    toast('Your mount has fallen — you dismount.', 2.5);
+  }
+
   const input = moveInput();
   if (state.nazgul && state.nazgul.fear > 0) {
     input.dx = -input.dx; input.dy = -input.dy;

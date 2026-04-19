@@ -27,6 +27,7 @@ const TILES = {
   SAND: 13,        // Harad desert
   SWAMP: 14,       // Dead Marshes — walkable, slows movement
   BRIDGE: 15,      // stone bridge over water
+  TREE: 16,        // solid tree (scattered through forests)
 };
 
 const PALETTE = {

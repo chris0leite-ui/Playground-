@@ -305,6 +305,45 @@ html, body {
 }
 #quest-banner strong { color: var(--gondor-gold); }
 #quest-banner .q-sub { font-size: 11px; opacity: 0.85; }
+#quest-banner .q-reward { color: #9ad860; font-size: 11px; }
+
+#victory-bar {
+  position: absolute;
+  top: 182px;
+  right: 10px;
+  width: 164px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid var(--gondor-gold);
+  border-radius: 6px;
+  padding: 4px 6px;
+  pointer-events: none;
+  text-align: center;
+}
+#victory-label {
+  font-size: 10px;
+  color: var(--gondor-gold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+#victory-track {
+  position: relative;
+  height: 8px;
+  background: #2a1a1a;
+  border: 1px solid #6a1010;
+  border-radius: 3px;
+  margin: 3px 0;
+  overflow: hidden;
+}
+#victory-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #6a1010, #d4a82a);
+  transition: width 0.3s ease-out;
+}
+#victory-pct {
+  font-size: 10px;
+  color: var(--gondor-white);
+}
 
 #hall-btn {
   pointer-events: auto;
