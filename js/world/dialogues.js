@@ -690,6 +690,101 @@ W.dialogues["goldberry-wight"] = {
   "speaker": "goldberry",
   "start": "start"
 };
+W.dialogues["lindir-verse"] = {
+  "id": "lindir-verse",
+  "nodes": {
+    "accept": {
+      "choices": [{
+          "next": null,
+          "text": "Farewell."
+        }],
+      "text": "Hannon le."
+    },
+    "progress": {
+      "choices": [{
+          "next": "start",
+          "text": "I shall look."
+        }],
+      "text": "In the scriptorium, perhaps — or where annals gather."
+    },
+    "reward": {
+      "choices": [{
+          "effects": [{
+              "name": "verse-rewarded",
+              "type": "flag",
+              "value": true
+            }, {
+              "delta": 30,
+              "type": "hp"
+            }, {
+              "delta": 15,
+              "type": "gold"
+            }, {
+              "delta": 15,
+              "faction": "imladris-elves",
+              "type": "faction_rep"
+            }],
+          "next": null,
+          "text": "My thanks."
+        }],
+      "text": "At last — the song is whole. Take a lembas wafer; it is little thanks for so much."
+    },
+    "start": {
+      "choices": [{
+          "cond": {
+            "name": "verse-started",
+            "type": "not_flag"
+          },
+          "next": "task",
+          "text": "I will look."
+        }, {
+          "cond": {
+            "clauses": [{
+                "name": "verse-started",
+                "type": "flag"
+              }, {
+                "name": "verse-done",
+                "type": "not_flag"
+              }],
+            "type": "and"
+          },
+          "next": "progress",
+          "text": "Still seeking?"
+        }, {
+          "cond": {
+            "name": "verse-done",
+            "type": "flag"
+          },
+          "next": "reward",
+          "text": "Here is the line."
+        }, {
+          "next": null,
+          "text": "Another time."
+        }],
+      "text": "Mae govannen. A verse of my own making — I have lost a line. Would you seek it in the old hall?"
+    },
+    "task": {
+      "choices": [{
+          "effects": [{
+              "name": "verse-started",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "a-forgotten-verse",
+              "type": "quest_start"
+            }],
+          "next": "accept",
+          "text": "I will find it."
+        }, {
+          "next": "start",
+          "text": "A lesser errand."
+        }],
+      "text": "A leaf of vellum, lost among the annals. My father's hand is on it."
+    }
+  },
+  "speaker": "lindir",
+  "start": "start"
+};
 W.dialogues["orophin-mallorn"] = {
   "id": "orophin-mallorn",
   "nodes": {
@@ -805,6 +900,118 @@ W.dialogues["orophin-mallorn"] = {
     }
   },
   "speaker": "haldirs-successor",
+  "start": "start"
+};
+W.dialogues["rosie-brew"] = {
+  "id": "rosie-brew",
+  "nodes": {
+    "accept": {
+      "choices": [{
+          "next": null,
+          "text": "I'll hurry."
+        }],
+      "text": "A pint's on the house when you return."
+    },
+    "drink": {
+      "choices": [{
+          "next": "start",
+          "text": "Heart's lighter already."
+        }],
+      "text": "Bottoms up."
+    },
+    "progress": {
+      "choices": [{
+          "next": "start",
+          "text": "I will."
+        }],
+      "text": "Mallorn honey — ask the Galadhrim kindly."
+    },
+    "reward": {
+      "choices": [{
+          "effects": [{
+              "name": "ale-rewarded",
+              "type": "flag",
+              "value": true
+            }, {
+              "delta": 20,
+              "type": "hp"
+            }, {
+              "delta": 15,
+              "type": "gold"
+            }, {
+              "delta": 10,
+              "faction": "hobbits",
+              "type": "faction_rep"
+            }],
+          "next": null,
+          "text": "Lovely."
+        }],
+      "text": "Smooth as a summer evening, thanks to you. Here's your promised pint and a few silver besides."
+    },
+    "start": {
+      "choices": [{
+          "cond": {
+            "name": "ale-started",
+            "type": "not_flag"
+          },
+          "next": "task",
+          "text": "I can help?"
+        }, {
+          "cond": {
+            "clauses": [{
+                "name": "ale-started",
+                "type": "flag"
+              }, {
+                "name": "ale-done",
+                "type": "not_flag"
+              }],
+            "type": "and"
+          },
+          "next": "progress",
+          "text": "Honey found?"
+        }, {
+          "cond": {
+            "name": "ale-done",
+            "type": "flag"
+          },
+          "next": "reward",
+          "text": "Was the ale fixed?"
+        }, {
+          "effects": [{
+              "delta": -2,
+              "type": "gold"
+            }, {
+              "delta": 10,
+              "type": "hp"
+            }],
+          "next": "drink",
+          "text": "Another pint."
+        }, {
+          "next": null,
+          "text": "Another time."
+        }],
+      "text": "Evenin', traveller. Ale's a bit sour tonight — won't pass a hobbit's tongue."
+    },
+    "task": {
+      "choices": [{
+          "effects": [{
+              "name": "ale-started",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "souring-ale",
+              "type": "quest_start"
+            }],
+          "next": "accept",
+          "text": "I'll fetch a pot."
+        }, {
+          "next": "start",
+          "text": "Tall errand."
+        }],
+      "text": "Mallorn honey — the real Elven kind. A pot of it fixes a cauldron. Try asking Orophin in Lothlórien."
+    }
+  },
+  "speaker": "rosie-cotton-the-younger",
   "start": "start"
 };
 W.dialogues["sam-missing-mathom"] = {
@@ -1041,6 +1248,98 @@ W.dialogues["thorin-relight"] = {
   "speaker": "thorin-iv",
   "start": "start"
 };
+W.dialogues["tolman-pony"] = {
+  "id": "tolman-pony",
+  "nodes": {
+    "accept": {
+      "choices": [{
+          "next": null,
+          "text": "I will."
+        }],
+      "text": "Bring him back safe, mind."
+    },
+    "progress": {
+      "choices": [{
+          "next": "start",
+          "text": "Right."
+        }],
+      "text": "Try the pond — ponies love the sweet grass there."
+    },
+    "reward": {
+      "choices": [{
+          "effects": [{
+              "name": "pony-rewarded",
+              "type": "flag",
+              "value": true
+            }, {
+              "delta": 10,
+              "type": "gold"
+            }, {
+              "delta": 10,
+              "faction": "shirriffs",
+              "type": "faction_rep"
+            }],
+          "next": null,
+          "text": "My thanks."
+        }],
+      "text": "Stybba's home. Fredegar wept a tear. Here's a silver for your trouble."
+    },
+    "start": {
+      "choices": [{
+          "cond": {
+            "name": "pony-started",
+            "type": "not_flag"
+          },
+          "next": "task",
+          "text": "Where last seen?"
+        }, {
+          "cond": {
+            "clauses": [{
+                "name": "pony-started",
+                "type": "flag"
+              }, {
+                "name": "pony-done",
+                "type": "not_flag"
+              }],
+            "type": "and"
+          },
+          "next": "progress",
+          "text": "Pony found?"
+        }, {
+          "cond": {
+            "name": "pony-done",
+            "type": "flag"
+          },
+          "next": "reward",
+          "text": "All returned."
+        }, {
+          "next": null,
+          "text": "Good day."
+        }],
+      "text": "Afternoon. Got a pony wandered off — Master Fredegar's Stybba. Could you bring him in?"
+    },
+    "task": {
+      "choices": [{
+          "effects": [{
+              "name": "pony-started",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "missing-pony",
+              "type": "quest_start"
+            }],
+          "next": "accept",
+          "text": "I'll look."
+        }, {
+          "next": "start",
+          "text": "Not today."
+        }],
+      "text": "South of the plaza, near the pond. Shouldn't be far."
+    }
+  },
+  "speaker": "tolman-smallburrow",
+  "start": "start"
+};
 W.dialogues["warden-ash"] = {
   "id": "warden-ash",
   "nodes": {
@@ -1170,5 +1469,100 @@ W.dialogues["warden-ash"] = {
     }
   },
   "speaker": "warden-of-morannon",
+  "start": "start"
+};
+W.dialogues["willowbark-kingsfoil"] = {
+  "id": "willowbark-kingsfoil",
+  "nodes": {
+    "accept": {
+      "choices": [{
+          "next": null,
+          "text": "Aye."
+        }],
+      "text": "Mind the brambles."
+    },
+    "progress": {
+      "choices": [{
+          "next": "start",
+          "text": "Right."
+        }],
+      "text": "Whitish flowers. Thin leaves. Smells of old summer."
+    },
+    "reward": {
+      "choices": [{
+          "effects": [{
+              "name": "kingsfoil-rewarded",
+              "type": "flag",
+              "value": true
+            }, {
+              "delta": 25,
+              "type": "hp"
+            }, {
+              "delta": 10,
+              "type": "gold"
+            }, {
+              "delta": 10,
+              "faction": "bree-folk",
+              "type": "faction_rep"
+            }],
+          "next": null,
+          "text": "My thanks."
+        }],
+      "text": "Bless you. Take this phial — I'll ready a salve for you another day."
+    },
+    "start": {
+      "choices": [{
+          "cond": {
+            "name": "kingsfoil-started",
+            "type": "not_flag"
+          },
+          "next": "task",
+          "text": "Where in the Chetwood?"
+        }, {
+          "cond": {
+            "clauses": [{
+                "name": "kingsfoil-started",
+                "type": "flag"
+              }, {
+                "name": "kingsfoil-done",
+                "type": "not_flag"
+              }],
+            "type": "and"
+          },
+          "next": "progress",
+          "text": "Still looking?"
+        }, {
+          "cond": {
+            "name": "kingsfoil-done",
+            "type": "flag"
+          },
+          "next": "reward",
+          "text": "I've the bundle."
+        }, {
+          "next": null,
+          "text": "Not today, gaffer."
+        }],
+      "text": "Eh? You've the look of a walker. My kingsfoil stock's run thin — would you cut a fresh bundle in the Chetwood?"
+    },
+    "task": {
+      "choices": [{
+          "effects": [{
+              "name": "kingsfoil-started",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "kingsfoil-in-chetwood",
+              "type": "quest_start"
+            }],
+          "next": "accept",
+          "text": "I'll bring a bundle."
+        }, {
+          "next": "start",
+          "text": "Not my errand."
+        }],
+      "text": "North of town, a mile or two. Look for the thin-leaved plant with white flowers."
+    }
+  },
+  "speaker": "old-willowbark",
   "start": "start"
 };

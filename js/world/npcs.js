@@ -98,6 +98,48 @@ W.npcs["haldirs-successor"] = {
     "y": 24
   }
 };
+W.npcs["lindir"] = {
+  "dialogue": "lindir-verse",
+  "disposition": "friendly",
+  "faction": "imladris-elves",
+  "id": "lindir",
+  "location": "region:eriador-rivendell",
+  "name": "Lindir",
+  "quest_hooks": ["a-forgotten-verse"],
+  "role": "loremaster-singer",
+  "spawn_pos": {
+    "x": 20,
+    "y": 24
+  }
+};
+W.npcs["old-willowbark"] = {
+  "dialogue": "willowbark-kingsfoil",
+  "disposition": "friendly",
+  "faction": "bree-folk",
+  "id": "old-willowbark",
+  "location": "region:bree-land",
+  "name": "Old Willowbark",
+  "quest_hooks": ["kingsfoil-in-chetwood"],
+  "role": "herbalist",
+  "spawn_pos": {
+    "x": 17,
+    "y": 18
+  }
+};
+W.npcs["rosie-cotton-the-younger"] = {
+  "dialogue": "rosie-brew",
+  "disposition": "friendly",
+  "faction": "hobbits",
+  "id": "rosie-cotton-the-younger",
+  "location": "region:shire",
+  "name": "Rosie Cotton-the-Younger",
+  "quest_hooks": ["souring-ale"],
+  "role": "tavern-keeper",
+  "spawn_pos": {
+    "x": 28,
+    "y": 22
+  }
+};
 W.npcs["sam-gamgee-the-younger"] = {
   "dialogue": "sam-missing-mathom",
   "disposition": "friendly",
@@ -124,6 +166,20 @@ W.npcs["thorin-iv"] = {
   "spawn_pos": {
     "x": 24,
     "y": 24
+  }
+};
+W.npcs["tolman-smallburrow"] = {
+  "dialogue": "tolman-pony",
+  "disposition": "friendly",
+  "faction": "shirriffs",
+  "id": "tolman-smallburrow",
+  "location": "region:shire",
+  "name": "Sheriff Tolman Smallburrow",
+  "quest_hooks": ["missing-pony"],
+  "role": "shirriff-captain",
+  "spawn_pos": {
+    "x": 18,
+    "y": 22
   }
 };
 W.npcs["warden-of-morannon"] = {
