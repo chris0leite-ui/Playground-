@@ -91,19 +91,29 @@ function bindStick() {
 }
 
 function bindActionButtons() {
-  const attack = document.getElementById('attack-btn');
-  const mount = document.getElementById('mount-btn');
+  const ids = ['attack-btn', 'mount-btn', 'bow-btn', 'talk-btn',
+               'map-btn', 'save-btn', 'load-btn'];
+  const el = {}; for (const id of ids) el[id] = document.getElementById(id);
 
-  function press(fn) {
-    return (e) => { e.preventDefault(); fn(); };
+  function press(fn) { return (e) => { e.preventDefault(); fn(); }; }
+  function bind(node, fn) {
+    if (!node) return;
+    node.addEventListener('touchstart', press(fn), { passive: false });
+    node.addEventListener('mousedown', press(fn));
   }
 
-  const setAttack = () => { if (state.inputMode === 'world') state.edge.attack = true; };
-  const setMount = () => { if (state.inputMode === 'world') state.edge.mount = true; };
-
-  attack.addEventListener('touchstart', press(setAttack), { passive: false });
-  attack.addEventListener('mousedown', press(setAttack));
-
-  mount.addEventListener('touchstart', press(setMount), { passive: false });
-  mount.addEventListener('mousedown', press(setMount));
+  bind(el['attack-btn'], () => { if (state.inputMode === 'world') state.edge.attack = true; });
+  bind(el['bow-btn'],    () => { if (state.inputMode === 'world') state.edge.shoot = true; });
+  bind(el['mount-btn'],  () => { if (state.inputMode === 'world') state.edge.mount = true; });
+  bind(el['talk-btn'],   () => {
+    if (state.inputMode !== 'world') return;
+    const target = findNearestNpc(80);
+    if (target && target.dialogueId) openDialogue(target.dialogueId);
+  });
+  bind(el['map-btn'], () => {
+    if (state.inputMode === 'world') openOverworld();
+    else if (state.inputMode === 'overworld') closeOverworld();
+  });
+  bind(el['save-btn'], () => { if (typeof saveSave === 'function') saveSave(); });
+  bind(el['load-btn'], () => { if (typeof loadSave === 'function') loadSave(); });
 }

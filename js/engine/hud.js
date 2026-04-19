@@ -43,6 +43,18 @@ function updateHUD() {
   } else {
     HUD.mount.classList.remove('on');
   }
+
+  // Show the Talk button only when an NPC is in range and we're in world mode.
+  const talkBtn = document.getElementById('talk-btn');
+  if (talkBtn) {
+    const target = (state.inputMode === 'world') ? findNearestNpc(80) : null;
+    if (target) {
+      talkBtn.classList.remove('hidden');
+      talkBtn.textContent = 'Talk';
+    } else {
+      talkBtn.classList.add('hidden');
+    }
+  }
 }
 
 function showToast(text, ms) {
