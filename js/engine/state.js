@@ -51,5 +51,8 @@ function resetRun() {
   state.world.currentRegionId = null;
   state.region = null;
   initDefaultRegion();
+  // Register every content-authored region so save/load and edge
+  // transitions can resolve them after a reset.
+  if (typeof registerContentRegions === 'function') registerContentRegions();
   initEntities();
 }

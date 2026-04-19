@@ -46,8 +46,18 @@ function loadSave() {
       return false;
     }
     resetRun();
-    if (data.currentRegionId && state.world.regions[data.currentRegionId]) {
+    // resetRun spawns the player in the default region; if the save
+    // points at a different region, migrate the player entity across.
+    const p = state.player;
+    if (p && data.currentRegionId && state.world.regions[data.currentRegionId]
+        && data.currentRegionId !== state.world.currentRegionId) {
+      const prev = state.region;
+      if (prev) {
+        const idx = prev.entities.indexOf(p);
+        if (idx >= 0) prev.entities.splice(idx, 1);
+      }
       loadRegion(data.currentRegionId);
+      if (!state.entities.includes(p)) state.entities.push(p);
     }
     state.time = data.time || 0;
     state.renown = data.renown || 0;
@@ -60,6 +70,10 @@ function loadSave() {
         hp: data.player.hp, maxHp: data.player.maxHp,
         gold: data.player.gold, angle: data.player.angle,
       });
+      // The mount we were riding doesn't survive a save (regions
+      // rebuild fresh on load). Dismount cleanly so the player
+      // controls themselves, not a stale horse reference.
+      state.player.onHorse = null;
     }
     state.started = true;
     hideMessage();

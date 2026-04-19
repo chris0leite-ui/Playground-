@@ -99,7 +99,6 @@ function boot() {
   bindQuestListeners();
   bindSaveHooks();
   resetRun();
-  registerContentRegions();
   showClassPicker();
 
   _last = performance.now() / 1000;
