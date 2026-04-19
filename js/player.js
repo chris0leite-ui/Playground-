@@ -169,7 +169,7 @@ function tryMountOrDismount() {
     return;
   }
   // Find nearest free mount within MOUNT_RANGE.
-  const MOUNT_TYPES = ['horse', 'eagle', 'warg', 'mumak'];
+  const MOUNT_TYPES = ['horse', 'eagle', 'warg', 'mumak', 'shadowfax', 'ent', 'fellBeast'];
   let best = null, bestD = CONFIG.MOUNT_RANGE;
   for (const e of state.entities) {
     if (MOUNT_TYPES.indexOf(e.type) < 0 || e.hp <= 0 || e.rider) continue;

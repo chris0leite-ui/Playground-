@@ -45,8 +45,10 @@ function _carveAnduin() {
 }
 
 function _carveMistyMountains() {
-  // Vertical spine at x=95..106 with two gaps (High Pass, Moria East-gate).
-  for (let y = 0; y < MAP.H; y++) {
+  // Vertical spine from y=0 to y=115 (the southern end is the Gap of Rohan
+  // — Isengard sits at the mountains' foot there, already open terrain).
+  // Two gaps through the range: High Pass and Moria East-gate.
+  for (let y = 0; y < 115; y++) {
     for (let x = 95; x <= 106; x++) {
       const highPass = (y >= 40 && y <= 44) && (x >= 98 && x <= 103);
       const moriaGap = (y >= 68 && y <= 72) && (x >= 99 && x <= 104);

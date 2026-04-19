@@ -37,7 +37,10 @@ function updateHUD() {
   HUD.hpText.textContent = `${Math.max(0, Math.ceil(p.hp))} / ${p.maxHp}`;
 
   if (p.onHorse) {
-    const names = { horse: 'Steed of Rohan', eagle: 'Great Eagle', warg: 'Warg', mumak: 'Mûmak' };
+    const names = {
+      horse: 'Steed of Rohan', eagle: 'Great Eagle', warg: 'Warg', mumak: 'Mûmak',
+      shadowfax: 'Shadowfax · Lord of Horses', ent: 'Ent of Fangorn', fellBeast: 'Fell Beast',
+    };
     HUD.mount.textContent = 'Mounted: ' + (names[p.onHorse.type] || 'Mount');
     HUD.mount.classList.add('on');
   } else {
