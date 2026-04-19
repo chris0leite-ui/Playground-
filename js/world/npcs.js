@@ -28,18 +28,32 @@ W.npcs["barliman-butterbur-ii"] = {
     "y": 20
   }
 };
+W.npcs["culunedhel"] = {
+  "dialogue": "culunedhel-archive",
+  "disposition": "wary",
+  "faction": "imladris-elves",
+  "id": "culunedhel",
+  "location": "building:bruinen-archive",
+  "name": "Culunedhel",
+  "quest_hooks": ["the-lost-page"],
+  "role": "archivist",
+  "spawn_pos": {
+    "x": 18,
+    "y": 27
+  }
+};
 W.npcs["elrohir"] = {
   "dialogue": "elrohir-books",
   "disposition": "friendly",
   "faction": "imladris-elves",
   "id": "elrohir",
-  "location": "region:eriador-rivendell",
+  "location": "building:last-homely-house",
   "name": "Elrohir",
   "quest_hooks": ["the-books-of-elrond"],
   "role": "lore-keeper",
   "spawn_pos": {
-    "x": 24,
-    "y": 24
+    "x": 22,
+    "y": 22
   }
 };
 W.npcs["eomers-reeve"] = {
@@ -54,6 +68,20 @@ W.npcs["eomers-reeve"] = {
   "spawn_pos": {
     "x": 24,
     "y": 24
+  }
+};
+W.npcs["erestor-the-younger"] = {
+  "dialogue": "erestor-scriptorium",
+  "disposition": "friendly",
+  "faction": "imladris-elves",
+  "id": "erestor-the-younger",
+  "location": "building:imladris-scriptorium",
+  "name": "Erestor the Younger",
+  "quest_hooks": ["a-forgotten-verse", "the-lost-page"],
+  "role": "scriptorium-keeper",
+  "spawn_pos": {
+    "x": 18,
+    "y": 20
   }
 };
 W.npcs["faramirs-steward"] = {
@@ -103,13 +131,27 @@ W.npcs["lindir"] = {
   "disposition": "friendly",
   "faction": "imladris-elves",
   "id": "lindir",
-  "location": "region:eriador-rivendell",
+  "location": "building:hall-of-fire",
   "name": "Lindir",
   "quest_hooks": ["a-forgotten-verse"],
   "role": "loremaster-singer",
   "spawn_pos": {
-    "x": 20,
-    "y": 24
+    "x": 29,
+    "y": 22
+  }
+};
+W.npcs["miriel-vardameldo"] = {
+  "dialogue": "miriel-heal",
+  "disposition": "friendly",
+  "faction": "imladris-elves",
+  "id": "miriel-vardameldo",
+  "location": "building:healers-hall",
+  "name": "Míriel Vardameldo",
+  "quest_hooks": ["kingsfoil-for-imladris"],
+  "role": "healer",
+  "spawn_pos": {
+    "x": 25,
+    "y": 27
   }
 };
 W.npcs["old-willowbark"] = {

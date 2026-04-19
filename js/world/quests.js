@@ -252,6 +252,32 @@ W.quests["keepers-errand-8"] = {
   "summary": "The Warden opens the packet at last. Its contents will shape the next age.",
   "title": "The Keeper's Charge"
 };
+W.quests["kingsfoil-for-imladris"] = {
+  "giver": "npc:miriel-vardameldo",
+  "id": "kingsfoil-for-imladris",
+  "rewards": {
+    "gold": 20,
+    "items": ["elvenbread-fresh"],
+    "rep": [{
+        "delta": 10,
+        "faction": "imladris-elves"
+      }]
+  },
+  "steps": [{
+      "hint": "Forage kingsfoil in the Chetwood (Bree-land, speak with Old Willowbark).",
+      "id": "gather",
+      "target": "kingsfoil-done",
+      "type": "flag"
+    }, {
+      "hint": "Return the leaves to Míriel at the Healers' Hall.",
+      "id": "deliver",
+      "target": "kingsfoil-errand-rewarded",
+      "type": "flag"
+    }],
+  "summary": "Míriel's athelas supply has failed. Gather fresh kingsfoil from the Chetwood and bring it to the Healers' Hall.",
+  "tags": ["herbalism", "fetch"],
+  "title": "Kingsfoil for Imladris"
+};
 W.quests["kingsfoil-in-chetwood"] = {
   "giver": "npc:old-willowbark",
   "id": "kingsfoil-in-chetwood",
@@ -384,4 +410,29 @@ W.quests["the-last-mallorn"] = {
   "steps": [],
   "summary": "Protect a young mallorn sapling while it roots.",
   "title": "The Last Mallorn"
+};
+W.quests["the-lost-page"] = {
+  "giver": "npc:erestor-the-younger",
+  "id": "the-lost-page",
+  "rewards": {
+    "gold": 20,
+    "rep": [{
+        "delta": 10,
+        "faction": "imladris-elves"
+      }]
+  },
+  "steps": [{
+      "hint": "Speak with Culunedhel in the Bruinen Archive, south of the road.",
+      "id": "retrieve",
+      "target": "lost-page-retrieved",
+      "type": "flag"
+    }, {
+      "hint": "Return the page to Erestor in the scriptorium.",
+      "id": "return",
+      "target": "lost-page-done",
+      "type": "flag"
+    }],
+  "summary": "A leaf of the Arnor charter-roll has slipped its binding. Retrieve it from the Bruinen Archive.",
+  "tags": ["lore", "fetch"],
+  "title": "The Lost Page"
 };

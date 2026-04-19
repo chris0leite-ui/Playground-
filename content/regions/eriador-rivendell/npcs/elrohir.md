@@ -1,13 +1,13 @@
 ---
 id: elrohir
 name: Elrohir
-location: region:eriador-rivendell
+location: building:last-homely-house
 faction: imladris-elves
 role: lore-keeper
 disposition: friendly
 dialogue: elrohir-books
 quest_hooks: [the-books-of-elrond]
-spawn_pos: { x: 24, y: 24 }
+spawn_pos: { x: 22, y: 22 }
 ---
 
 Son of Elrond, stayed when the others sailed. Keeps the great libraries

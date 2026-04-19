@@ -1,13 +1,13 @@
 ---
 id: lindir
 name: Lindir
-location: region:eriador-rivendell
+location: building:hall-of-fire
 faction: imladris-elves
 role: loremaster-singer
 disposition: friendly
 dialogue: lindir-verse
 quest_hooks: [a-forgotten-verse]
-spawn_pos: { x: 20, y: 24 }
+spawn_pos: { x: 29, y: 22 }
 ---
 
 Keeper of songs, last of the high-voiced minstrels of Imladris.

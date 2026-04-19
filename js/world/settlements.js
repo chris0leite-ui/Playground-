@@ -32,3 +32,21 @@ W.settlements["hobbiton"] = {
   },
   "type": "village"
 };
+W.settlements["imladris"] = {
+  "description": "|",
+  "faction": "imladris-elves",
+  "id": "imladris",
+  "name": "Imladris",
+  "notable_buildings": ["imladris-scriptorium", "hall-of-fire", "last-homely-house", "bruinen-archive", "healers-hall"],
+  "population": 180,
+  "region": "eriador-rivendell",
+  "ruler": "elrohir",
+  "tags": ["elven", "lore", "valley"],
+  "tile_region": {
+    "h": 14,
+    "w": 22,
+    "x": 15,
+    "y": 17
+  },
+  "type": "town"
+};

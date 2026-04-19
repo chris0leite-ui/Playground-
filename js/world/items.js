@@ -60,6 +60,17 @@ W.items["elven-cloak"] = {
   },
   "type": "cloak"
 };
+W.items["elvenbread-fresh"] = {
+  "icon_color": "#e8d98a",
+  "id": "elvenbread-fresh",
+  "name": "Fresh Elven-bread",
+  "rarity": "uncommon",
+  "slot": "none",
+  "stats": {
+    "on_use": "heal 55"
+  },
+  "type": "consumable"
+};
 W.items["lembas"] = {
   "icon_color": "#c8e0a0",
   "id": "lembas",

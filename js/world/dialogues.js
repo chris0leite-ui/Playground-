@@ -374,6 +374,53 @@ W.dialogues["beregond-bridge"] = {
   "speaker": "faramirs-steward",
   "start": "start"
 };
+W.dialogues["culunedhel-archive"] = {
+  "id": "culunedhel-archive",
+  "nodes": {
+    "deliver": {
+      "choices": [{
+          "effects": [{
+              "name": "lost-page-retrieved",
+              "type": "flag",
+              "value": true
+            }],
+          "next": null,
+          "text": "Understood."
+        }],
+      "text": "Good. Give it to Erestor, not to me. My hands no longer touch vellum."
+    },
+    "lost-page-hint": {
+      "choices": [{
+          "next": null,
+          "text": "I shall."
+        }],
+      "text": "Speak with Erestor in the scriptorium. He knows what he lost."
+    },
+    "start": {
+      "choices": [{
+          "cond": {
+            "name": "lost-page-started",
+            "type": "flag"
+          },
+          "next": "deliver",
+          "text": "I have it."
+        }, {
+          "cond": {
+            "name": "lost-page-started",
+            "type": "not_flag"
+          },
+          "next": "lost-page-hint",
+          "text": "What leaf?"
+        }, {
+          "next": null,
+          "text": "I meant no harm."
+        }],
+      "text": "You again. The leaf sits in the fourth bay, among the Cardolan rolls. Take it, carefully, and I will let you leave."
+    }
+  },
+  "speaker": "culunedhel",
+  "start": "start"
+};
 W.dialogues["deorwin-hoofbeats"] = {
   "id": "deorwin-hoofbeats",
   "nodes": {
@@ -611,6 +658,77 @@ W.dialogues["elrohir-books"] = {
   "speaker": "elrohir",
   "start": "start"
 };
+W.dialogues["erestor-scriptorium"] = {
+  "id": "erestor-scriptorium",
+  "nodes": {
+    "accept": {
+      "choices": [{
+          "effects": [{
+              "name": "lost-page-started",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "the-lost-page",
+              "type": "quest_start"
+            }],
+          "next": null,
+          "text": "I shall."
+        }],
+      "text": "Hannon le. Bring it unstained if you can."
+    },
+    "discover": {
+      "choices": [{
+          "effects": [{
+              "name": "verse-done",
+              "type": "flag",
+              "value": true
+            }],
+          "next": null,
+          "text": "Thank you."
+        }],
+      "text": "Here. Between the verses of Fëanor's apology and the list of ships."
+    },
+    "lost-page": {
+      "choices": [{
+          "next": "accept",
+          "text": "I will look."
+        }, {
+          "next": "start",
+          "text": "Another day."
+        }],
+      "text": "A leaf of Arnor's roll has fallen from its binding — find it in the south archive and bring it back."
+    },
+    "start": {
+      "choices": [{
+          "cond": {
+            "clauses": [{
+                "name": "verse-started",
+                "type": "flag"
+              }, {
+                "name": "verse-done",
+                "type": "not_flag"
+              }],
+            "type": "and"
+          },
+          "next": "discover",
+          "text": "I would read it."
+        }, {
+          "cond": {
+            "name": "lost-page-started",
+            "type": "not_flag"
+          },
+          "next": "lost-page",
+          "text": "About a lost page."
+        }, {
+          "next": null,
+          "text": "Just passing."
+        }],
+      "text": "You walk softly — good. Lindir's line? I set it on the long table, beside the sea-songs. Read it if you wish."
+    }
+  },
+  "speaker": "erestor-the-younger",
+  "start": "start"
+};
 W.dialogues["goldberry-wight"] = {
   "id": "goldberry-wight",
   "nodes": {
@@ -783,6 +901,85 @@ W.dialogues["lindir-verse"] = {
     }
   },
   "speaker": "lindir",
+  "start": "start"
+};
+W.dialogues["miriel-heal"] = {
+  "id": "miriel-heal",
+  "nodes": {
+    "accept": {
+      "choices": [{
+          "effects": [{
+              "name": "kingsfoil-errand-started",
+              "type": "flag",
+              "value": true
+            }, {
+              "id": "kingsfoil-for-imladris",
+              "type": "quest_start"
+            }],
+          "next": null,
+          "text": "Understood."
+        }],
+      "text": "Three stems will be enough. Keep them out of direct sun."
+    },
+    "heal": {
+      "choices": [{
+          "effects": [{
+              "delta": 40,
+              "type": "hp"
+            }],
+          "next": null,
+          "text": "My thanks."
+        }],
+      "text": "Rest a moment. Drink this. (+40 hp)"
+    },
+    "reward": {
+      "choices": [{
+          "effects": [{
+              "name": "kingsfoil-errand-rewarded",
+              "type": "flag",
+              "value": true
+            }, {
+              "delta": 30,
+              "type": "hp"
+            }, {
+              "delta": 20,
+              "type": "gold"
+            }, {
+              "delta": 10,
+              "faction": "imladris-elves",
+              "type": "faction_rep"
+            }],
+          "next": null,
+          "text": "Hannon le."
+        }],
+      "text": "These will last the season. Take a loaf of fresh elven-bread with my thanks."
+    },
+    "start": {
+      "choices": [{
+          "cond": {
+            "name": "kingsfoil-errand-started",
+            "type": "not_flag"
+          },
+          "next": "accept",
+          "text": "I will gather."
+        }, {
+          "cond": {
+            "name": "kingsfoil-done",
+            "type": "flag"
+          },
+          "next": "reward",
+          "text": "I bring leaves."
+        }, {
+          "next": "heal",
+          "text": "I am hurt."
+        }, {
+          "next": null,
+          "text": "Later."
+        }],
+      "text": "Mae govannen. The hearth is warm. Our kingsfoil has all but failed — could you bring fresh leaves from the Chetwood?"
+    }
+  },
+  "speaker": "miriel-vardameldo",
   "start": "start"
 };
 W.dialogues["orophin-mallorn"] = {
