@@ -259,6 +259,56 @@ html, body {
 }
 #message-btn:active { transform: scale(0.96); }
 
+/* ---- Dialogue overlay ---- */
+#dialogue-overlay {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  padding: 0 10px 10px 10px;
+  z-index: 22;
+  pointer-events: auto;
+  display: flex;
+  justify-content: center;
+}
+#dialogue-overlay.hidden { display: none; }
+
+#dialogue-box {
+  background: rgba(26, 26, 26, 0.95);
+  border: 2px solid var(--gondor-gold);
+  border-radius: 10px;
+  padding: 14px 16px;
+  max-width: min(640px, 92vw);
+  width: 100%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+}
+
+#dialogue-text {
+  margin: 0 0 10px 0;
+  line-height: 1.45;
+  font-size: 14px;
+  color: var(--gondor-white);
+}
+
+#dialogue-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#dialogue-choices button {
+  background: transparent;
+  color: var(--gondor-white);
+  border: 1px solid var(--gondor-gold);
+  border-radius: 6px;
+  padding: 8px 12px;
+  text-align: left;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+#dialogue-choices button:hover,
+#dialogue-choices button:focus { background: rgba(212, 168, 42, 0.2); }
+#dialogue-choices button:active { transform: scale(0.98); }
+
 @media (min-width: 900px) {
   #title { font-size: 18px; }
   #stats { font-size: 14px; }

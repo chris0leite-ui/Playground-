@@ -19,6 +19,12 @@ const state = {
   edge: { attack: false, mount: false }, // one-shot edge triggers
   stick: { active: false, dx: 0, dy: 0, id: null, cx: 0, cy: 0 },
 
+  // Input context. Anything other than 'world' freezes player + entity
+  // updates. Set by dialogue/overworld/menu subsystems; default is 'world'.
+  inputMode: 'world',
+
+  flags: {},          // persistent boolean flags set by dialogue/quest effects
+
   renown: 0,
   time: 0,
   frame: 0,
@@ -34,6 +40,8 @@ function resetRun() {
   state.paused = false;
   state.gameOver = false;
   state.shake = 0;
+  state.inputMode = 'world';
+  state.flags = {};
   // Rebuild the world from scratch. Entities belong to the current region.
   state.world.regions = {};
   state.world.currentRegionId = null;

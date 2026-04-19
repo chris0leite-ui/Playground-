@@ -40,6 +40,8 @@ function updateCamera() {
 
 function update(dt) {
   if (!state.started || state.paused || state.gameOver) return;
+  // World is frozen in dialogue/menu/overworld modes; camera/render still run.
+  if (state.inputMode !== 'world') return;
   state.time += dt;
   state.frame++;
   updatePlayer(dt);
