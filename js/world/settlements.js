@@ -16,6 +16,24 @@ W.settlements["bree"] = {
   },
   "type": "town"
 };
+W.settlements["edoras"] = {
+  "description": "|",
+  "faction": "rohirrim",
+  "id": "edoras",
+  "name": "Edoras",
+  "notable_buildings": ["meduseld", "stables-of-the-mark", "mead-hall", "armory-of-edoras", "watchtower-of-edoras"],
+  "population": 900,
+  "region": "rohan",
+  "ruler": "eomers-reeve",
+  "tags": ["rohirrim", "horses", "hill-town"],
+  "tile_region": {
+    "h": 14,
+    "w": 22,
+    "x": 15,
+    "y": 17
+  },
+  "type": "city"
+};
 W.settlements["hobbiton"] = {
   "faction": "hobbits",
   "id": "hobbiton",

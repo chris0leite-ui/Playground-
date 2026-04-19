@@ -61,6 +61,32 @@ W.quests["bridge-of-stone"] = {
   "summary": "Drive bandits off the rebuilt southern bridge at Osgiliath.",
   "title": "Bridge of Stone"
 };
+W.quests["easterling-spies"] = {
+  "giver": "npc:oswin-scout",
+  "id": "easterling-spies",
+  "rewards": {
+    "gold": 20,
+    "rep": [{
+        "delta": 15,
+        "faction": "rohirrim"
+      }]
+  },
+  "steps": [{
+      "count": 3,
+      "hint": "Slay three raiders on the Wold north-east of Edoras.",
+      "id": "hunt",
+      "target": "orc",
+      "type": "kill"
+    }, {
+      "hint": "Return to Oswin at the Watchtower of Edoras.",
+      "id": "report",
+      "target": "spies-rewarded",
+      "type": "flag"
+    }],
+  "summary": "Oswin has seen strangers slipping past the Wold by night. Track them down and silence them.",
+  "tags": ["combat", "patrol"],
+  "title": "Easterling Spies"
+};
 W.quests["hoofbeats-in-the-wold"] = {
   "giver": "npc:eomers-reeve",
   "id": "hoofbeats-in-the-wold",
@@ -74,6 +100,31 @@ W.quests["hoofbeats-in-the-wold"] = {
   "steps": [],
   "summary": "Drive off Easterling raiders in the North Wold.",
   "title": "Hoofbeats in the Wold"
+};
+W.quests["horse-of-the-mark"] = {
+  "giver": "npc:leofric-stablemaster",
+  "id": "horse-of-the-mark",
+  "rewards": {
+    "gold": 25,
+    "rep": [{
+        "delta": 10,
+        "faction": "rohirrim"
+      }]
+  },
+  "steps": [{
+      "hint": "Ride east of Edoras, along the stream, to find the bay colt.",
+      "id": "find",
+      "target": "lost-horse-found",
+      "type": "flag"
+    }, {
+      "hint": "Return Fréawine to Léofric at the Stables of the Mark.",
+      "id": "return",
+      "target": "lost-horse-rewarded",
+      "type": "flag"
+    }],
+  "summary": "Fréawine, a bay colt of the Stables of the Mark, broke his tether. Find him east of Edoras and return him to Léofric.",
+  "tags": ["rescue", "fetch"],
+  "title": "Horse of the Mark"
 };
 W.quests["iron-for-the-south"] = {
   "giver": "npc:bard-iii",

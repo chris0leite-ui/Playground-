@@ -90,6 +90,17 @@ W.items["mathom"] = {
   "slot": "none",
   "type": "lore"
 };
+W.items["meduseld-mead"] = {
+  "icon_color": "#d4a82a",
+  "id": "meduseld-mead",
+  "name": "Meduseld Mead",
+  "rarity": "common",
+  "slot": "none",
+  "stats": {
+    "on_use": "heal 25"
+  },
+  "type": "consumable"
+};
 W.items["phial-of-galadriel"] = {
   "crafted_by": "galadhrim",
   "icon_color": "#e0e0ff",

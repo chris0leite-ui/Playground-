@@ -1,13 +1,13 @@
 ---
 id: eomers-reeve
 name: 'Déorwin, Reeve of Edoras'
-location: region:rohan
+location: building:meduseld
 faction: rohirrim
 role: reeve
 disposition: friendly
 dialogue: deorwin-hoofbeats
 quest_hooks: [hoofbeats-in-the-wold]
-spawn_pos: { x: 24, y: 24 }
+spawn_pos: { x: 23, y: 22 }
 ---
 
 Lean as a spear-haft, watches the Wold from Meduseld's steps.
