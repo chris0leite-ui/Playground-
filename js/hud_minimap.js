@@ -81,12 +81,32 @@ function _drawMinimap(ctx) {
 
   // Landmark dots + labels for major ones (surface only).
   if (state.location !== 'moria') {
+    // Named labels for the biggest cities so the player can always
+    // locate Hobbiton / Rivendell / Edoras / Minas Tirith / etc.
+    const LABELED = {
+      hobbiton: 'Hobbiton', bree: 'Bree', rivendell: 'Rivendell',
+      moriaGate: 'Moria', erebor: 'Erebor', lothlorien: 'Lórien',
+      isengard: 'Isengard', edoras: 'Edoras', helmsDeep: "Helm's Deep",
+      minasTirith: 'Minas Tirith', minasMorgul: 'M. Morgul',
+      baradDur: 'Barad-dûr', mountDoom: 'Mt Doom',
+    };
+    ctx.font = 'bold 8px Georgia';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
     for (const key in LANDMARKS) {
       const L = LANDMARKS[key];
       const mx = x0 + L.tx * s;
       const my = y0 + L.ty * s;
       ctx.fillStyle = PALETTE.gondorGold;
       ctx.fillRect(mx - 1, my - 1, 3, 3);
+      if (LABELED[key]) {
+        // Dark halo behind text for legibility.
+        ctx.fillStyle = 'rgba(0,0,0,0.75)';
+        const w = ctx.measureText(LABELED[key]).width + 4;
+        ctx.fillRect(mx - w / 2, my - 11, w, 9);
+        ctx.fillStyle = PALETTE.gondorGold;
+        ctx.fillText(LABELED[key], mx, my - 3);
+      }
     }
   }
 
