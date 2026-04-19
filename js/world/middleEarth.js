@@ -219,6 +219,49 @@ function _placeLandmark(L) {
   }
 }
 
+// Carve a ROAD line between two tile points. Skips MOUNTAIN / WATER /
+// BUILDING / WALL so the road doesn't overwrite landmark structures or
+// break the river; for water tiles we lay a BRIDGE instead.
+function _carveRoadLine(x0, y0, x1, y1) {
+  const steps = Math.max(Math.abs(x1 - x0), Math.abs(y1 - y0));
+  if (steps === 0) return;
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const x = Math.round(x0 + (x1 - x0) * t);
+    const y = Math.round(y0 + (y1 - y0) * t);
+    if (!_inBounds(x, y)) continue;
+    const cur = state.map[y][x];
+    if (cur === TILES.WATER) _set(x, y, TILES.BRIDGE);
+    else if (cur === TILES.MOUNTAIN || cur === TILES.BUILDING || cur === TILES.WALL) continue;
+    else _set(x, y, TILES.ROAD);
+  }
+}
+
+function _carveRoadNetwork() {
+  // Key: from landmark → to landmark.
+  const routes = [
+    ['hobbiton',   'bree'],
+    ['bree',       'weathertop'],
+    ['weathertop', 'rivendell'],
+    ['rivendell',  'moriaGate'],
+    ['moriaGate',  'lothlorien'],
+    ['lothlorien', 'dolGuldur'],
+    ['moriaGate',  'isengard'],
+    ['isengard',   'helmsDeep'],
+    ['helmsDeep',  'edoras'],
+    ['edoras',     'osgiliath'],
+    ['osgiliath',  'minasTirith'],
+    ['osgiliath',  'minasMorgul'],
+    ['minasMorgul','blackGate'],
+    ['blackGate',  'baradDur'],
+    ['baradDur',   'mountDoom'],
+  ];
+  for (const [a, b] of routes) {
+    const A = LANDMARKS[a], B = LANDMARKS[b];
+    _carveRoadLine(A.tx, A.ty, B.tx, B.ty);
+  }
+}
+
 function _placeBridges() {
   // Find a river tile near each bridge y and convert it + its neighbour to
   // BRIDGE. Also widen the bridge over a few adjacent tiles.
@@ -264,6 +307,9 @@ function generateWorld() {
   _fenceMordor();
   // Build Minas Tirith first so landmark stamps can overlay.
   _placeLandmark(LANDMARKS.minasTirith);
+  // Carve the road network BEFORE the landmark structures so villages /
+  // towers can be stamped on top of the road for a plaza effect.
+  _carveRoadNetwork();
   for (const key in LANDMARKS) {
     if (key === 'minasTirith') continue;
     _placeLandmark(LANDMARKS[key]);

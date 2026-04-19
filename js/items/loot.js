@@ -1,5 +1,8 @@
 // Roll loot drops when enemies die. Bosses guarantee rare drops.
 const LOOT_TABLES = {
+  deer:      [{ chance: 0.60, pickup: 'lembas' }],
+  boar:      [{ chance: 0.60, pickup: 'gold' },
+              { chance: 0.20, pickup: 'lembas' }],
   orc:       [{ chance: 0.10, slot: 'weapon', key: 'dagger' },
               { chance: 0.05, slot: 'weapon', key: 'sword' },
               { chance: 0.04, slot: 'weapon', key: 'throwingAxe' },

@@ -1,11 +1,26 @@
-// HUD additions: day phase, quest tracker, toast, interact hint.
-// Runs as a post-HUD pass that injects into a side panel.
+// HUD additions: location/quest banner at the top, the side panel, toast,
+// interact hint, and the Hall button.
 let _hudExtraEl = null;
+let _locationEl = null;
+let _questBarEl = null;
+let _titleEl = null;
+
 function ensureHudExtra() {
   if (_hudExtraEl) return;
+  const hud = document.getElementById('hud');
+  // Reuse the static page title as the live location banner.
+  _locationEl = document.getElementById('title');
+
+  // Permanent quest banner — shows the active objective + distance.
+  _questBarEl = document.createElement('div');
+  _questBarEl.id = 'quest-banner';
+  _questBarEl.innerHTML = '<em>No active quest. Talk to an NPC marked with a gold "!"</em>';
+  hud.appendChild(_questBarEl);
+
+  // Side panel with level / day / factions / weapon.
   _hudExtraEl = document.createElement('div');
   _hudExtraEl.id = 'hud-extra';
-  document.getElementById('hud').appendChild(_hudExtraEl);
+  hud.appendChild(_hudExtraEl);
 
   const toastEl = document.createElement('div');
   toastEl.id = 'toast';
@@ -23,14 +38,45 @@ function ensureHudExtra() {
   document.getElementById('hud-top').appendChild(hallBtn);
 }
 
+function _distanceLabel(x, y) {
+  const p = state.player;
+  if (!p) return '';
+  const tiles = Math.round(dist(p.x, p.y, x, y) / TILE);
+  // Compass heading (8-way).
+  const ang = Math.atan2(y - p.y, x - p.x);
+  const dir = ['E','SE','S','SW','W','NW','N','NE'];
+  const idx = ((Math.round(ang / (Math.PI / 4)) + 8) % 8);
+  return `${tiles} tiles ${dir[idx]}`;
+}
+
 function updateExtraHUD() {
   ensureHudExtra();
-  const tod = state.timeOfDay;
-  const quests = state.quests.active.map(q => {
+
+  // 1. Location banner — current biome/landmark, reusing the page title.
+  const region = (state.player && typeof regionAt === 'function')
+    ? regionAt(state.player.x, state.player.y) : null;
+  _locationEl.textContent = region || 'Middle-earth';
+
+  // 2. Quest banner — first active quest, its objective, and a direction hint.
+  const q = state.quests.active[0];
+  if (q) {
     const o = q.def.objective;
-    const prog = o.count ? ` ${q.progress}/${o.count}` : '';
-    return `• ${q.def.title}${prog}`;
-  }).join('<br>');
+    let progress = '';
+    if (o.count) progress = ` · ${q.progress}/${o.count}`;
+    let hint = '';
+    if (typeof _activeQuestTarget === 'function') {
+      const tgt = _activeQuestTarget();
+      if (tgt) hint = ` — ${_distanceLabel(tgt.x, tgt.y)}`;
+    }
+    _questBarEl.innerHTML =
+      `<strong>${q.def.title}</strong>${progress}<br><span class="q-sub">${q.def.brief}${hint}</span>`;
+  } else {
+    _questBarEl.innerHTML =
+      '<em>No active quest — look for NPCs with a gold "!" above their head.</em>';
+  }
+
+  // 3. Side panel (level, day/night, factions, weapon).
+  const tod = state.timeOfDay;
   const f = state.factions;
   const p = state.player || {};
   const lvl = p.level || 1;
@@ -40,10 +86,10 @@ function updateExtraHUD() {
     <div><strong>Lv ${lvl}</strong> · XP ${xp}/${next}</div>
     <div><strong>${tod.phase.toUpperCase()}</strong> (${(tod.t*100|0)}%)</div>
     <div>G ${f.gondor|0} · R ${f.rohan|0} · M ${f.mordor|0}</div>
-    <div>Weapon: ${WEAPONS[state.inventory.weapon||'sword'].name}</div>
-    <div>${quests || '<em>No active quest</em>'}</div>
+    <div>Wpn: ${WEAPONS[state.inventory.weapon||'sword'].name}</div>
   `;
-  // Toast
+
+  // Toast + hint.
   const t = document.getElementById('toast');
   if (state.toast.timer > 0) {
     t.textContent = state.toast.text;
@@ -51,7 +97,6 @@ function updateExtraHUD() {
   } else {
     t.classList.remove('on');
   }
-  // Hint (interact)
   const h = document.getElementById('hint');
   if (state.toast.hint) {
     h.textContent = state.toast.hint;
