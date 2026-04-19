@@ -200,8 +200,9 @@ function damagePlayer(amount) {
   if (!p || p.hp <= 0) return;
   if (!isFinite(amount) || amount < 0) return;
   const armor = (typeof armorReduction === 'function') ? armorReduction() : 0;
-  // Apply armor without a forced floor so DoT ticks don't bypass it each frame.
-  amount = Math.max(0, amount - armor);
+  // Armor subtracts from damage, but never reduces it below 25% of the
+  // original so no armor combination makes you fully invulnerable.
+  amount = Math.max(amount * 0.25, amount - armor);
   if (amount <= 0) return;
   p.hp -= amount;
   p.hurtFlash = 0.2;

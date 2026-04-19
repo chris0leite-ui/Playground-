@@ -2,7 +2,7 @@
 // stat bumps that feed back into combat via a global damage bonus and
 // higher max HP.
 const XP_PER = { orc: 10, uruk: 20, troll: 50, guard: 15, spider: 15, haradrim: 20,
-                 boar: 8, deer: 3, bossTroll: 250, bossUruk: 400, bossWK: 800 };
+                 boar: 8, deer: 3, bossTroll: 250, bossUruk: 400, bossWK: 800, bossSauron: 2500 };
 const XP_THRESHOLDS = [100, 250, 500, 1000, 2000, 4000, 8000, 16000];
 
 function xpToNext() {

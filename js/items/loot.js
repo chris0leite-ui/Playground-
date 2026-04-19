@@ -28,6 +28,10 @@ const LOOT_TABLES = {
   bossWK:    [{ chance: 1.00, slot: 'weapon', key: 'anduril' },
               { chance: 1.00, slot: 'weapon', key: 'palantirBolt' },
               { chance: 1.00, pickup: 'lembas' }],
+  bossSauron:[{ chance: 1.00, slot: 'armor',  key: 'mithril' },
+              { chance: 1.00, slot: 'weapon', key: 'anduril' },
+              { chance: 1.00, pickup: 'lembas' },
+              { chance: 1.00, pickup: 'gold' }],
 };
 
 function _dropRow(row, x, y, offset) {

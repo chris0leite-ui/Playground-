@@ -34,6 +34,17 @@ on('bossDefeated', ({ type }) => {
   if (type === 'bossTroll') _markMilestone('caveTroll');
   else if (type === 'bossUruk') _markMilestone('urukCaptain');
   else if (type === 'bossWK') _markMilestone('witchKing');
+  else if (type === 'bossSauron') {
+    // Killing Sauron is the endgame — instant 100 %.
+    for (const k in VICTORY_MILESTONES) state.victory.hit[k] = true;
+    state.victory.hit.sauron = true;
+    state.victory.percent = 100;
+    if (!state.victory.won) {
+      state.victory.won = true;
+      toast('VICTORY — Sauron is cast down forever!', 10);
+      emit('victory');
+    }
+  }
 });
 
 function _tickVictoryRegions(dt) {
