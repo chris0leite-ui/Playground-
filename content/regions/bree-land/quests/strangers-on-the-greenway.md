@@ -7,5 +7,10 @@ rewards: { gold: 25, rep: [{ faction: bree-folk, delta: 10 }, { faction: rangers
 classes_eligible: [ranger-of-the-north, rohirrim, gondorian, dwarf, elf-noldor, hobbit]
 ---
 
-A first errand for any visitor Bree sees fit to trust — pay dirt for the
-Reunited Kingdom's road-watch.
+```steps
+- id: march
+  type: reach
+  target: landmark:greenwayCamp
+  set_flag: greenway-done
+  hint: March south on the Greenway and clear the orc camp.
+```

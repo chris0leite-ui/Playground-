@@ -32,24 +32,22 @@ function _snapToWalkable(pos) {
   return pos;
 }
 
+const MOUNT_COUNTS = {
+  shadowfax: 6, ent: 8, fellbeast: 3, eagle: 6, warg: 8, mumak: 3,
+};
+const MOUNT_BIOME = {
+  shadowfax: TILES.ROHAN, ent: TILES.FANGORN, fellbeast: TILES.MORDOR,
+  eagle: TILES.MOUNTAIN, mumak: TILES.SAND, warg: null,
+};
+
 function spawnExoticMounts() {
   if (typeof makeMount !== 'function') return;
-  const list = [
-    { type: 'shadowfax', at: _findTileIn(TILES.ROHAN) },
-    { type: 'shadowfax', at: _findTileIn(TILES.ROHAN) },
-    { type: 'ent',       at: _findTileIn(TILES.FANGORN) || _findTileIn(TILES.FOREST) },
-    { type: 'ent',       at: _findTileIn(TILES.FANGORN) || _findTileIn(TILES.FOREST) },
-    { type: 'ent',       at: _findTileIn(TILES.FANGORN) || _findTileIn(TILES.FOREST) },
-    { type: 'fellbeast', at: _findTileIn(TILES.MORDOR) },
-    { type: 'eagle',     at: _findTileIn(TILES.MOUNTAIN) },
-    { type: 'eagle',     at: _findTileIn(TILES.MOUNTAIN) },
-    { type: 'warg',      at: null },
-    { type: 'warg',      at: null },
-    { type: 'warg',      at: null },
-    { type: 'mumak',     at: _findTileIn(TILES.SAND) },
-  ];
-  for (const it of list) {
-    const pos = _snapToWalkable(it.at);
-    state.entities.push(makeMount(it.type, pos.x, pos.y));
+  for (const type in MOUNT_COUNTS) {
+    const biome = MOUNT_BIOME[type];
+    for (let i = 0; i < MOUNT_COUNTS[type]; i++) {
+      const seed = biome ? (_findTileIn(biome) || findOpenTile()) : findOpenTile();
+      const pos = _snapToWalkable(seed);
+      state.entities.push(makeMount(type, pos.x, pos.y));
+    }
   }
 }

@@ -9,11 +9,8 @@ tags: [rescue, fetch]
 
 ```steps
 - id: find
-  type: flag
-  target: lost-horse-found
-  hint: Ride east of Edoras, along the stream, to find the bay colt.
-- id: return
-  type: flag
-  target: lost-horse-rewarded
-  hint: Return Fréawine to Léofric at the Stables of the Mark.
+  type: reach
+  target: landmark:wildStables
+  set_flag: lost-horse-found
+  hint: Ride east of Edoras to the wild stables.
 ```

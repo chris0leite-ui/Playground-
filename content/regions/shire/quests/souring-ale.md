@@ -9,7 +9,8 @@ classes_eligible: [hobbit, ranger-of-the-north, elf-noldor, elf-silvan, rohirrim
 
 ```steps
 - id: fetch
-  type: flag
-  target: ale-done
-  hint: Ask Orophin in Lothlórien for mallorn honey, then return to Rosie.
+  type: reach
+  target: landmark:mallornGlade
+  set_flag: ale-done
+  hint: Travel to the Mallorn Glade in Lothlórien for the honey.
 ```

@@ -79,5 +79,24 @@ function drawMinimap(ctx) {
     ctx.lineWidth = 1;
     ctx.stroke();
   }
+
+  // Active reach-quest landmark (red ?-pin).
+  const reach = (typeof activeReachTarget === 'function') ? activeReachTarget() : null;
+  if (reach) {
+    const rx = x0 + (reach.x / TILE) * s;
+    const ry = y0 + (reach.y / TILE) * s;
+    ctx.fillStyle = '#ff4040';
+    ctx.beginPath();
+    ctx.arc(rx, ry, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 8px Georgia';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('?', rx, ry);
+  }
   ctx.restore();
 }

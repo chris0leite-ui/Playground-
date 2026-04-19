@@ -7,5 +7,12 @@ rewards: { gold: 15, rep: [{ faction: hobbits, delta: 10 }] }
 classes_eligible: [hobbit, ranger-of-the-north]
 ---
 
-A gentle errand for a new arrival in the Shire — the sort of thing that
-earns a warm welcome in Hobbiton.
+A gentle errand for a new arrival in the Shire.
+
+```steps
+- id: find
+  type: reach
+  target: landmark:hobbitonPond
+  set_flag: mathom-done
+  hint: Walk to the Hobbiton pond and search the reeds.
+```

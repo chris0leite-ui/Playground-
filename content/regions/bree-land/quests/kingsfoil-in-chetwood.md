@@ -8,7 +8,8 @@ rewards: { gold: 10, rep: [{ faction: bree-folk, delta: 10 }] }
 
 ```steps
 - id: gather
-  type: flag
-  target: kingsfoil-done
-  hint: Find kingsfoil in the Chetwood, then return to Old Willowbark.
+  type: reach
+  target: landmark:chetwoodGrove
+  set_flag: kingsfoil-done
+  hint: Gather kingsfoil in the Chetwood Grove north of Bree.
 ```

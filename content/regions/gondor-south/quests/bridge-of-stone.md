@@ -5,3 +5,11 @@ giver: npc:faramirs-steward
 summary: Drive bandits off the rebuilt southern bridge at Osgiliath.
 rewards: { gold: 25, rep: [{ faction: reunited-kingdom, delta: 20 }] }
 ---
+
+```steps
+- id: sweep
+  type: reach
+  target: landmark:osgiliath
+  set_flag: bridge-done
+  hint: Ride to Osgiliath and clear the bandits from the bridge.
+```

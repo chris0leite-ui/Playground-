@@ -31,6 +31,8 @@ function compassTarget() {
   if (state.waypoint) {
     return { x: state.waypoint.x, y: state.waypoint.y, name: 'Waypoint' };
   }
+  const reach = (typeof activeReachTarget === 'function') ? activeReachTarget() : null;
+  if (reach) return { x: reach.x, y: reach.y, name: reach.title + ' (Go)' };
   const npc = questTargetInRegion();
   if (npc) return { x: npc.x, y: npc.y, name: (npc.name || 'Quest') + ' (Quest)' };
   const p = state.player;

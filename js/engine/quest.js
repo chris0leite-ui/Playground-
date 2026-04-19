@@ -40,6 +40,20 @@ function completeQuest(id) {
   const q = state.quests[id];
   if (!q) return;
   q.status = 'done';
+  const def = getQuestDef(id);
+  const rw = def && def.rewards;
+  if (rw && state.player) {
+    if (rw.gold) state.player.gold = (state.player.gold || 0) + rw.gold;
+    if (Array.isArray(rw.rep)) {
+      for (const r of rw.rep) if (r && r.faction && typeof modRep === 'function') {
+        modRep(r.faction, r.delta || 0);
+      }
+    }
+  }
+  if (def && def.title && typeof showToast === 'function') {
+    const g = rw && rw.gold ? ` (+${rw.gold} gold)` : '';
+    showToast(`Quest complete: ${def.title}${g}`, 3000);
+  }
   eventBus.emit('quest_completed', id);
 }
 
@@ -84,10 +98,12 @@ registerQuestStepType('kill', {
 });
 
 registerQuestStepType('dialogue', { check(step, q, ev) { return ev === 'dialogue_ended'; } });
-registerQuestStepType('reach',    { check() { return false; } }); // tile_entered wired in T0.8
-registerQuestStepType('gather',   {
+// Reach is tick-driven (see tickReachQuests); this hook is a no-op.
+registerQuestStepType('reach',   { check() { return false; } });
+registerQuestStepType('gather',  {
   check(step, q, ev, args) { return ev === 'item_picked_up' && args[0] === step.target; },
 });
-registerQuestStepType('flag',     {
+registerQuestStepType('flag',    {
   check(step, q, ev, args) { return ev === 'flag_set' && args[0] === step.target; },
 });
+// reachStepTarget / tickReachQuests / activeReachTarget live in quest_reach.js.

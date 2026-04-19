@@ -29,7 +29,13 @@ W.quests["a-wight-returns"] = {
         "faction": "rangers-of-the-north"
       }]
   },
-  "steps": [],
+  "steps": [{
+      "hint": "Walk the Barrow-downs south-east of Bree and lay the wight to rest.",
+      "id": "silence",
+      "set_flag": "wight-done",
+      "target": "landmark:barrowDowns",
+      "type": "reach"
+    }],
   "summary": "A barrow-wight has woken on the Downs. Put it to rest.",
   "title": "A Wight Returns"
 };
@@ -43,7 +49,13 @@ W.quests["ash-and-ember"] = {
         "faction": "reunited-kingdom"
       }]
   },
-  "steps": [],
+  "steps": [{
+      "hint": "March into Mordor and torch the orc camp beyond the Morannon.",
+      "id": "burn",
+      "set_flag": "ember-done",
+      "target": "landmark:morannonCamp",
+      "type": "reach"
+    }],
   "summary": "Burn out an orc-warren south of the Morannon watchfort.",
   "title": "Ash and Ember"
 };
@@ -57,7 +69,13 @@ W.quests["bridge-of-stone"] = {
         "faction": "reunited-kingdom"
       }]
   },
-  "steps": [],
+  "steps": [{
+      "hint": "Ride to Osgiliath and clear the bandits from the bridge.",
+      "id": "sweep",
+      "set_flag": "bridge-done",
+      "target": "landmark:osgiliath",
+      "type": "reach"
+    }],
   "summary": "Drive bandits off the rebuilt southern bridge at Osgiliath.",
   "title": "Bridge of Stone"
 };
@@ -112,15 +130,11 @@ W.quests["horse-of-the-mark"] = {
       }]
   },
   "steps": [{
-      "hint": "Ride east of Edoras, along the stream, to find the bay colt.",
+      "hint": "Ride east of Edoras to the wild stables.",
       "id": "find",
-      "target": "lost-horse-found",
-      "type": "flag"
-    }, {
-      "hint": "Return Fréawine to Léofric at the Stables of the Mark.",
-      "id": "return",
-      "target": "lost-horse-rewarded",
-      "type": "flag"
+      "set_flag": "lost-horse-found",
+      "target": "landmark:wildStables",
+      "type": "reach"
     }],
   "summary": "Fréawine, a bay colt of the Stables of the Mark, broke his tether. Find him east of Edoras and return him to Léofric.",
   "tags": ["rescue", "fetch"],
@@ -136,7 +150,19 @@ W.quests["iron-for-the-south"] = {
         "faction": "dwarves-of-erebor"
       }]
   },
-  "steps": [],
+  "steps": [{
+      "hint": "Follow the caravan road south to the Old Ford on the Anduin.",
+      "id": "cross",
+      "set_flag": "iron-ford-crossed",
+      "target": "landmark:oldFord",
+      "type": "reach"
+    }, {
+      "hint": "Continue the caravan to Osgiliath.",
+      "id": "deliver",
+      "set_flag": "iron-done",
+      "target": "landmark:osgiliath",
+      "type": "reach"
+    }],
   "summary": "Escort a caravan of iron-work from Dale toward Gondor.",
   "title": "Iron for the South"
 };
@@ -340,10 +366,11 @@ W.quests["kingsfoil-in-chetwood"] = {
       }]
   },
   "steps": [{
-      "hint": "Find kingsfoil in the Chetwood, then return to Old Willowbark.",
+      "hint": "Gather kingsfoil in the Chetwood Grove north of Bree.",
       "id": "gather",
-      "target": "kingsfoil-done",
-      "type": "flag"
+      "set_flag": "kingsfoil-done",
+      "target": "landmark:chetwoodGrove",
+      "type": "reach"
     }],
   "summary": "Cut a bundle of kingsfoil for Old Willowbark in the Chetwood north of Bree.",
   "title": "Kingsfoil in the Chetwood"
@@ -359,7 +386,13 @@ W.quests["missing-mathom"] = {
         "faction": "hobbits"
       }]
   },
-  "steps": [],
+  "steps": [{
+      "hint": "Walk to the Hobbiton pond and search the reeds.",
+      "id": "find",
+      "set_flag": "mathom-done",
+      "target": "landmark:hobbitonPond",
+      "type": "reach"
+    }],
   "summary": "Sam Gamgee-the-Younger has misplaced a family mathom near the Hobbiton pond.",
   "title": "Missing Mathom"
 };
@@ -374,10 +407,11 @@ W.quests["missing-pony"] = {
       }]
   },
   "steps": [{
-      "hint": "Look for Stybba near the Hobbiton pond, then report to the Sheriff.",
+      "hint": "Walk to the Hobbiton pond — follow the red pin on the minimap.",
       "id": "find",
-      "target": "pony-done",
-      "type": "flag"
+      "set_flag": "pony-done",
+      "target": "landmark:hobbitonPond",
+      "type": "reach"
     }],
   "summary": "Find Master Fredegar's runaway pony, Stybba, near the Hobbiton pond.",
   "title": "Missing Pony"
@@ -392,7 +426,13 @@ W.quests["relight-the-lamps"] = {
         "faction": "dwarves-of-erebor"
       }]
   },
-  "steps": [],
+  "steps": [{
+      "hint": "Follow the road east to the Moria East-gate and kindle the lamps.",
+      "id": "light",
+      "set_flag": "lamps-done",
+      "target": "landmark:moriaGate",
+      "type": "reach"
+    }],
   "summary": "Light the way-marker lamps along Moria's East Road.",
   "title": "Relight the Lamps"
 };
@@ -408,10 +448,11 @@ W.quests["souring-ale"] = {
       }]
   },
   "steps": [{
-      "hint": "Ask Orophin in Lothlórien for mallorn honey, then return to Rosie.",
+      "hint": "Travel to the Mallorn Glade in Lothlórien for the honey.",
       "id": "fetch",
-      "target": "ale-done",
-      "type": "flag"
+      "set_flag": "ale-done",
+      "target": "landmark:mallornGlade",
+      "type": "reach"
     }],
   "summary": "The Green Dragon's ale has soured. Fetch a pot of mallorn honey from Lothlórien.",
   "title": "Souring Ale"
@@ -430,7 +471,13 @@ W.quests["strangers-on-the-greenway"] = {
         "faction": "rangers-of-the-north"
       }]
   },
-  "steps": [],
+  "steps": [{
+      "hint": "March south on the Greenway and clear the orc camp.",
+      "id": "march",
+      "set_flag": "greenway-done",
+      "target": "landmark:greenwayCamp",
+      "type": "reach"
+    }],
   "summary": "Clear the orc-scouts prowling the Greenway south of Bree.",
   "title": "Strangers on the Greenway"
 };
@@ -444,7 +491,13 @@ W.quests["the-books-of-elrond"] = {
         "faction": "imladris-elves"
       }]
   },
-  "steps": [],
+  "steps": [{
+      "hint": "Search the old baggage at the Ford of Bruinen.",
+      "id": "search",
+      "set_flag": "books-done",
+      "target": "landmark:bruinenFord",
+      "type": "reach"
+    }],
   "summary": "Recover annals of Elrond left behind when his household sailed west.",
   "title": "The Books of Elrond"
 };
@@ -458,7 +511,13 @@ W.quests["the-last-mallorn"] = {
         "faction": "galadhrim"
       }]
   },
-  "steps": [],
+  "steps": [{
+      "hint": "Walk to the Mallorn Glade in Lothlórien and watch the sapling.",
+      "id": "guard",
+      "set_flag": "mallorn-done",
+      "target": "landmark:mallornGlade",
+      "type": "reach"
+    }],
   "summary": "Protect a young mallorn sapling while it roots.",
   "title": "The Last Mallorn"
 };

@@ -59,6 +59,20 @@ function _enemyForBiome(t) {
   return makeOrc;
 }
 
+// Pack 3–5 enemies into a small radius around a landmark tile — makes every
+// reach-target feel earned.
+function _clusterAt(tx, ty, count, factory) {
+  for (let i = 0; i < count; i++) {
+    for (let t = 0; t < 10; t++) {
+      const dx = (Math.random() - 0.5) * 6;
+      const dy = (Math.random() - 0.5) * 6;
+      const x = (tx + dx) * TILE + TILE / 2;
+      const y = (ty + dy) * TILE + TILE / 2;
+      if (!isSolidAt(x, y)) { state.entities.push(factory(x, y)); break; }
+    }
+  }
+}
+
 function scatterEnemies() {
   const p = state.player;
   const px = p ? p.x : 0, py = p ? p.y : 0;
@@ -68,6 +82,14 @@ function scatterEnemies() {
     const factory = _enemyForBiome(pos.tile);
     if (typeof factory === 'function') state.entities.push(factory(pos.x, pos.y));
   }
+  // Per-landmark ambushes.
+  const L = (typeof LANDMARKS !== 'undefined') ? LANDMARKS : {};
+  if (L.greenwayCamp)  _clusterAt(L.greenwayCamp.tx,  L.greenwayCamp.ty,  4, makeOrc);
+  if (L.barrowDowns)   _clusterAt(L.barrowDowns.tx,   L.barrowDowns.ty,   3, makeSpider);
+  if (L.mirkwoodNest)  _clusterAt(L.mirkwoodNest.tx,  L.mirkwoodNest.ty,  4, makeSpider);
+  if (L.morannonCamp)  _clusterAt(L.morannonCamp.tx,  L.morannonCamp.ty,  4, makeUruk);
+  if (L.chetwoodGrove) _clusterAt(L.chetwoodGrove.tx, L.chetwoodGrove.ty, 2, makeOrc);
+  if (L.wildStables)   _clusterAt(L.wildStables.tx,   L.wildStables.ty,   2, makeOrc);
   const mt = typeof LANDMARK_PX === 'function' && LANDMARK_PX('minasTirith');
   for (let i = 0; i < CONFIG.NUM_GUARDS; i++) {
     let pos;

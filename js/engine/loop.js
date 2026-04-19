@@ -47,6 +47,7 @@ function update(dt) {
   updatePlayer(dt);
   updateEntities(dt);
   updateFactions(dt);
+  if (typeof tickReachQuests === 'function') tickReachQuests(dt);
   updateCamera();
 
   if (state.gameOver && !_deathShown) {

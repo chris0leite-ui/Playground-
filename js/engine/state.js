@@ -52,7 +52,9 @@ function resetRun() {
   initWorld();
   initEntities();
   if (typeof spawnContentNPCs === 'function') spawnContentNPCs();
+  if (typeof spawnAmbientVillagers === 'function') spawnAmbientVillagers();
   if (typeof scatterEnemies === 'function') scatterEnemies();
+  if (typeof scatterWildlife === 'function') scatterWildlife();
   if (typeof spawnExoticMounts === 'function') spawnExoticMounts();
   if (typeof invalidateMinimap === 'function') invalidateMinimap();
   if (typeof eventBus !== 'undefined' && eventBus.emit) eventBus.emit('reset');

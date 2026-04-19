@@ -19,6 +19,17 @@ const LANDMARKS = {
   blackGate:   { name: 'Black Gate',     tx: 232, ty: 130, r: 3,  style: 'gatewall' },
   baradDur:    { name: 'Barad-dûr',      tx: 280, ty: 152, r: 5,  style: 'spire' },
   mountDoom:   { name: 'Mount Doom',     tx: 255, ty: 165, r: 5,  style: 'volcano' },
+  // --- Minor landmarks (quest targets) ---
+  hobbitonPond:  { name: 'Hobbiton Pond',   tx: 30,  ty: 38,  r: 3, style: 'pond' },
+  chetwoodGrove: { name: 'Chetwood Grove',  tx: 60,  ty: 34,  r: 4, style: 'grove' },
+  barrowDowns:   { name: 'Barrow-downs',    tx: 62,  ty: 56,  r: 4, style: 'barrowring' },
+  greenwayCamp:  { name: 'Greenway Camp',   tx: 50,  ty: 58,  r: 3, style: 'camp' },
+  bruinenFord:   { name: 'Ford of Bruinen', tx: 112, ty: 40,  r: 3, style: 'ford' },
+  mirkwoodNest:  { name: 'Spider Nest',     tx: 240, ty: 70,  r: 4, style: 'nest' },
+  wildStables:   { name: 'Wild Stables',    tx: 92,  ty: 152, r: 3, style: 'paddock' },
+  morannonCamp:  { name: 'Morannon Camp',   tx: 246, ty: 142, r: 3, style: 'camp' },
+  oldFord:       { name: 'Old Ford',        tx: 172, ty: 50,  r: 3, style: 'ford' },
+  mallornGlade:  { name: 'Mallorn Glade',   tx: 154, ty: 62,  r: 3, style: 'glade' },
 };
 
 function LANDMARK_PX(key) {
@@ -101,4 +112,7 @@ function placeLandmark(L) {
       return;
     case 'concentric': buildConcentricCity(tx, ty, 18); return;
   }
+  // Minor landmark styles live in worldgen_landmarks_ext.js so this file
+  // stays under the 150-line budget.
+  if (typeof placeLandmarkExt === 'function') placeLandmarkExt(L);
 }

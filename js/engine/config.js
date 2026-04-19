@@ -109,11 +109,13 @@ const CONFIG = {
   RENOWN_PER_GUARD: 120,
   WANTED_PER_GUARD_KILL: 1,
   WANTED_MAX: 5,
-  // Large-world scatter counts (no per-region seeding any more).
-  NUM_ORCS: 240,
-  NUM_GUARDS: 30,
-  NUM_HORSES: 60,
-  NUM_PICKUPS: 120,
+  // Large-world scatter counts.
+  NUM_ORCS: 400,
+  NUM_GUARDS: 60,
+  NUM_HORSES: 140,
+  NUM_PICKUPS: 240,
+  NUM_DEER: 40,
+  NUM_BOARS: 30,
 };
 
 const TEAM = {

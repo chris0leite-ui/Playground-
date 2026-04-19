@@ -8,7 +8,8 @@ rewards: { gold: 10, rep: [{ faction: shirriffs, delta: 10 }] }
 
 ```steps
 - id: find
-  type: flag
-  target: pony-done
-  hint: Look for Stybba near the Hobbiton pond, then report to the Sheriff.
+  type: reach
+  target: landmark:hobbitonPond
+  set_flag: pony-done
+  hint: Walk to the Hobbiton pond — follow the red pin on the minimap.
 ```
