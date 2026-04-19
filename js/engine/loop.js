@@ -99,7 +99,8 @@ function boot() {
   bindQuestListeners();
   bindSaveHooks();
   resetRun();
-  showIntro();
+  registerContentRegions();
+  showClassPicker();
 
   _last = performance.now() / 1000;
   requestAnimationFrame(loop);

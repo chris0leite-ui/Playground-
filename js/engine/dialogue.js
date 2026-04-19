@@ -65,9 +65,40 @@ function evalCond(cond) {
   switch (cond.type) {
     case 'flag':     return !!state.flags[cond.name];
     case 'not_flag': return !state.flags[cond.name];
-    // quest/faction/item types are filled in by T0.6 listeners.
+    case 'quest_step_cmp': {
+      const q = state.quests[cond.quest];
+      const step = q ? q.stepIdx : -1;
+      return compareNum(step, cond.cmp, cond.n);
+    }
+    case 'faction_rep_cmp': {
+      const r = (state.reputation[cond.faction] || 0);
+      return compareNum(r, cond.cmp, cond.n);
+    }
+    case 'item': {
+      const p = state.player;
+      return !!(p && p.inventory && p.inventory.indexOf(cond.id) >= 0);
+    }
+    case 'not_item': {
+      const p = state.player;
+      return !(p && p.inventory && p.inventory.indexOf(cond.id) >= 0);
+    }
+    case 'class_eq': {
+      const p = state.player;
+      return !!(p && p.classId === cond.classId);
+    }
     default: return true;
   }
+}
+
+function compareNum(a, cmp, b) {
+  switch (cmp) {
+    case '>=': return a >= b;
+    case '>':  return a > b;
+    case '<=': return a <= b;
+    case '<':  return a < b;
+    case '==': return a === b;
+  }
+  return false;
 }
 
 function applyEffect(eff) {

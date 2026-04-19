@@ -56,9 +56,22 @@ function parseChoice(line) {
 }
 
 function parseCondition(s) {
-  // Structured-but-tiny: store the raw string; engine dialogue.js evalCond
-  // handles the small subset. Extend as engine capability grows.
-  return { type: 'expr', expr: s };
+  s = s.trim();
+  let m = s.match(/^flag:([A-Za-z0-9_-]+)$/);
+  if (m) return { type: 'flag', name: m[1] };
+  m = s.match(/^!flag:([A-Za-z0-9_-]+)$/);
+  if (m) return { type: 'not_flag', name: m[1] };
+  m = s.match(/^quest:([A-Za-z0-9-]+)\.step\s*(>=|>|<=|<|==)\s*(-?\d+)$/);
+  if (m) return { type: 'quest_step_cmp', quest: m[1], cmp: m[2], n: parseInt(m[3], 10) };
+  m = s.match(/^faction:([A-Za-z0-9-]+)\.rep\s*(>=|>|<=|<|==)\s*(-?\d+)$/);
+  if (m) return { type: 'faction_rep_cmp', faction: m[1], cmp: m[2], n: parseInt(m[3], 10) };
+  m = s.match(/^item:([A-Za-z0-9-]+)$/);
+  if (m) return { type: 'item', id: m[1] };
+  m = s.match(/^!item:([A-Za-z0-9-]+)$/);
+  if (m) return { type: 'not_item', id: m[1] };
+  m = s.match(/^class\s*==\s*([A-Za-z0-9-]+)$/);
+  if (m) return { type: 'class_eq', classId: m[1] };
+  return { type: 'raw', raw: s };
 }
 
 function parseEffects(s) {

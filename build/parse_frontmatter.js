@@ -76,7 +76,9 @@ function parseScalar(s, filename, line) {
   if (s.startsWith('"') && s.endsWith('"')) return JSON.parse(s);
   if (s.startsWith('[') && s.endsWith(']')) return parseFlowArray(s, filename, line);
   if (s.startsWith('{') && s.endsWith('}')) return parseFlowMap(s, filename, line);
-  if (/[:#,\[\]{}]/.test(s)) {
+  // Allow colons in values (needed for cross-refs like "region:shire"). Reject
+  // only the flow separator, comment marker, or unbalanced flow brackets.
+  if (/[#,\[\]{}]/.test(s)) {
     throw new Error(`${filename}:${line + 1}: unquoted scalar contains reserved chars: "${s}"`);
   }
   return s;

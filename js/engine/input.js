@@ -51,9 +51,12 @@ function onKeyDown(e) {
     return;
   }
 
-  // Debug: open a test dialogue with 't'. Removed once content authoring lands.
+  // Talk: 't' opens the nearest NPC's dialogue (within TALK_RANGE). Falls
+  // back to the debug fixture when no NPC is nearby — useful before content.
   if (k === 't' && state.started && !state.paused && !state.gameOver) {
-    openDialogue('__test__');
+    const target = findNearestNpc(80);
+    if (target && target.dialogueId) openDialogue(target.dialogueId);
+    else openDialogue('__test__');
     e.preventDefault();
     return;
   }
@@ -75,6 +78,18 @@ function onKeyDown(e) {
 
 function onKeyUp(e) {
   state.keys[e.key.toLowerCase()] = false;
+}
+
+function findNearestNpc(range) {
+  const p = state.player;
+  if (!p) return null;
+  let best = null, bestD = range;
+  for (const e of state.entities) {
+    if (e.type !== 'npc') continue;
+    const d = distEnt(e, p);
+    if (d < bestD) { bestD = d; best = e; }
+  }
+  return best;
 }
 
 function keyboardMove() {

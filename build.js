@@ -92,6 +92,17 @@ function ingest(filename) {
     store.overworlds[record.id] = record;
   } else {
     store[pluralOf(type)][record.id] = record;
+    // NPCs may embed an inline ```dialogue fenced block; register it.
+    if (type === 'npc' && record.dialogue) {
+      const m = body.match(/```dialogue\s*\n([\s\S]*?)\n```/);
+      if (m) {
+        const parsed = parseDialogueBody(m[1], filename);
+        store.dialogues[record.dialogue] = Object.assign(
+          { id: record.dialogue, speaker: record.id },
+          parsed
+        );
+      }
+    }
   }
 }
 
