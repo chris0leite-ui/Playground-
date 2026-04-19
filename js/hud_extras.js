@@ -53,8 +53,13 @@ function updateExtraHUD() {
   ensureHudExtra();
 
   // 1. Location banner — current biome/landmark, reusing the page title.
-  const region = (state.player && typeof regionAt === 'function')
-    ? regionAt(state.player.x, state.player.y) : null;
+  let region;
+  if (state.location === 'moria') {
+    region = 'The Mines of Moria';
+  } else {
+    region = (state.player && typeof regionAt === 'function')
+      ? regionAt(state.player.x, state.player.y) : null;
+  }
   _locationEl.textContent = region || 'Middle-earth';
 
   // 2. Quest banner — first active quest, its objective, direction, reward.

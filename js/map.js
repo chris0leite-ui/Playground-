@@ -200,6 +200,45 @@ function drawTile(ctx, t, sx, sy, tx, ty) {
       ctx.fill();
       break;
     }
+    case TILES.DUNGEON_FLOOR: {
+      ctx.fillStyle = PALETTE.dungeonFloor;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      // Cracked-stone flagstone pattern.
+      if (((tx * 11 + ty * 17) & 3) === 0) {
+        ctx.fillStyle = PALETTE.dungeonFloorAlt;
+        ctx.fillRect(sx + 4, sy + 6, 10, 2);
+        ctx.fillRect(sx + 14, sy + 18, 8, 2);
+      }
+      ctx.strokeStyle = 'rgba(0,0,0,0.4)';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(sx + 0.5, sy + 0.5, TILE - 1, TILE - 1);
+      break;
+    }
+    case TILES.DUNGEON_WALL: {
+      ctx.fillStyle = PALETTE.dungeonWall;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      ctx.fillStyle = PALETTE.dungeonWallTrim;
+      ctx.fillRect(sx, sy, TILE, 3);
+      ctx.fillRect(sx, sy + TILE - 3, TILE, 3);
+      // Occasional faint Khazâd-rune glyph.
+      if (((tx * 23 + ty * 5) & 15) === 0) {
+        ctx.fillStyle = '#6a5830';
+        ctx.fillRect(sx + 10, sy + 12, 12, 2);
+        ctx.fillRect(sx + 14, sy + 10, 4, 6);
+      }
+      break;
+    }
+    case TILES.CHASM: {
+      ctx.fillStyle = PALETTE.chasm;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      ctx.fillStyle = PALETTE.chasmEdge;
+      // Jagged top edge hint.
+      for (let i = 0; i < TILE; i += 4) {
+        const h = 1 + ((tx * 7 + ty * 3 + i) & 3);
+        ctx.fillRect(sx + i, sy, 2, h);
+      }
+      break;
+    }
   }
 }
 
@@ -208,7 +247,8 @@ function _openTileType(t) {
   return t === TILES.ROAD || t === TILES.PAVEMENT || t === TILES.GRASS
       || t === TILES.SHIRE || t === TILES.RIVENDELL || t === TILES.ROHAN
       || t === TILES.MORDOR || t === TILES.FANGORN || t === TILES.FOREST
-      || t === TILES.SAND || t === TILES.SWAMP || t === TILES.BRIDGE;
+      || t === TILES.SAND || t === TILES.SWAMP || t === TILES.BRIDGE
+      || t === TILES.DUNGEON_FLOOR;
 }
 
 function findOpenTile() {

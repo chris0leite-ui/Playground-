@@ -24,7 +24,8 @@ function tileAt(px, py) {
 
 function isSolidTile(t) {
   return t === TILES.BUILDING || t === TILES.WATER || t === TILES.WALL
-      || t === TILES.MOUNTAIN || t === TILES.TREE;
+      || t === TILES.MOUNTAIN || t === TILES.TREE
+      || t === TILES.DUNGEON_WALL || t === TILES.CHASM;
 }
 
 function isSwampTile(t) { return t === TILES.SWAMP; }

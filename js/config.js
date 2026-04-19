@@ -28,6 +28,9 @@ const TILES = {
   SWAMP: 14,       // Dead Marshes — walkable, slows movement
   BRIDGE: 15,      // stone bridge over water
   TREE: 16,        // solid tree (scattered through forests)
+  DUNGEON_FLOOR: 17,  // walkable stone (Moria)
+  DUNGEON_WALL: 18,   // solid carved-stone wall
+  CHASM: 19,          // impassable abyss
 };
 
 const PALETTE = {
@@ -76,6 +79,15 @@ const PALETTE = {
   swampMuck: '#5a4a2a',
   bridge: '#7a6a4a',
   bridgeTrim: '#4a3a2a',
+  dungeonFloor: '#2a2424',
+  dungeonFloorAlt: '#3a3230',
+  dungeonWall: '#1a1612',
+  dungeonWallTrim: '#3a2820',
+  chasm: '#050505',
+  chasmEdge: '#2a1a1a',
+  balrog: '#1a0806',
+  balrogFire: '#ff6020',
+  balrogGlow: '#ffa040',
 };
 
 const CONFIG = {

@@ -79,13 +79,15 @@ function _drawMinimap(ctx) {
   ctx.strokeRect(x0 - 2 + 0.5, y0 - 2 + 0.5, cw + 4 - 1, ch + 4 - 1);
   ctx.drawImage(MINIMAP.cache, x0, y0);
 
-  // Landmark dots + labels for major ones.
-  for (const key in LANDMARKS) {
-    const L = LANDMARKS[key];
-    const mx = x0 + L.tx * s;
-    const my = y0 + L.ty * s;
-    ctx.fillStyle = PALETTE.gondorGold;
-    ctx.fillRect(mx - 1, my - 1, 3, 3);
+  // Landmark dots + labels for major ones (surface only).
+  if (state.location !== 'moria') {
+    for (const key in LANDMARKS) {
+      const L = LANDMARKS[key];
+      const mx = x0 + L.tx * s;
+      const my = y0 + L.ty * s;
+      ctx.fillStyle = PALETTE.gondorGold;
+      ctx.fillRect(mx - 1, my - 1, 3, 3);
+    }
   }
 
   // Viewport rectangle.
@@ -109,8 +111,9 @@ function _drawMinimap(ctx) {
     ctx.fill();
   }
 
-  // Quest target (red dot).
-  if (typeof _activeQuestTarget === 'function') {
+  // Quest target (red dot) — suppress inside the Moria dungeon since quest
+  // waypoints are surface-space.
+  if (state.location !== 'moria' && typeof _activeQuestTarget === 'function') {
     const tgt = _activeQuestTarget();
     if (tgt) {
       const tx = x0 + (tgt.x / TILE) * s;
