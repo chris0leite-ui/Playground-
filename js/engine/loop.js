@@ -97,6 +97,7 @@ function boot() {
   bindInput();
   bindFactionListeners();
   bindQuestListeners();
+  bindSaveHooks();
   resetRun();
   showIntro();
 

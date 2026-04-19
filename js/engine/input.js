@@ -31,6 +31,11 @@ function bindCanvasClick() {
 
 function onKeyDown(e) {
   const k = e.key.toLowerCase();
+
+  // Modifier shortcuts (don't record into state.keys — they're single-shot).
+  if (e.shiftKey && k === 's') { saveSave(); e.preventDefault(); return; }
+  if (e.shiftKey && k === 'l') { loadSave(); e.preventDefault(); return; }
+
   state.keys[k] = true;
 
   // Dialogue mode: digits select choices, Esc closes, other keys are ignored.
