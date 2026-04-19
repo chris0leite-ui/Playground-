@@ -52,6 +52,7 @@ function resetRun() {
   initEntities();
   if (typeof spawnContentNPCs === 'function') spawnContentNPCs();
   if (typeof scatterEnemies === 'function') scatterEnemies();
+  if (typeof spawnExoticMounts === 'function') spawnExoticMounts();
   if (typeof invalidateMinimap === 'function') invalidateMinimap();
   if (typeof eventBus !== 'undefined' && eventBus.emit) eventBus.emit('reset');
 }

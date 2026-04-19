@@ -50,7 +50,7 @@ function updateHUD() {
   HUD.hpText.textContent = `${Math.max(0, Math.ceil(p.hp))} / ${p.maxHp}`;
 
   if (p.onHorse) {
-    HUD.mount.textContent = 'Mounted: Steed of Rohan';
+    HUD.mount.textContent = 'Mounted: ' + (p.onHorse.mountName || 'Steed of Rohan');
     HUD.mount.classList.add('on');
   } else {
     HUD.mount.classList.remove('on');

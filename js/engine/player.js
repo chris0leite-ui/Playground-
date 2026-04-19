@@ -5,7 +5,9 @@ function updatePlayer(dt) {
   if (!p || p.hp <= 0) return;
 
   const input = moveInput();
-  const speed = p.onHorse ? CONFIG.HORSE_SPEED : CONFIG.PLAYER_SPEED;
+  const speed = p.onHorse
+    ? (p.onHorse.speed || CONFIG.HORSE_SPEED)
+    : CONFIG.PLAYER_SPEED;
   const mag = Math.hypot(input.dx, input.dy);
   if (mag > 0.1) {
     p.angle = Math.atan2(input.dy, input.dx);
@@ -19,6 +21,10 @@ function updatePlayer(dt) {
     p.onHorse.x = p.x;
     p.onHorse.y = p.y;
     p.onHorse.angle = p.angle;
+    // Auto-dismount on BUILDING so you can't phase through walls via a
+    // mount's bigger hitbox.
+    const t = tileAt(p.x, p.y);
+    if (t === TILES.BUILDING) tryMountOrDismount();
   }
 
   if (p.attackTimer > 0) p.attackTimer -= dt;
@@ -85,10 +91,11 @@ function tryMountOrDismount() {
     p.onHorse = null;
     return;
   }
-  // Find nearest free horse within MOUNT_RANGE.
+  // Find the nearest free mount (horse or exotic) within MOUNT_RANGE.
+  const MOUNT_TYPES = new Set(['horse','shadowfax','ent','fellbeast','eagle','warg','mumak']);
   let best = null, bestD = CONFIG.MOUNT_RANGE;
   for (const e of state.entities) {
-    if (e.type !== 'horse' || e.hp <= 0 || e.rider) continue;
+    if (!MOUNT_TYPES.has(e.type) || e.hp <= 0 || e.rider) continue;
     const d = distEnt(e, p);
     if (d < bestD) { bestD = d; best = e; }
   }
