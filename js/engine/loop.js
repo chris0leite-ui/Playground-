@@ -63,6 +63,7 @@ function draw() {
 
   drawMap(ctx);
   drawEntities(ctx);
+  if (state.inputMode === 'overworld') drawOverworld(ctx);
   updateHUD();
 }
 
