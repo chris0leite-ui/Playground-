@@ -1,34 +1,27 @@
-// Entity factory functions and initial world population.
+// Entity factory functions and initial world population. Every factory is a
+// thin wrapper over makeActor (engine/actor.js).
 
 function makePlayer(x, y) {
-  return {
+  return makeActor({
     type: 'player',
-    x, y, vx: 0, vy: 0,
-    w: 14, h: 14,
+    x, y,
     hp: CONFIG.PLAYER_MAX_HP,
-    maxHp: CONFIG.PLAYER_MAX_HP,
-    angle: 0,
-    attackTimer: 0,
-    attackSwing: 0,       // > 0 while sword visible
-    hurtFlash: 0,
     team: TEAM.PLAYER,
+    attackSwing: 0,
     onHorse: null,
     gold: 0,
+    // wantedLevel/wantedDecay are a temporary Minas-Tirith-specific shim
+    // kept until T0.6 replaces them with faction reputation.
     wantedLevel: 0,
     wantedDecay: 0,
-  };
+  });
 }
 
 function makeOrc(x, y) {
-  return {
+  return makeActor({
     type: 'orc',
-    x, y, vx: 0, vy: 0,
-    w: 14, h: 14,
+    x, y,
     hp: CONFIG.ORC_HP,
-    maxHp: CONFIG.ORC_HP,
-    angle: 0,
-    attackTimer: 0,
-    hurtFlash: 0,
     team: TEAM.ORC,
     speed: CONFIG.ORC_SPEED,
     aggroRange: CONFIG.ORC_AGGRO_RANGE,
@@ -36,19 +29,14 @@ function makeOrc(x, y) {
     damage: CONFIG.ORC_DAMAGE,
     wanderTimer: rand(0, 1),
     wanderAngle: rand(0, Math.PI * 2),
-  };
+  });
 }
 
 function makeGuard(x, y) {
-  return {
+  return makeActor({
     type: 'guard',
-    x, y, vx: 0, vy: 0,
-    w: 14, h: 14,
+    x, y,
     hp: CONFIG.GUARD_HP,
-    maxHp: CONFIG.GUARD_HP,
-    angle: 0,
-    attackTimer: 0,
-    hurtFlash: 0,
     team: TEAM.GUARD,
     speed: CONFIG.GUARD_SPEED,
     aggroRange: CONFIG.GUARD_AGGRO_RANGE,
@@ -56,45 +44,43 @@ function makeGuard(x, y) {
     damage: CONFIG.GUARD_DAMAGE,
     wanderTimer: rand(0, 2),
     wanderAngle: rand(0, Math.PI * 2),
-  };
+  });
 }
 
 function makeHorse(x, y) {
-  return {
+  return makeActor({
     type: 'horse',
-    x, y, vx: 0, vy: 0,
+    x, y,
     w: 20, h: 14,
     hp: CONFIG.HORSE_HP,
-    maxHp: CONFIG.HORSE_HP,
-    angle: rand(0, Math.PI * 2),
     team: TEAM.NEUTRAL,
+    angle: rand(0, Math.PI * 2),
     rider: null,
     wanderTimer: rand(0, 3),
     wanderAngle: rand(0, Math.PI * 2),
-  };
+  });
 }
 
 function makePickup(x, y, kind) {
-  return {
+  return makeActor({
     type: 'pickup',
-    x, y, vx: 0, vy: 0,
+    x, y,
     w: 12, h: 12,
-    kind,
     team: TEAM.NEUTRAL,
+    kind,
     bobPhase: rand(0, Math.PI * 2),
-  };
+  });
 }
 
 function initEntities() {
-  // Player starts on central plaza.
-  const cx = (MAP.W / 2) * TILE;
-  const cy = (MAP.H / 2) * TILE;
+  // Player starts on central plaza (use region dims for forward-compat).
+  const cx = (regionW() / 2) * TILE;
+  const cy = (regionH() / 2) * TILE;
   state.player = makePlayer(cx, cy);
   state.entities.push(state.player);
 
   for (let i = 0; i < CONFIG.NUM_ORCS; i++) {
     const p = findOpenTile();
-    // Orcs avoid spawning right on top of player.
     if (dist(p.x, p.y, cx, cy) < 6 * TILE) continue;
     state.entities.push(makeOrc(p.x, p.y));
   }

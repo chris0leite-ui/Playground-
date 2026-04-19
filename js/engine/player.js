@@ -100,6 +100,9 @@ function tryAttack() {
 }
 
 function onEnemyKilled(e) {
+  // Emit for any subsystem (quests, factions, save…). T0.4 just emits;
+  // T0.6 attaches listeners. The legacy scoring below stays until then.
+  eventBus.emit('entity_killed', e, state.player);
   if (e.type === 'orc') {
     state.renown += CONFIG.RENOWN_PER_ORC;
   } else if (e.type === 'guard') {
