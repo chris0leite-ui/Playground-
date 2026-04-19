@@ -75,6 +75,15 @@ function initMap() {
     }
   }
 
+  // Guarantee a 4-way opening around the spawn tile so the player can always
+  // leave the plaza — the citadel cluster above can otherwise overwrite the
+  // north side of the inner plaza and box the spawn in.
+  const sx = Math.round(cx), sy = Math.round(cy);
+  for (const [dx, dy] of [[0,0],[1,0],[-1,0],[0,1],[0,-1],[0,-2]]) {
+    const tx = sx + dx, ty = sy + dy;
+    if (tx >= 0 && ty >= 0 && tx < W && ty < H) map[ty][tx] = TILES.PAVEMENT;
+  }
+
   // Anduin river: 2-tile strip on the far east edge.
   for (let y = 0; y < H; y++) {
     for (let x = W - 2; x < W; x++) map[y][x] = TILES.WATER;

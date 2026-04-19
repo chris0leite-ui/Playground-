@@ -19,7 +19,7 @@ const DEFAULT_LEGEND = {
 };
 
 // Tile enum must match engine/config.js TILES.
-const TILE_ENUM = { GRASS: 0, ROAD: 1, PAVEMENT: 2, BUILDING: 3, WATER: 4, WALL: 5, TREE: 5 };
+const TILE_ENUM = { GRASS: 0, ROAD: 1, PAVEMENT: 2, BUILDING: 3, WATER: 4, WALL: 5, TREE: 6 };
 
 function parseTilemap(body, frontmatter, filename) {
   const legend = Object.assign({}, DEFAULT_LEGEND, frontmatter.legend_overrides || {});

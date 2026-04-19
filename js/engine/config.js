@@ -15,6 +15,7 @@ const TILES = {
   BUILDING: 3,
   WATER: 4,
   WALL: 5,
+  TREE: 6,
 };
 
 const PALETTE = {

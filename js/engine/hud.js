@@ -2,15 +2,30 @@
 // Also handles the message overlay (intro, pause, death).
 
 const HUD = {
-  gold: null, renown: null, wanted: null,
+  gold: null, renown: null, wanted: null, title: null,
   hpBar: null, hpText: null, mount: null,
   msg: null, msgTitle: null, msgBody: null, msgBtn: null,
 };
+
+function regionDisplayName(id) {
+  const content = (window.W && window.W.regions && window.W.regions[id]) || null;
+  const runtime = state.world && state.world.regions && state.world.regions[id];
+  return (content && content.name)
+      || (runtime && runtime.def && runtime.def.name)
+      || id || 'Middle-earth';
+}
+
+function refreshHudTitle() {
+  if (!HUD.title) return;
+  const id = state.world && state.world.currentRegionId;
+  HUD.title.textContent = 'Middle-earth: ' + regionDisplayName(id);
+}
 
 function initHUD() {
   HUD.gold = document.getElementById('gold');
   HUD.renown = document.getElementById('renown');
   HUD.wanted = document.getElementById('wanted');
+  HUD.title = document.getElementById('title');
   HUD.hpBar = document.getElementById('hp-bar');
   HUD.hpText = document.getElementById('hp-text');
   HUD.mount = document.getElementById('mount-indicator');
@@ -20,6 +35,10 @@ function initHUD() {
   HUD.msgBtn = document.getElementById('message-btn');
 
   HUD.msgBtn.addEventListener('click', onMessageClick);
+  if (typeof eventBus !== 'undefined' && eventBus.on) {
+    eventBus.on('region_entered', refreshHudTitle);
+  }
+  refreshHudTitle();
 }
 
 function updateHUD() {
@@ -88,62 +107,4 @@ function escapeHtml(s) {
     ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]);
 }
 
-function showToast(text, ms) {
-  const el = document.getElementById('toast');
-  if (!el) return;
-  el.textContent = text;
-  el.classList.remove('hidden');
-  clearTimeout(el._t);
-  el._t = setTimeout(() => el.classList.add('hidden'), ms || 1600);
-}
-
-function showMessage(title, body, btnLabel) {
-  HUD.msgTitle.textContent = title;
-  HUD.msgBody.textContent = body;
-  HUD.msgBtn.textContent = btnLabel;
-  HUD.msg.classList.remove('hidden');
-}
-
-function hideMessage() { HUD.msg.classList.add('hidden'); }
-
-function onMessageClick() {
-  if (!state.started) {
-    state.started = true;
-    hideMessage();
-    return;
-  }
-  if (state.gameOver) {
-    restartRun();
-    return;
-  }
-  if (state.paused) {
-    state.paused = false;
-    hideMessage();
-  }
-}
-
-function togglePause() {
-  if (state.gameOver || !state.started) return;
-  state.paused = !state.paused;
-  if (state.paused) {
-    showMessage('Paused', 'The siege pauses. Catch your breath.', 'Resume');
-  } else {
-    hideMessage();
-  }
-}
-
-function showIntro() {
-  showMessage(
-    'Middle-earth: Streets of Minas Tirith',
-    'You are a Ranger of the North. Slay orcs, gather gold, eat lembas to heal. Mount steeds to travel swiftly. Strike Citadel Guards at your peril — they will hunt you. Use the joystick to move and the buttons to attack and mount.',
-    'Ride out'
-  );
-}
-
-function showDeath() {
-  showMessage(
-    'You have fallen',
-    `Your saga ends. Renown earned: ${state.renown}. Gold gathered: ${state.player.gold}.`,
-    'Rise again'
-  );
-}
+// Modal/overlay/toast helpers live in engine/hud_modals.js.

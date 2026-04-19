@@ -77,6 +77,19 @@ function drawTile(ctx, t, sx, sy, tx, ty) {
       ctx.fillRect(sx, sy, 3, TILE);
       break;
     }
+    case TILES.TREE: {
+      ctx.fillStyle = PALETTE.grass;
+      ctx.fillRect(sx, sy, TILE, TILE);
+      ctx.fillStyle = '#2a3a1a';
+      ctx.beginPath();
+      ctx.arc(sx + TILE / 2, sy + TILE / 2 + 2, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#3a5a2a';
+      ctx.beginPath();
+      ctx.arc(sx + TILE / 2 - 2, sy + TILE / 2 - 1, 8, 0, Math.PI * 2);
+      ctx.fill();
+      break;
+    }
   }
 }
 
