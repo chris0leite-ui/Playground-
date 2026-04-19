@@ -34,8 +34,9 @@ function _grantXp(entity) {
   while (p.xp >= xpToNext()) _levelUp();
 }
 
-on('enemyKilled', ({ entity, byPlayer }) => {
-  if (!byPlayer || !entity) return;
+on('enemyKilled', ({ entity }) => {
+  // Any ally kill grants XP — you commanded the party, you get the kill credit.
+  if (!entity) return;
   _grantXp(entity);
 });
 

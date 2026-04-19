@@ -46,7 +46,10 @@ function _checkReach(dt) {
 }
 
 on('enemyKilled', ({ entity, byPlayer }) => {
-  if (!byPlayer) return;
+  // Credit any ally kill — player, companions (Gandalf / Gimli / Legolas),
+  // Rohirrim, or ridden mounts — toward quest progression. Enemy-vs-enemy
+  // kills never emit this event, so this can't be farmed accidentally.
+  if (!entity) return;
   for (const q of state.quests.active.slice()) {
     const obj = q.def.objective;
     if (obj.type === 'kill' && entity.type === obj.target) {
