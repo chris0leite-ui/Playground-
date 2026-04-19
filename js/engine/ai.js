@@ -4,12 +4,7 @@ function updateEntities(dt) {
   for (const e of state.entities) {
     if (e === state.player) continue;
     if (e.hurtFlash > 0) e.hurtFlash -= dt;
-    switch (e.type) {
-      case 'orc':    updateHostile(e, dt, false); break;
-      case 'guard':  updateHostile(e, dt, true); break;
-      case 'horse':  updateHorse(e, dt); break;
-      case 'pickup': updatePickup(e, dt); break;
-    }
+    updateEntity(e, dt); // dispatch via entity_registry
   }
   // Prune corpses in place so state.entities and state.region.entities stay
   // pointing at the same array. (Pickups have no hp; keep them unless dead.)
