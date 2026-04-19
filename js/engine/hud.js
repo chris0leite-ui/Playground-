@@ -38,7 +38,12 @@ function updateHUD() {
   if (!p) return;
   refreshHudTitle();
   HUD.gold.textContent = `Gold: ${p.gold}`;
-  HUD.renown.textContent = `Renown: ${state.renown}`;
+  const lvl = p.level || 1;
+  const xp = p.xp || 0;
+  const nx = (typeof xpToNext === 'function') ? xpToNext() : 99999;
+  HUD.renown.textContent = `Lv ${lvl} · XP ${xp}/${nx}`;
+  const weapLabel = (typeof weaponStats === 'function') ? weaponStats().name : '';
+  if (weapLabel) HUD.renown.textContent += ' · ' + weapLabel;
 
   const tier = hostileTier('citadel-guard');
   const stars = '\u2022'.repeat(tier);
@@ -71,11 +76,34 @@ function updateHUD() {
   updateQuestLog();
 }
 
+function _questGiverEntity(def) {
+  if (!def || !def.giver) return null;
+  const [t, ref] = def.giver.split(':');
+  if (t !== 'npc') return null;
+  for (const e of state.entities) if (e.type === 'npc' && e.npcId === ref) return e;
+  return null;
+}
+
+function _dirWord(px, py, tx, ty) {
+  const dx = tx - px, dy = ty - py;
+  const ang = Math.atan2(dy, dx);
+  const deg = (ang * 180 / Math.PI + 360) % 360;
+  if (deg < 22.5 || deg >= 337.5) return 'east';
+  if (deg < 67.5)  return 'south-east';
+  if (deg < 112.5) return 'south';
+  if (deg < 157.5) return 'south-west';
+  if (deg < 202.5) return 'west';
+  if (deg < 247.5) return 'north-west';
+  if (deg < 292.5) return 'north';
+  return 'north-east';
+}
+
 function updateQuestLog() {
   const log = document.getElementById('quest-log');
   if (!log) return;
   const W = (window.W && window.W.quests) || {};
   const rows = [];
+  const p = state.player;
   for (const id in state.quests) {
     const q = state.quests[id];
     if (q.status !== 'active') continue;
@@ -86,8 +114,17 @@ function updateQuestLog() {
       const s = def.steps[q.stepIdx];
       hint = s.hint || s.target || s.id || '';
     }
+    let meta = '';
+    const giver = _questGiverEntity(def);
+    if (giver && p) {
+      const d = Math.hypot(giver.x - p.x, giver.y - p.y);
+      const tiles = Math.round(d / TILE);
+      const dir = _dirWord(p.x, p.y, giver.x, giver.y);
+      meta = `${giver.name || 'Quest giver'} — ${tiles} tiles ${dir}`;
+    }
     rows.push(`<div class="qrow"><div class="qtitle">${escapeHtml(title)}</div>` +
               (hint ? `<div class="qhint">${escapeHtml(String(hint))}</div>` : '') +
+              (meta ? `<div class="qmeta">${escapeHtml(meta)}</div>` : '') +
               `</div>`);
   }
   if (rows.length === 0) { log.classList.add('hidden'); return; }

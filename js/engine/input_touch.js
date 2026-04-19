@@ -92,7 +92,7 @@ function bindStick() {
 
 function bindActionButtons() {
   const ids = ['attack-btn', 'mount-btn', 'bow-btn', 'talk-btn',
-               'save-btn', 'load-btn'];
+               'swap-btn', 'save-btn', 'load-btn'];
   const el = {}; for (const id of ids) el[id] = document.getElementById(id);
 
   function press(fn) { return (e) => { e.preventDefault(); fn(); }; }
@@ -109,6 +109,9 @@ function bindActionButtons() {
     if (state.inputMode !== 'world') return;
     const target = findNearestNpc(80);
     if (target && target.dialogueId) openDialogue(target.dialogueId);
+  });
+  bind(el['swap-btn'], () => {
+    if (state.inputMode === 'world' && typeof cycleWeapon === 'function') cycleWeapon();
   });
   bind(el['save-btn'], () => { if (typeof saveSave === 'function') saveSave(); });
   bind(el['load-btn'], () => { if (typeof loadSave === 'function') loadSave(); });

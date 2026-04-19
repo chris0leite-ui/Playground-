@@ -100,9 +100,13 @@ function boot() {
   bindQuestListeners();
   bindSaveHooks();
   bindEncounterListeners();
+  if (typeof bindLevelingListeners === 'function') bindLevelingListeners();
   if (typeof bindMinimapTaps === 'function') bindMinimapTaps();
   resetRun();
   state.started = true;
+  if (typeof showToast === 'function') {
+    showToast('Near Hobbiton. Gold arrow → talk to an NPC for quests. Tap the minimap to set a waypoint.', 4500);
+  }
 
   _last = performance.now() / 1000;
   requestAnimationFrame(loop);

@@ -44,6 +44,7 @@ function onKeyDown(e) {
   if (k === ' ' || k === 'spacebar') state.edge.attack = true;
   if (k === 'f') state.edge.shoot = true;
   if (k === 'e') state.edge.mount = true;
+  if (k === 'q' && typeof cycleWeapon === 'function') cycleWeapon();
   if (k === 'p') togglePause();
   if (k === 'enter' && state.gameOver) restartRun();
   if ([' ', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(k)) e.preventDefault();

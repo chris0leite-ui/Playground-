@@ -24,14 +24,24 @@ function questTargetInRegion() {
   return best;
 }
 
-// Prefer an explicit player waypoint (from a minimap tap) over the
-// auto-picked quest NPC.
+// Prefer an explicit player waypoint (from a minimap tap). Otherwise
+// point at the nearest quest giver, or — if no quest is active — the
+// nearest talkable NPC, so the player always has a direction.
 function compassTarget() {
   if (state.waypoint) {
     return { x: state.waypoint.x, y: state.waypoint.y, name: 'Waypoint' };
   }
   const npc = questTargetInRegion();
-  return npc ? { x: npc.x, y: npc.y, name: npc.name || 'Quest' } : null;
+  if (npc) return { x: npc.x, y: npc.y, name: (npc.name || 'Quest') + ' (Quest)' };
+  const p = state.player;
+  if (!p || !state.entities) return null;
+  let best = null, bestD = Infinity;
+  for (const e of state.entities) {
+    if (e.type !== 'npc' || !e.dialogueId) continue;
+    const d = dist(e.x, e.y, p.x, p.y);
+    if (d < bestD) { bestD = d; best = e; }
+  }
+  return best ? { x: best.x, y: best.y, name: best.name || 'Talk' } : null;
 }
 
 function drawQuestCompass(ctx) {

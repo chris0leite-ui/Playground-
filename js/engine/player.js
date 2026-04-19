@@ -70,12 +70,14 @@ function tryMove(e, dx, dy) {
 }
 
 function onEnemyKilled(e) {
-  // Faction listeners handle rep hits; quest listeners advance objectives.
-  // Renown is a global score kept here for now; moves to a data-driven
-  // on_killed reward table in a later tier.
   eventBus.emit('entity_killed', e, state.player);
   if (e.type === 'orc')        state.renown += CONFIG.RENOWN_PER_ORC;
   else if (e.type === 'guard') state.renown += CONFIG.RENOWN_PER_GUARD;
+  else if (e.type === 'uruk')  state.renown += 80;
+  else if (e.type === 'troll') state.renown += 200;
+  else if (e.type === 'spider') state.renown += 30;
+  else if (e.type === 'haradrim') state.renown += 40;
+  if (typeof maybeDropWeapon === 'function') maybeDropWeapon(e);
 }
 
 function tryMountOrDismount() {

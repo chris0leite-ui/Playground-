@@ -143,23 +143,25 @@ html, body {
 /* ---- Quest log (top-left, below mount indicator) ---- */
 #quest-log {
   position: absolute;
-  top: 110px;
+  top: 114px;
   left: 10px;
-  max-width: min(260px, 60vw);
+  max-width: min(320px, 64vw);
   background: var(--ink);
   border: 1px solid var(--gondor-gold);
   border-radius: 6px;
-  padding: 6px 10px;
-  font-size: 11px;
-  line-height: 1.35;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.4;
   pointer-events: none;
   color: var(--gondor-white);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 #quest-log.hidden { display: none; }
-#quest-log .qtitle { color: var(--gondor-gold); font-weight: bold; }
-#quest-log .qhint { opacity: 0.85; }
-#quest-log .qrow { margin-top: 4px; }
-#quest-log .qrow:first-child { margin-top: 0; }
+#quest-log .qrow { margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(212,168,42,0.25); }
+#quest-log .qrow:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+#quest-log .qtitle { color: var(--gondor-gold); font-weight: bold; font-size: 14px; }
+#quest-log .qhint { opacity: 0.92; margin-top: 2px; }
+#quest-log .qmeta { font-size: 11px; opacity: 0.7; margin-top: 2px; }
 
 /* ---- Touch overlay ---- */
 #touch-overlay {

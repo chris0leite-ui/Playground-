@@ -1,14 +1,13 @@
 // World-level enemy seeding. Called after worldgen + initEntities so that
-// biome tiles exist. Orcs favour Mordor / Fangorn / Mirkwood; guards
-// cluster near Minas Tirith; every biome gets at least a pinch so the
-// world never feels empty.
+// biome tiles exist. Each biome gets its signature mix: orcs everywhere,
+// Uruks & trolls heavy in Mordor + Isengard, spiders in Mirkwood, Haradrim
+// on Harad sand.
 
 function _biomeWeight(t) {
-  // Orc spawn weight per ground tile. Higher = more likely.
   switch (t) {
     case TILES.MORDOR: return 14;
     case TILES.FANGORN: return 6;
-    case TILES.FOREST: return 5;
+    case TILES.FOREST: return 6;
     case TILES.ROHAN: return 3;
     case TILES.SWAMP: return 3;
     case TILES.GRASS: return 2;
@@ -27,12 +26,37 @@ function _pickWeightedOpenTile() {
     const t = state.map[y][x];
     const w = _biomeWeight(t);
     if (w <= 0) continue;
-    // Accept with probability w / 14 so Mordor ~always-yes, Shire rare.
     if (Math.random() * 14 < w) {
-      return { x: x * TILE + TILE / 2, y: y * TILE + TILE / 2 };
+      return { x: x * TILE + TILE / 2, y: y * TILE + TILE / 2, tile: t };
     }
   }
-  return findOpenTile();
+  const fb = findOpenTile();
+  return { x: fb.x, y: fb.y, tile: TILES.GRASS };
+}
+
+// Pick an enemy factory based on the biome under a spawn point.
+function _enemyForBiome(t) {
+  const r = Math.random();
+  if (t === TILES.MORDOR) {
+    if (r < 0.35) return makeUruk;
+    if (r < 0.5)  return makeTroll;
+    return makeOrc;
+  }
+  if (t === TILES.FOREST || t === TILES.FANGORN) {
+    if (r < 0.45) return makeSpider;
+    if (r < 0.65) return makeUruk;
+    return makeOrc;
+  }
+  if (t === TILES.SAND) {
+    if (r < 0.55) return makeHaradrim;
+    return makeOrc;
+  }
+  if (t === TILES.SWAMP) {
+    if (r < 0.35) return makeSpider;
+    return makeOrc;
+  }
+  if (r < 0.15) return makeUruk;
+  return makeOrc;
 }
 
 function scatterEnemies() {
@@ -41,9 +65,9 @@ function scatterEnemies() {
   for (let i = 0; i < CONFIG.NUM_ORCS; i++) {
     const pos = _pickWeightedOpenTile();
     if (dist(pos.x, pos.y, px, py) < 8 * TILE) { i--; continue; }
-    state.entities.push(makeOrc(pos.x, pos.y));
+    const factory = _enemyForBiome(pos.tile);
+    if (typeof factory === 'function') state.entities.push(factory(pos.x, pos.y));
   }
-  // Guards patrol Minas Tirith + the road to Osgiliath.
   const mt = typeof LANDMARK_PX === 'function' && LANDMARK_PX('minasTirith');
   for (let i = 0; i < CONFIG.NUM_GUARDS; i++) {
     let pos;

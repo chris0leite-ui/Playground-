@@ -86,12 +86,14 @@ function updateHorse(e, dt) {
 function updatePickup(e, dt) {
   const p = state.player;
   if (!p || p.hp <= 0) return;
-  if (distEnt(e, p) < 16) {
+  if (distEnt(e, p) < 18) {
     if (e.kind === 'lembas') {
       p.hp = Math.min(p.maxHp, p.hp + CONFIG.LEMBAS_HEAL);
     } else if (e.kind === 'gold') {
       p.gold += CONFIG.GOLD_VALUE;
       state.renown += 5;
+    } else if (typeof e.kind === 'string' && e.kind.indexOf('weapon:') === 0) {
+      if (typeof pickupWeapon === 'function') pickupWeapon(e.kind.slice(7));
     }
     e.alive = false;
   }

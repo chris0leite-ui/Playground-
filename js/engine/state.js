@@ -48,6 +48,7 @@ function resetRun() {
   state.reputation = {};
   state.quests = {};
   state.waypoint = null;
+  if (typeof initInventory === 'function') initInventory();
   initWorld();
   initEntities();
   if (typeof spawnContentNPCs === 'function') spawnContentNPCs();
