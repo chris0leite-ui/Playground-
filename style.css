@@ -259,6 +259,24 @@ html, body {
 }
 #message-btn:active { transform: scale(0.96); }
 
+/* ---- Toast ---- */
+#toast {
+  position: fixed;
+  bottom: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(26, 26, 26, 0.9);
+  color: var(--gondor-white);
+  border: 1px solid var(--gondor-gold);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 25;
+}
+#toast.hidden { display: none; }
+
 /* ---- Dialogue overlay ---- */
 #dialogue-overlay {
   position: fixed;

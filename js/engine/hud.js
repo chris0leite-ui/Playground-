@@ -45,6 +45,15 @@ function updateHUD() {
   }
 }
 
+function showToast(text, ms) {
+  const el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = text;
+  el.classList.remove('hidden');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.add('hidden'), ms || 1600);
+}
+
 function showMessage(title, body, btnLabel) {
   HUD.msgTitle.textContent = title;
   HUD.msgBody.textContent = body;
