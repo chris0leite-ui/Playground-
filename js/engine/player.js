@@ -15,12 +15,6 @@ function updatePlayer(dt) {
 
   tryMove(p, p.vx * dt, p.vy * dt);
 
-  // If we're flush against a region boundary while still pushing into it,
-  // cross into the matching neighbor region (if one exists).
-  if (input && (Math.abs(input.dx) > 0.3 || Math.abs(input.dy) > 0.3)) {
-    maybeEdgeTransition(p, input.dx, input.dy);
-  }
-
   if (p.onHorse) {
     p.onHorse.x = p.x;
     p.onHorse.y = p.y;

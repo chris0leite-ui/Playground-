@@ -4,9 +4,10 @@
 
 const SCHEMAS = {
   region: {
-    req: ['id', 'name', 'tilemap', 'neighbors'],
-    opt: ['parent', 'climate', 'era', 'tone', 'factions_present',
-          'spawn_point', 'overworld_pos', 'description', 'tags'],
+    req: ['id', 'name'],
+    opt: ['parent', 'tilemap', 'neighbors', 'climate', 'era', 'tone',
+          'factions_present', 'spawn_point', 'overworld_pos',
+          'description', 'tags'],
   },
   settlement: {
     req: ['id', 'region', 'name', 'type', 'faction'],
@@ -20,7 +21,7 @@ const SCHEMAS = {
   },
   npc: {
     req: ['id', 'name', 'location', 'faction', 'role'],
-    opt: ['class', 'disposition', 'dialogue', 'quest_hooks', 'stats',
+    opt: ['disposition', 'dialogue', 'quest_hooks', 'stats',
           'spawn_conditions', 'spawn_pos', 'inventory', 'description', 'tags'],
   },
   dialogue: {
@@ -29,6 +30,8 @@ const SCHEMAS = {
   },
   quest: {
     req: ['id', 'title', 'giver', 'summary'],
+    // classes_eligible is vestigial — classes are gone but existing
+    // content files still carry the field; allow it to avoid a chore.
     opt: ['prerequisites', 'rewards', 'classes_eligible', 'arc', 'tags'],
   },
   item: {
@@ -39,23 +42,13 @@ const SCHEMAS = {
     req: ['id', 'name', 'banner_color'],
     opt: ['rep_tiers', 'allies', 'enemies', 'territories', 'description', 'tags'],
   },
-  class: {
-    req: ['id', 'name', 'stats'],
-    opt: ['starting_inventory', 'starting_region', 'starting_pos',
-          'signature_ability', 'can_use', 'lore', 'tags'],
-  },
   arc: {
     req: ['id', 'title', 'summary', 'quests_in_order'],
-    opt: ['regions', 'classes_eligible', 'introduced_by', 'reward_capstone',
-          'description', 'tags'],
+    opt: ['regions', 'introduced_by', 'reward_capstone', 'description', 'tags'],
   },
   encounter: {
     req: ['id', 'region', 'trigger', 'enemies'],
-    opt: ['loot_table', 'narrative', 'once', 'classes_affected', 'type', 'tags'],
-  },
-  tilemap: {
-    req: ['id', 'size'],
-    opt: ['legend_overrides', 'tags'],
+    opt: ['loot_table', 'narrative', 'once', 'type', 'tags'],
   },
   overworld: {
     req: ['id', 'regions'],

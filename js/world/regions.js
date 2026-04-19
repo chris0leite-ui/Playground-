@@ -6,12 +6,6 @@ W.regions["bree-land"] = {
   "factions_present": ["bree-folk", "rangers-of-the-north"],
   "id": "bree-land",
   "name": "Bree-land",
-  "neighbors": {
-    "east": "eriador-rivendell",
-    "north": null,
-    "south": "old-forest",
-    "west": "shire"
-  },
   "overworld_pos": {
     "x": 6,
     "y": 9
@@ -20,7 +14,6 @@ W.regions["bree-land"] = {
     "x": 24,
     "y": 24
   },
-  "tilemap": "bree-land",
   "tone": "crossroads-bustle"
 };
 W.regions["dale-erebor"] = {
@@ -29,12 +22,6 @@ W.regions["dale-erebor"] = {
   "factions_present": ["dwarves-of-erebor"],
   "id": "dale-erebor",
   "name": "Dale & Erebor",
-  "neighbors": {
-    "east": null,
-    "north": null,
-    "south": null,
-    "west": "lothlorien-anduin"
-  },
   "overworld_pos": {
     "x": 13,
     "y": 6
@@ -43,7 +30,6 @@ W.regions["dale-erebor"] = {
     "x": 24,
     "y": 24
   },
-  "tilemap": "dale-erebor",
   "tone": "bustling-market"
 };
 W.regions["eriador-rivendell"] = {
@@ -52,12 +38,6 @@ W.regions["eriador-rivendell"] = {
   "factions_present": ["imladris-elves", "rangers-of-the-north"],
   "id": "eriador-rivendell",
   "name": "Eriador & Rivendell",
-  "neighbors": {
-    "east": "moria-hollin",
-    "north": null,
-    "south": null,
-    "west": "bree-land"
-  },
   "overworld_pos": {
     "x": 8,
     "y": 9
@@ -66,7 +46,6 @@ W.regions["eriador-rivendell"] = {
     "x": 24,
     "y": 24
   },
-  "tilemap": "eriador-rivendell",
   "tone": "melancholy-quiet"
 };
 W.regions["gondor-south"] = {
@@ -75,12 +54,6 @@ W.regions["gondor-south"] = {
   "factions_present": ["reunited-kingdom", "citadel-guard"],
   "id": "gondor-south",
   "name": "Osgiliath & Ithilien",
-  "neighbors": {
-    "east": "mordor-ruin",
-    "north": null,
-    "south": null,
-    "west": "rohan"
-  },
   "overworld_pos": {
     "x": 13,
     "y": 13
@@ -89,7 +62,6 @@ W.regions["gondor-south"] = {
     "x": 24,
     "y": 24
   },
-  "tilemap": "gondor-south",
   "tone": "rebuilt-stone"
 };
 W.regions["lothlorien-anduin"] = {
@@ -98,12 +70,6 @@ W.regions["lothlorien-anduin"] = {
   "factions_present": ["galadhrim"],
   "id": "lothlorien-anduin",
   "name": "Lothlórien & Anduin Vales",
-  "neighbors": {
-    "east": "dale-erebor",
-    "north": "moria-hollin",
-    "south": "rohan",
-    "west": null
-  },
   "overworld_pos": {
     "x": 11,
     "y": 11
@@ -112,7 +78,6 @@ W.regions["lothlorien-anduin"] = {
     "x": 24,
     "y": 24
   },
-  "tilemap": "lothlorien-anduin",
   "tone": "fading-gold"
 };
 W.regions["mordor-ruin"] = {
@@ -121,12 +86,6 @@ W.regions["mordor-ruin"] = {
   "factions_present": ["reunited-kingdom", "orc-remnant", "easterling-holdouts"],
   "id": "mordor-ruin",
   "name": "Mordor (Ruined)",
-  "neighbors": {
-    "east": null,
-    "north": null,
-    "south": null,
-    "west": "gondor-south"
-  },
   "overworld_pos": {
     "x": 14,
     "y": 12
@@ -135,7 +94,6 @@ W.regions["mordor-ruin"] = {
     "x": 24,
     "y": 24
   },
-  "tilemap": "mordor-ruin",
   "tone": "slow-healing"
 };
 W.regions["moria-hollin"] = {
@@ -144,12 +102,6 @@ W.regions["moria-hollin"] = {
   "factions_present": ["dwarves-of-erebor", "orc-remnant"],
   "id": "moria-hollin",
   "name": "Moria & Hollin",
-  "neighbors": {
-    "east": null,
-    "north": null,
-    "south": "lothlorien-anduin",
-    "west": "eriador-rivendell"
-  },
   "overworld_pos": {
     "x": 10,
     "y": 10
@@ -158,7 +110,6 @@ W.regions["moria-hollin"] = {
     "x": 24,
     "y": 24
   },
-  "tilemap": "moria-hollin",
   "tone": "lamplit-industry"
 };
 W.regions["old-forest"] = {
@@ -167,12 +118,6 @@ W.regions["old-forest"] = {
   "factions_present": [],
   "id": "old-forest",
   "name": "The Old Forest",
-  "neighbors": {
-    "east": null,
-    "north": "bree-land",
-    "south": null,
-    "west": null
-  },
   "overworld_pos": {
     "x": 6,
     "y": 11
@@ -181,7 +126,6 @@ W.regions["old-forest"] = {
     "x": 24,
     "y": 24
   },
-  "tilemap": "old-forest",
   "tone": "haunted-green"
 };
 W.regions["rohan"] = {
@@ -190,12 +134,6 @@ W.regions["rohan"] = {
   "factions_present": ["rohirrim", "easterling-holdouts"],
   "id": "rohan",
   "name": "Rohan",
-  "neighbors": {
-    "east": "gondor-south",
-    "north": "lothlorien-anduin",
-    "south": null,
-    "west": null
-  },
   "overworld_pos": {
     "x": 11,
     "y": 13
@@ -204,7 +142,6 @@ W.regions["rohan"] = {
     "x": 24,
     "y": 24
   },
-  "tilemap": "rohan",
   "tone": "wide-wind"
 };
 W.regions["shire"] = {
@@ -213,12 +150,6 @@ W.regions["shire"] = {
   "factions_present": ["hobbits", "shirriffs"],
   "id": "shire",
   "name": "The Shire",
-  "neighbors": {
-    "east": "bree-land",
-    "north": null,
-    "south": null,
-    "west": null
-  },
   "overworld_pos": {
     "x": 4,
     "y": 9
@@ -227,6 +158,5 @@ W.regions["shire"] = {
     "x": 22,
     "y": 22
   },
-  "tilemap": "shire",
   "tone": "pastoral-cozy"
 };

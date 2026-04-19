@@ -1,10 +1,9 @@
-// LocalStorage-backed save/load. Single slot today; the format is versioned
-// via SAVE_VERSION so loads across breaking changes fail gracefully rather
-// than crashing. Entities are NOT serialized (each region rebuilds on load);
-// player position and progression state are.
+// LocalStorage-backed save/load. Single slot. SAVE_VERSION=2 drops the
+// currentRegionId payload (regions are gone); saves from v1 fail gracefully
+// rather than trying to migrate.
 
 const SAVE_KEY = 'me-save-0';
-const SAVE_VERSION = 1;
+const SAVE_VERSION = 2;
 
 function saveSave() {
   try {
@@ -17,7 +16,6 @@ function saveSave() {
       flags: state.flags,
       reputation: state.reputation,
       quests: state.quests,
-      currentRegionId: state.world.currentRegionId,
       player: p && {
         x: p.x, y: p.y, hp: p.hp, maxHp: p.maxHp,
         gold: p.gold, angle: p.angle,
@@ -42,23 +40,12 @@ function loadSave() {
     }
     const data = JSON.parse(raw);
     if (data.version !== SAVE_VERSION) {
-      if (typeof showToast === 'function') showToast('Save is from an older version.');
+      if (typeof showToast === 'function') {
+        showToast('Save from an older version — starting fresh.', 2600);
+      }
       return false;
     }
     resetRun();
-    // resetRun spawns the player in the default region; if the save
-    // points at a different region, migrate the player entity across.
-    const p = state.player;
-    if (p && data.currentRegionId && state.world.regions[data.currentRegionId]
-        && data.currentRegionId !== state.world.currentRegionId) {
-      const prev = state.region;
-      if (prev) {
-        const idx = prev.entities.indexOf(p);
-        if (idx >= 0) prev.entities.splice(idx, 1);
-      }
-      loadRegion(data.currentRegionId);
-      if (!state.entities.includes(p)) state.entities.push(p);
-    }
     state.time = data.time || 0;
     state.renown = data.renown || 0;
     state.flags = data.flags || {};
@@ -70,9 +57,6 @@ function loadSave() {
         hp: data.player.hp, maxHp: data.player.maxHp,
         gold: data.player.gold, angle: data.player.angle,
       });
-      // The mount we were riding doesn't survive a save (regions
-      // rebuild fresh on load). Dismount cleanly so the player
-      // controls themselves, not a stale horse reference.
       state.player.onHorse = null;
     }
     state.started = true;
@@ -89,5 +73,7 @@ function loadSave() {
 function hasSave() { return !!localStorage.getItem(SAVE_KEY); }
 
 function bindSaveHooks() {
-  eventBus.on('region_entered', () => { saveSave(); });
+  // Autosave is off for now — the region_entered hook is gone and nothing
+  // else fires often enough to justify autosaving. Explicit Save button
+  // still works.
 }

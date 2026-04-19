@@ -6,8 +6,7 @@ function updateEntities(dt) {
     if (e.hurtFlash > 0) e.hurtFlash -= dt;
     updateEntity(e, dt); // dispatch via entity_registry
   }
-  // Prune corpses in place so state.entities and state.region.entities stay
-  // pointing at the same array. (Pickups have no hp; keep them unless dead.)
+  // Prune corpses in place. Pickups have no hp; keep them unless dead.
   for (let i = state.entities.length - 1; i >= 0; i--) {
     const e = state.entities[i];
     if (e === state.player) continue;

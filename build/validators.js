@@ -11,25 +11,8 @@ function validateCrossRefs(store) {
     return bucket && bucket[id];
   }
 
-  // Region neighbor symmetry.
-  for (const id in store.regions) {
-    const r = store.regions[id];
-    const n = r.neighbors || {};
-    for (const dir in n) {
-      const other = n[dir];
-      if (!other) continue;
-      if (!store.regions[other]) {
-        errors.push(`region "${id}" has neighbor "${other}" (${dir}) which does not exist`);
-        continue;
-      }
-      const opp = { north: 'south', south: 'north', east: 'west', west: 'east',
-                    ne: 'sw', sw: 'ne', nw: 'se', se: 'nw' }[dir];
-      const back = (store.regions[other].neighbors || {})[opp];
-      if (back !== id) {
-        errors.push(`region "${id}" neighbor "${other}" (${dir}) not mirrored: "${other}".${opp} = ${back}`);
-      }
-    }
-  }
+  // (Region neighbor symmetry no longer enforced: the world is unified,
+  //  regions are just layout rectangles now.)
 
   // NPC location must reference a real region or building.
   for (const id in store.npcs) {

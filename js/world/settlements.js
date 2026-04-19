@@ -14,7 +14,11 @@ W.settlements["bree"] = {
     "x": 15,
     "y": 17
   },
-  "type": "town"
+  "type": "town",
+  "world_pos": {
+    "x": 65,
+    "y": 52
+  }
 };
 W.settlements["edoras"] = {
   "description": "|",
@@ -32,7 +36,11 @@ W.settlements["edoras"] = {
     "x": 15,
     "y": 17
   },
-  "type": "city"
+  "type": "city",
+  "world_pos": {
+    "x": 78,
+    "y": 154
+  }
 };
 W.settlements["hobbiton"] = {
   "faction": "hobbits",
@@ -48,7 +56,11 @@ W.settlements["hobbiton"] = {
     "x": 17,
     "y": 18
   },
-  "type": "village"
+  "type": "village",
+  "world_pos": {
+    "x": 34,
+    "y": 43
+  }
 };
 W.settlements["imladris"] = {
   "description": "|",
@@ -66,5 +78,9 @@ W.settlements["imladris"] = {
     "x": 15,
     "y": 17
   },
-  "type": "town"
+  "type": "town",
+  "world_pos": {
+    "x": 130,
+    "y": 44
+  }
 };

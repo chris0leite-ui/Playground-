@@ -7,18 +7,13 @@ const HUD = {
   msg: null, msgTitle: null, msgBody: null, msgBtn: null,
 };
 
-function regionDisplayName(id) {
-  const content = (window.W && window.W.regions && window.W.regions[id]) || null;
-  const runtime = state.world && state.world.regions && state.world.regions[id];
-  return (content && content.name)
-      || (runtime && runtime.def && runtime.def.name)
-      || id || 'Middle-earth';
-}
-
 function refreshHudTitle() {
   if (!HUD.title) return;
-  const id = state.world && state.world.currentRegionId;
-  HUD.title.textContent = 'Middle-earth: ' + regionDisplayName(id);
+  const p = state.player;
+  const name = (p && typeof biomeNameAt === 'function')
+    ? biomeNameAt(p.x, p.y)
+    : 'Middle-earth';
+  HUD.title.textContent = 'Middle-earth: ' + name;
 }
 
 function initHUD() {
@@ -35,15 +30,13 @@ function initHUD() {
   HUD.msgBtn = document.getElementById('message-btn');
 
   HUD.msgBtn.addEventListener('click', onMessageClick);
-  if (typeof eventBus !== 'undefined' && eventBus.on) {
-    eventBus.on('region_entered', refreshHudTitle);
-  }
   refreshHudTitle();
 }
 
 function updateHUD() {
   const p = state.player;
   if (!p) return;
+  refreshHudTitle();
   HUD.gold.textContent = `Gold: ${p.gold}`;
   HUD.renown.textContent = `Renown: ${state.renown}`;
 

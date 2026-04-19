@@ -21,7 +21,11 @@ W.buildings["armory-of-edoras"] = {
   "services": ["shop:weapons"],
   "settlement": "edoras",
   "tags": ["smithy", "shop"],
-  "type": "smithy"
+  "type": "smithy",
+  "world_pos": {
+    "x": 68,
+    "y": 155
+  }
 };
 W.buildings["bruinen-archive"] = {
   "description": "|",
@@ -35,7 +39,11 @@ W.buildings["bruinen-archive"] = {
   "services": [],
   "settlement": "imladris",
   "tags": ["lore", "archive"],
-  "type": "tower"
+  "type": "tower",
+  "world_pos": {
+    "x": 120,
+    "y": 45
+  }
 };
 W.buildings["hall-of-fire"] = {
   "description": "|",
@@ -49,7 +57,11 @@ W.buildings["hall-of-fire"] = {
   "services": ["quest_board"],
   "settlement": "imladris",
   "tags": ["song", "ceremony"],
-  "type": "temple"
+  "type": "temple",
+  "world_pos": {
+    "x": 132,
+    "y": 43
+  }
 };
 W.buildings["healers-hall"] = {
   "description": "|",
@@ -72,7 +84,11 @@ W.buildings["healers-hall"] = {
   "services": ["healer", "shop:food"],
   "settlement": "imladris",
   "tags": ["heal", "shop"],
-  "type": "shop"
+  "type": "shop",
+  "world_pos": {
+    "x": 126,
+    "y": 45
+  }
 };
 W.buildings["imladris-scriptorium"] = {
   "description": "|",
@@ -86,7 +102,11 @@ W.buildings["imladris-scriptorium"] = {
   "services": ["quest_board"],
   "settlement": "imladris",
   "tags": ["lore", "quiet"],
-  "type": "temple"
+  "type": "temple",
+  "world_pos": {
+    "x": 120,
+    "y": 43
+  }
 };
 W.buildings["last-homely-house"] = {
   "description": "|",
@@ -100,7 +120,11 @@ W.buildings["last-homely-house"] = {
   "services": ["inn"],
   "settlement": "imladris",
   "tags": ["safe", "iconic"],
-  "type": "tower"
+  "type": "tower",
+  "world_pos": {
+    "x": 126,
+    "y": 43
+  }
 };
 W.buildings["mead-hall"] = {
   "description": "|",
@@ -123,7 +147,11 @@ W.buildings["mead-hall"] = {
   "services": ["inn", "shop:food"],
   "settlement": "edoras",
   "tags": ["inn", "food"],
-  "type": "inn"
+  "type": "inn",
+  "world_pos": {
+    "x": 80,
+    "y": 153
+  }
 };
 W.buildings["meduseld"] = {
   "description": "|",
@@ -137,7 +165,11 @@ W.buildings["meduseld"] = {
   "services": ["inn", "quest_board"],
   "settlement": "edoras",
   "tags": ["iconic", "safe"],
-  "type": "tower"
+  "type": "tower",
+  "world_pos": {
+    "x": 74,
+    "y": 153
+  }
 };
 W.buildings["stables-of-the-mark"] = {
   "description": "|",
@@ -156,7 +188,11 @@ W.buildings["stables-of-the-mark"] = {
   "services": ["shop:mounts"],
   "settlement": "edoras",
   "tags": ["horses", "shop"],
-  "type": "shop"
+  "type": "shop",
+  "world_pos": {
+    "x": 68,
+    "y": 153
+  }
 };
 W.buildings["watchtower-of-edoras"] = {
   "description": "|",
@@ -170,5 +206,9 @@ W.buildings["watchtower-of-edoras"] = {
   "services": ["quest_board"],
   "settlement": "edoras",
   "tags": ["lookout"],
-  "type": "tower"
+  "type": "tower",
+  "world_pos": {
+    "x": 80,
+    "y": 155
+  }
 };

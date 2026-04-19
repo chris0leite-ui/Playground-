@@ -4,4 +4,4 @@ W.regions = {}; W.tilemaps = {}; W.settlements = {}; W.buildings = {};
 W.npcs = {}; W.dialogues = {}; W.quests = {}; W.items = {};
 W.factions = {}; W.classes = {}; W.arcs = {}; W.encounters = {};
 W.overworld = null;
-W.schemaVersion = 1;
+W.schemaVersion = 2;

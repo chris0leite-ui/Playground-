@@ -6,10 +6,7 @@ const state = {
   viewW: 0,
   viewH: 0,
 
-  // World. `region` is the active region; `map` and `entities` are
-  // back-compat alias pointers assigned by loadRegion().
-  world: { regions: {}, currentRegionId: null },
-  region: null,
+  // One unified Middle-earth world — no region switching any more.
   map: [],
   entities: [],
   player: null,
@@ -20,12 +17,16 @@ const state = {
   stick: { active: false, dx: 0, dy: 0, id: null, cx: 0, cy: 0 },
 
   // Input context. Anything other than 'world' freezes player + entity
-  // updates. Set by dialogue/overworld/menu subsystems; default is 'world'.
+  // updates. Set by dialogue/menu subsystems; default is 'world'.
   inputMode: 'world',
 
   flags: {},          // persistent boolean flags set by dialogue/quest effects
   reputation: {},     // faction-id -> number in [-100, 100]
   quests: {},         // quest-id -> { status, stepIdx, flags }
+
+  // Player-selected waypoint (from a minimap tap). Compass arrow prefers
+  // this over the nearest quest NPC when set.
+  waypoint: null,
 
   renown: 0,
   time: 0,
@@ -46,13 +47,10 @@ function resetRun() {
   state.flags = {};
   state.reputation = {};
   state.quests = {};
-  // Rebuild the world from scratch. Entities belong to the current region.
-  state.world.regions = {};
-  state.world.currentRegionId = null;
-  state.region = null;
-  initDefaultRegion();
-  // Register every content-authored region so save/load and edge
-  // transitions can resolve them after a reset.
-  if (typeof registerContentRegions === 'function') registerContentRegions();
+  state.waypoint = null;
+  initWorld();
   initEntities();
+  if (typeof spawnContentNPCs === 'function') spawnContentNPCs();
+  if (typeof scatterEnemies === 'function') scatterEnemies();
+  if (typeof eventBus !== 'undefined' && eventBus.emit) eventBus.emit('reset');
 }

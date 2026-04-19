@@ -70,21 +70,17 @@ function makePickup(x, y, kind) {
 }
 
 function initEntities() {
-  // Player starts on central plaza (use region dims for forward-compat).
-  const cx = (regionW() / 2) * TILE;
-  const cy = (regionH() / 2) * TILE;
-  state.player = makePlayer(cx, cy);
+  // Start the player near Hobbiton. Tile (22, 34) is the Hobbiton landmark
+  // centre; we place the player a few tiles south where the village road
+  // reliably lands on grass/road rather than a BUILDING stamp.
+  const start = (typeof LANDMARK_PX === 'function' && LANDMARK_PX('hobbiton'))
+    || { x: TILE * 22, y: TILE * 34 };
+  state.player = makePlayer(start.x, start.y + TILE * 4);
   state.entities.push(state.player);
 
-  for (let i = 0; i < CONFIG.NUM_ORCS; i++) {
-    const p = findOpenTile();
-    if (dist(p.x, p.y, cx, cy) < 6 * TILE) continue;
-    state.entities.push(makeOrc(p.x, p.y));
-  }
-  for (let i = 0; i < CONFIG.NUM_GUARDS; i++) {
-    const p = findOpenTile();
-    state.entities.push(makeGuard(p.x, p.y));
-  }
+  // Horses + pickups scattered across the whole world. Hostiles live in
+  // js/world/enemy_scatter.js so biome weighting can steer where they
+  // appear.
   for (let i = 0; i < CONFIG.NUM_HORSES; i++) {
     const p = findOpenRoadTile();
     state.entities.push(makeHorse(p.x, p.y));

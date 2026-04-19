@@ -24,7 +24,8 @@ function tileAt(px, py) {
 }
 
 function isSolidTile(t) {
-  return t === TILES.BUILDING || t === TILES.WATER || t === TILES.WALL;
+  return t === TILES.BUILDING || t === TILES.WATER || t === TILES.WALL
+      || t === TILES.MOUNTAIN || t === TILES.DUNGEON_WALL || t === TILES.CHASM;
 }
 
 function isSolidAt(px, py) { return isSolidTile(tileAt(px, py)); }

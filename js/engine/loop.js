@@ -64,7 +64,6 @@ function draw() {
   drawMap(ctx);
   drawEntities(ctx);
   drawQuestCompass(ctx);
-  if (state.inputMode === 'overworld') drawOverworld(ctx);
   updateHUD();
 }
 
@@ -101,7 +100,7 @@ function boot() {
   bindSaveHooks();
   bindEncounterListeners();
   resetRun();
-  showClassPicker();
+  state.started = true;
 
   _last = performance.now() / 1000;
   requestAnimationFrame(loop);

@@ -12,6 +12,10 @@ W.npcs["aethelrun-smith"] = {
   "spawn_pos": {
     "x": 16,
     "y": 25
+  },
+  "world_pos": {
+    "x": 68,
+    "y": 155
   }
 };
 W.npcs["bard-iii"] = {
@@ -26,6 +30,10 @@ W.npcs["bard-iii"] = {
   "spawn_pos": {
     "x": 24,
     "y": 24
+  },
+  "world_pos": {
+    "x": 284,
+    "y": 42
   }
 };
 W.npcs["barliman-butterbur-ii"] = {
@@ -40,6 +48,10 @@ W.npcs["barliman-butterbur-ii"] = {
   "spawn_pos": {
     "x": 20,
     "y": 20
+  },
+  "world_pos": {
+    "x": 62,
+    "y": 48
   }
 };
 W.npcs["culunedhel"] = {
@@ -54,6 +66,10 @@ W.npcs["culunedhel"] = {
   "spawn_pos": {
     "x": 16,
     "y": 25
+  },
+  "world_pos": {
+    "x": 120,
+    "y": 45
   }
 };
 W.npcs["elrohir"] = {
@@ -68,6 +84,10 @@ W.npcs["elrohir"] = {
   "spawn_pos": {
     "x": 22,
     "y": 23
+  },
+  "world_pos": {
+    "x": 126,
+    "y": 43
   }
 };
 W.npcs["eomers-reeve"] = {
@@ -82,6 +102,10 @@ W.npcs["eomers-reeve"] = {
   "spawn_pos": {
     "x": 22,
     "y": 23
+  },
+  "world_pos": {
+    "x": 74,
+    "y": 153
   }
 };
 W.npcs["erestor-the-younger"] = {
@@ -96,6 +120,10 @@ W.npcs["erestor-the-younger"] = {
   "spawn_pos": {
     "x": 16,
     "y": 23
+  },
+  "world_pos": {
+    "x": 120,
+    "y": 43
   }
 };
 W.npcs["faramirs-steward"] = {
@@ -110,6 +138,10 @@ W.npcs["faramirs-steward"] = {
   "spawn_pos": {
     "x": 24,
     "y": 24
+  },
+  "world_pos": {
+    "x": 176,
+    "y": 164
   }
 };
 W.npcs["goldberry"] = {
@@ -124,6 +156,10 @@ W.npcs["goldberry"] = {
   "spawn_pos": {
     "x": 24,
     "y": 24
+  },
+  "world_pos": {
+    "x": 69,
+    "y": 70
   }
 };
 W.npcs["haldirs-successor"] = {
@@ -138,6 +174,10 @@ W.npcs["haldirs-successor"] = {
   "spawn_pos": {
     "x": 24,
     "y": 24
+  },
+  "world_pos": {
+    "x": 158,
+    "y": 74
   }
 };
 W.npcs["hildwyn-hearth-warden"] = {
@@ -152,6 +192,10 @@ W.npcs["hildwyn-hearth-warden"] = {
   "spawn_pos": {
     "x": 28,
     "y": 23
+  },
+  "world_pos": {
+    "x": 80,
+    "y": 153
   }
 };
 W.npcs["leofric-stablemaster"] = {
@@ -166,6 +210,10 @@ W.npcs["leofric-stablemaster"] = {
   "spawn_pos": {
     "x": 16,
     "y": 23
+  },
+  "world_pos": {
+    "x": 68,
+    "y": 153
   }
 };
 W.npcs["lindir"] = {
@@ -180,6 +228,10 @@ W.npcs["lindir"] = {
   "spawn_pos": {
     "x": 28,
     "y": 23
+  },
+  "world_pos": {
+    "x": 132,
+    "y": 43
   }
 };
 W.npcs["miriel-vardameldo"] = {
@@ -194,6 +246,10 @@ W.npcs["miriel-vardameldo"] = {
   "spawn_pos": {
     "x": 22,
     "y": 25
+  },
+  "world_pos": {
+    "x": 126,
+    "y": 45
   }
 };
 W.npcs["old-willowbark"] = {
@@ -208,6 +264,10 @@ W.npcs["old-willowbark"] = {
   "spawn_pos": {
     "x": 17,
     "y": 18
+  },
+  "world_pos": {
+    "x": 59,
+    "y": 46
   }
 };
 W.npcs["oswin-scout"] = {
@@ -222,6 +282,10 @@ W.npcs["oswin-scout"] = {
   "spawn_pos": {
     "x": 28,
     "y": 25
+  },
+  "world_pos": {
+    "x": 80,
+    "y": 155
   }
 };
 W.npcs["rosie-cotton-the-younger"] = {
@@ -236,6 +300,10 @@ W.npcs["rosie-cotton-the-younger"] = {
   "spawn_pos": {
     "x": 28,
     "y": 22
+  },
+  "world_pos": {
+    "x": 38,
+    "y": 42
   }
 };
 W.npcs["sam-gamgee-the-younger"] = {
@@ -250,6 +318,10 @@ W.npcs["sam-gamgee-the-younger"] = {
   "spawn_pos": {
     "x": 22,
     "y": 21
+  },
+  "world_pos": {
+    "x": 32,
+    "y": 41
   }
 };
 W.npcs["thorin-iv"] = {
@@ -264,6 +336,10 @@ W.npcs["thorin-iv"] = {
   "spawn_pos": {
     "x": 24,
     "y": 24
+  },
+  "world_pos": {
+    "x": 115,
+    "y": 77
   }
 };
 W.npcs["tolman-smallburrow"] = {
@@ -278,6 +354,10 @@ W.npcs["tolman-smallburrow"] = {
   "spawn_pos": {
     "x": 18,
     "y": 22
+  },
+  "world_pos": {
+    "x": 28,
+    "y": 42
   }
 };
 W.npcs["warden-of-morannon"] = {
@@ -292,5 +372,9 @@ W.npcs["warden-of-morannon"] = {
   "spawn_pos": {
     "x": 24,
     "y": 24
+  },
+  "world_pos": {
+    "x": 248,
+    "y": 156
   }
 };

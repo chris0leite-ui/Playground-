@@ -9,24 +9,25 @@ const path = require('path');
 
 const { parseFrontmatter } = require('./build/parse_frontmatter');
 const { SCHEMAS, validateRecord } = require('./build/schemas');
-const { parseTilemap } = require('./build/parse_tilemap');
 const { parseDialogueBody } = require('./build/parse_dialogue');
 const { parseQuestBody } = require('./build/parse_quest');
 const { validateCrossRefs } = require('./build/validators');
 const { emitManifest, emitShard } = require('./build/emit');
+const { decorateWorldPositions, reportPlacement } = require('./build/placement');
 
 const CONTENT = path.join(__dirname, 'content');
 const WORLD_OUT = path.join(__dirname, 'js', 'world');
-const SCHEMA_VERSION = 1;
+const SCHEMA_VERSION = 2;
 
 const store = {
-  regions: {}, tilemaps: {}, settlements: {}, buildings: {}, npcs: {},
-  dialogues: {}, quests: {}, items: {}, factions: {}, classes: {},
+  regions: {}, settlements: {}, buildings: {}, npcs: {},
+  dialogues: {}, quests: {}, items: {}, factions: {},
   arcs: {}, encounters: {}, overworlds: {},
 };
 
 const args = process.argv.slice(2);
 const CHECK_ONLY = args.includes('--check');
+const PLACEMENT_ONLY = args.includes('--check-placement');
 const VERBOSE = args.includes('--verbose');
 
 function main() {
@@ -35,11 +36,13 @@ function main() {
   } else {
     walk(CONTENT);
   }
+  decorateWorldPositions(store);
   const errors = validateCrossRefs(store);
   if (errors.length) {
     for (const err of errors) console.error('[build] cross-ref:', err);
     process.exit(1);
   }
+  if (PLACEMENT_ONLY) { reportPlacement(store); return; }
   if (CHECK_ONLY) { console.log('[build] --check: ok'); return; }
   fs.mkdirSync(WORLD_OUT, { recursive: true });
   fs.writeFileSync(path.join(WORLD_OUT, '_manifest.js'), emitManifest(SCHEMA_VERSION));
@@ -51,6 +54,8 @@ function main() {
   }
   console.log('[build] wrote', Object.keys(SCHEMAS).length + 1, 'shards to js/world/');
 }
+
+// decorateWorldPositions + reportPlacement live in build/placement.js.
 
 function walk(dir) {
   for (const name of fs.readdirSync(dir)) {
@@ -74,14 +79,11 @@ function ingest(filename) {
   validateRecord(type, frontmatter, filename);
   const record = frontmatter;
   if (type === 'region') {
-    // Optional adjacent map.md in same folder is ingested as tilemap below.
-    if (record.tilemap && record.tilemap.startsWith('./')) {
-      record.tilemap = record.id; // reference the tilemap shard by region-id
-    }
+    // tilemap / neighbors are vestigial now that the world is unified;
+    // drop them if present so they don't leak into the emitted shard.
+    delete record.tilemap;
+    delete record.neighbors;
     store.regions[record.id] = record;
-  } else if (type === 'tilemap') {
-    const parsed = parseTilemap(body, record, filename);
-    store.tilemaps[record.id] = Object.assign({ id: record.id }, parsed);
   } else if (type === 'dialogue') {
     const parsed = parseDialogueBody(body, filename);
     store.dialogues[record.id] = Object.assign({ id: record.id, speaker: record.speaker }, parsed);
@@ -106,15 +108,11 @@ function ingest(filename) {
   }
 }
 
-function pluralOf(type) {
-  return type === 'class' ? 'classes' : type + 's';
-}
+function pluralOf(type) { return type + 's'; }
 
 function typeFromPath(filename) {
   const rel = path.relative(CONTENT, filename).split(path.sep);
-  // regions/<id>/region.md
   if (rel[0] === 'regions' && rel[2] === 'region.md') return 'region';
-  if (rel[0] === 'regions' && rel[2] === 'map.md') return 'tilemap';
   if (rel[0] === 'regions') {
     const sub = rel[2];
     const singular = { settlements: 'settlement', buildings: 'building',
@@ -123,7 +121,6 @@ function typeFromPath(filename) {
     return singular || null;
   }
   if (rel[0] === 'factions') return 'faction';
-  if (rel[0] === 'classes') return 'class';
   if (rel[0] === 'items') return 'item';
   if (rel[0] === 'arcs') return 'arc';
   if (rel[0] === 'overworld.md' || rel.includes('overworld.md')) return 'overworld';

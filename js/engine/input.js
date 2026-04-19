@@ -1,6 +1,6 @@
 // Entry + keyboard input. Touch (joystick + action buttons) lives in
 // engine/input_touch.js. Input is routed by state.inputMode:
-// 'world' | 'dialogue' | 'menu' | 'overworld'.
+// 'world' | 'dialogue' | 'menu'.
 
 function bindInput() {
   window.addEventListener('keydown', onKeyDown);
@@ -8,25 +8,11 @@ function bindInput() {
 
   bindStick();
   bindActionButtons();
-  bindCanvasClick();
 
   document.getElementById('pause-btn').addEventListener('click', togglePause);
 
   // Prevent context menu from long-press on mobile.
   window.addEventListener('contextmenu', (e) => e.preventDefault());
-}
-
-function bindCanvasClick() {
-  const c = state.canvas;
-  c.addEventListener('mousedown', (e) => {
-    if (state.inputMode === 'overworld') overworldClick(e.clientX, e.clientY);
-  });
-  c.addEventListener('touchstart', (e) => {
-    if (state.inputMode !== 'overworld') return;
-    const t = e.changedTouches[0];
-    overworldClick(t.clientX, t.clientY);
-    e.preventDefault();
-  }, { passive: false });
 }
 
 function onKeyDown(e) {
@@ -45,25 +31,12 @@ function onKeyDown(e) {
     return;
   }
 
-  // Overworld mode: Esc or M closes.
-  if (state.inputMode === 'overworld') {
-    if (k === 'escape' || k === 'm') { closeOverworld(); e.preventDefault(); return; }
-    return;
-  }
-
   // Talk: 't' opens the nearest NPC's dialogue (within TALK_RANGE). Falls
   // back to the debug fixture when no NPC is nearby — useful before content.
   if (k === 't' && state.started && !state.paused && !state.gameOver) {
     const target = findNearestNpc(80);
     if (target && target.dialogueId) openDialogue(target.dialogueId);
     else openDialogue('__test__');
-    e.preventDefault();
-    return;
-  }
-
-  // Open the overworld map.
-  if (k === 'm' && state.started && !state.paused && !state.gameOver) {
-    openOverworld();
     e.preventDefault();
     return;
   }
