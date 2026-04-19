@@ -17,10 +17,17 @@ function toggleOverworld() {
 }
 
 function overworldMap() {
-  return (window.W && window.W.overworld) || {
-    bg_color: '#0a0a10',
-    regions: [{ id: 'minas-tirith', x: 8, y: 8 }],
-  };
+  const ow = window.W && window.W.overworld;
+  if (ow && Array.isArray(ow.regions) && ow.regions.length) return ow;
+  // Fallback: synthesize from W.regions + the hardcoded Minas Tirith so
+  // the map is still useful if the overworld shard failed to load.
+  const regions = [{ id: 'minas-tirith', x: 12, y: 13 }];
+  const wr = (window.W && window.W.regions) || {};
+  for (const id in wr) {
+    const pos = wr[id] && wr[id].overworld_pos;
+    if (pos) regions.push({ id, x: pos.x, y: pos.y });
+  }
+  return { bg_color: '#0a0a16', regions };
 }
 
 function overworldScreen(r) {
@@ -51,9 +58,11 @@ function drawOverworld(ctx) {
     ctx.fill();
     ctx.textAlign = 'left';
     ctx.fillStyle = '#fff';
-    const regionDef = (window.W && window.W.regions && window.W.regions[r.id])
-      || state.world.regions[r.id];
-    const name = regionDef ? (regionDef.name || regionDef.id) : r.id;
+    const content = window.W && window.W.regions && window.W.regions[r.id];
+    const runtime = state.world.regions[r.id];
+    const name = (content && content.name)
+      || (runtime && runtime.def && runtime.def.name)
+      || (runtime && runtime.id) || r.id;
     ctx.fillText(unlocked ? name : '???', x + 16, y);
   }
 

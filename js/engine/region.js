@@ -80,8 +80,10 @@ function transitionToRegion(neighborId, fromDir, p) {
 function initDefaultRegion() {
   initMap(); // fills state.map with the procedural city
   const region = makeRegion('minas-tirith', MAP.W, MAP.H, state.map, {
+    name: 'Minas Tirith',
     spawn_point: { x: (MAP.W / 2) * TILE, y: (MAP.H / 2) * TILE },
-    neighbors: {},
+    neighbors: { west: 'rohan', east: 'gondor-south' },
+    overworld_pos: { x: 12, y: 13 },
   });
   state.world.regions[region.id] = region;
   loadRegion(region.id);

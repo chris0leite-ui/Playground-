@@ -39,4 +39,19 @@ function registerContentRegions() {
       }
     }
   }
+  // Wire Minas Tirith (runtime-only region) into the neighbour graph so
+  // walking east/west out of the city enters the content regions.
+  const mt = state.world.regions['minas-tirith'];
+  if (mt) {
+    const gs = state.world.regions['gondor-south'];
+    if (gs) gs.def.neighbors = { ...(gs.def.neighbors || {}), west: 'minas-tirith' };
+    const rh = state.world.regions['rohan'];
+    if (rh) rh.def.neighbors = { ...(rh.def.neighbors || {}), east: 'minas-tirith' };
+  }
+  // And expose it on the overworld map.
+  const ow = window.W && window.W.overworld;
+  if (ow && Array.isArray(ow.regions)
+      && !ow.regions.some((r) => r.id === 'minas-tirith')) {
+    ow.regions.push({ id: 'minas-tirith', x: 12, y: 13 });
+  }
 }
