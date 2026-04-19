@@ -10,6 +10,7 @@ function makePlayer(x, y) {
     attackSwing: 0,
     onHorse: null,
     gold: 0,
+    stealth: 0,   // 0..1 — raised by class (Ranger/Hobbit) via signature_ability
   });
 }
 

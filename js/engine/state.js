@@ -16,7 +16,7 @@ const state = {
   camera: { x: 0, y: 0 },
 
   keys: {},
-  edge: { attack: false, mount: false }, // one-shot edge triggers
+  edge: { attack: false, mount: false, shoot: false }, // one-shot edge triggers
   stick: { active: false, dx: 0, dy: 0, id: null, cx: 0, cy: 0 },
 
   // Input context. Anything other than 'world' freezes player + entity

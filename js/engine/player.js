@@ -33,7 +33,11 @@ function updatePlayer(dt) {
 
   if (state.edge.attack) {
     state.edge.attack = false;
-    tryAttack();
+    tryMelee(p);
+  }
+  if (state.edge.shoot) {
+    state.edge.shoot = false;
+    tryShoot(p);
   }
   if (state.edge.mount) {
     state.edge.mount = false;
@@ -63,38 +67,6 @@ function tryMove(e, dx, dy) {
   // Clamp to region bounds.
   e.x = clamp(e.x, halfW + 1, regionW() * TILE - halfW - 1);
   e.y = clamp(e.y, halfH + 1, regionH() * TILE - halfH - 1);
-}
-
-function tryAttack() {
-  const p = state.player;
-  if (p.attackTimer > 0) return;
-  p.attackTimer = CONFIG.PLAYER_ATTACK_COOLDOWN;
-  p.attackSwing = 0.22;
-
-  const range = CONFIG.PLAYER_ATTACK_RANGE;
-  const fx = p.x + Math.cos(p.angle) * range * 0.5;
-  const fy = p.y + Math.sin(p.angle) * range * 0.5;
-
-  let killed = false;
-  for (const e of state.entities) {
-    if (e === p || e.type === 'pickup' || e === p.onHorse) continue;
-    if (!('hp' in e)) continue;
-    if (e.hp <= 0) continue;
-    const d = dist(e.x, e.y, fx, fy);
-    if (d < range) {
-      e.hp -= CONFIG.PLAYER_ATTACK_DAMAGE;
-      e.hurtFlash = 0.15;
-      // Small knockback.
-      const ang = Math.atan2(e.y - p.y, e.x - p.x);
-      e.x += Math.cos(ang) * 4;
-      e.y += Math.sin(ang) * 4;
-      if (e.hp <= 0) {
-        onEnemyKilled(e);
-        killed = true;
-      }
-    }
-  }
-  if (killed) state.shake = Math.min(6, state.shake + 3);
 }
 
 function onEnemyKilled(e) {

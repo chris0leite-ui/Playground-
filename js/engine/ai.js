@@ -34,7 +34,11 @@ function updateHostile(e, dt, isGuard) {
 
   if (e.attackTimer > 0) e.attackTimer -= dt;
 
-  if (active && d < e.aggroRange) {
+  // Stealth reduces effective aggro range. 0 = no effect; 1 = invisible.
+  const stealth = p.stealth || 0;
+  const effAggro = e.aggroRange * (1 - stealth * 0.5);
+
+  if (active && d < effAggro) {
     const ang = Math.atan2(p.y - e.y, p.x - e.x);
     e.angle = ang;
     if (d > e.attackRange - 2) {
