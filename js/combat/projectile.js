@@ -39,7 +39,8 @@ function updateProjectile(dt, p) {
   for (const e of state.entities) {
     if (e === p) continue;
     if (!('hp' in e) || e.hp <= 0) continue;
-    if (e.type === 'horse' || e.type === 'eagle' || e.type === 'warg' || e.type === 'mumak') continue;
+    if (e.type === 'horse' || e.type === 'eagle' || e.type === 'warg' || e.type === 'mumak'
+        || e.type === 'shadowfax' || e.type === 'ent' || e.type === 'fellBeast') continue;
     if (_isPlayerSide(e) === p.ownerIsPlayerSide) continue;
     const dx = e.x - p.x, dy = e.y - p.y;
     if (dx * dx + dy * dy < (10 + e.w / 2) * (10 + e.w / 2)) {
