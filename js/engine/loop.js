@@ -64,6 +64,7 @@ function draw() {
   drawMap(ctx);
   drawEntities(ctx);
   drawQuestCompass(ctx);
+  if (typeof drawMinimap === 'function') drawMinimap(ctx);
   updateHUD();
 }
 
@@ -99,6 +100,7 @@ function boot() {
   bindQuestListeners();
   bindSaveHooks();
   bindEncounterListeners();
+  if (typeof bindMinimapTaps === 'function') bindMinimapTaps();
   resetRun();
   state.started = true;
 
