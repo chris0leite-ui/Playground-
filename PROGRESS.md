@@ -4,10 +4,22 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 ## Aktueller Stand
 
-- **Lektion:** 00 Einstufung
-- **Erledigt:** Block A (Ü1–Ü3), Block B (Ü4–Ü6)
-- **Nächstes Häppchen:** Einstufung Block C (Ü7–Ü9), danach Tempo festlegen und Lektion 01 starten
-- **Tempo für Phase 1:** offen, wird nach der Einstufung festgelegt
+- **Lektion:** 01 Namen und Objekte
+- **Erledigt:** Einstufung (Ü1–Ü9)
+- **Nächstes Häppchen:** 1a (Ü1–Ü3). Ü1 ist identisch mit Einstufung Ü2 und dient als Aufwärmen.
+
+### Tempo nach Einstufung
+
+Muster: Struktur lesen klappt gut (Comprehension, Klasse, Polars). Alle Fehler kommen aus dem R-Denkmodell.
+
+| Lektion | Tempo | Grund |
+|---|---|---|
+| 01 Namen und Objekte | **gründlich** | Ü2 und Ü8 falsch: Referenzsemantik unbekannt |
+| 02 Datenstrukturen | **gründlich bei R-Fallen** | Ü1 (negative Indizes, Slices), Ü6 (Liste ≠ Vektor) |
+| 03 Comprehensions | zügig | Ü4 auf Anhieb richtig |
+| 04 Funktionen | mittel | Ü5: Positionsargumente; Defaults kommen schon in 01 |
+| 06 Klassen | zügig bei Grundlagen | Ü7 inkl. `self` und Verkettung richtig |
+| Phase 3 Polars | zügig | Ü9: dplyr-Wissen überträgt sich sehr gut |
 
 ## Wiederholungskarten
 
@@ -21,6 +33,8 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | Was gibt `d.get("x", "fehlt")` zurück, wenn `"x"` nicht im dict ist? Und `d["x"]`? | 1 | 2026-11-21 |
 | Was ergibt `[1, 2, 3] * 2` in Python? Wie bekommt man `[2, 4, 6]`? | 1 | 2026-11-20 |
 | `def scale(x, factor=2, offset=0)`: Welcher Parameter bekommt die `10` bei `scale(3, 10)`? | 1 | 2026-11-21 |
+| Warum braucht `df.group_by(...).agg(...)` in Polars oft ein `.sort(...)` danach? | 1 | 2026-11-22 |
+| Funktion oder Methode: Was ist der Unterschied, woran erkennt man es beim Lesen? | 1 | 2026-11-22 |
 
 ## Stolpersteine
 
@@ -32,6 +46,8 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - **2026-11-19, Ü3:** zweites Argument von `.get()` unbekannt (geraten: „leer“).
 - **2026-11-19, Ü5:** `scale(3, 10)` → 16 statt 30. Zweites Positionsargument `offset` statt `factor` zugeordnet.
 - **2026-11-19, Ü6:** `[1, 2, 3] * 2` als vektorisierte Multiplikation gelesen (R-Vektor). Liste wird aber wiederholt.
+- **2026-11-19, Ü8:** Veränderlicher Default `bucket=[]`: erwartet `['a']`, `['b']`, tatsächlich `['a']`, `['a', 'b']`. → Lektion 01, Häppchen 1d.
+- **2026-11-19, Ü8:** `add_item` als „Methode“ bezeichnet. Es ist eine Funktion. Methode = Funktion an einem Objekt, `obj.methode()`.
 
 ## Beobachtungen
 
@@ -54,3 +70,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-19 | PyTorch gestrichen, Phase 5 Stromhandel ergänzt, `main` angelegt | |
 | 2026-11-19 | Einstufung Block A: Ü1 und Ü3 teilweise richtig, Ü2 falsch | R-Fallen bei `x[-1]`, Slices, `b = a` |
 | 2026-11-19 | Einstufung Block B: Ü4 richtig, Ü5 zwei von drei, Ü6 falsch | Positionsargumente, Liste ≠ Vektor |
+| 2026-11-19 | Einstufung Block C: Ü7 und Ü9 richtig, Ü8 falsch. Einstufung abgeschlossen | Tempo festgelegt, siehe oben |
