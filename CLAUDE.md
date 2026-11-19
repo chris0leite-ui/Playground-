@@ -85,9 +85,12 @@ Fälligkeitsdatum immer mitpflegen. Neue Karten entstehen aus Stolpersteinen und
 
 ## Git
 
-- Standard-Branch ist `main`. Neue Sessions starten von dort.
-- Am Sessionende den Fortschritt auf `main` pushen, sonst findet die nächste Session ihn nicht.
-  Das ist ausdrücklich gewünscht. Den Session-Branch ebenfalls pushen.
+- Der Lernstand liegt auf **`main`**. Am Sessionende den Fortschritt auf `main` pushen, sonst
+  findet die nächste Session ihn nicht. Das ist ausdrücklich gewünscht. Den Session-Branch ebenfalls pushen.
+- Der GitHub-Standard-Branch ist (noch) das Spiel. Neue Sessions starten daher oft dort.
+  Beginnt eine Session mit „Python lernen: weiter auf main“ o. Ä., zuerst
+  `git fetch origin main && git checkout -B <session-branch> origin/main` ausführen, dann diese
+  Datei auf `main` lesen und normal mit dem Sessionstart weitermachen.
 
 ## Hinweis zur Repo-Historie
 
