@@ -23,7 +23,7 @@ Du kannst jederzeit eigenen Code mitbringen: „Erklär mir, was diese Funktion 
 
 | # | Lektion | Status |
 |---|---|---|
-| 00 | [Einstufung: Was kann ich schon?](lektionen/00_einstufung/uebungen.md) | ⬜ |
+| 00 | [Einstufung: Was kann ich schon?](lektionen/00_einstufung/uebungen.md) | 🟡 |
 | 01 | [Namen und Objekte: Warum `b = a` keine Kopie ist](lektionen/01_namen_und_objekte/) | ⬜ |
 | 02 | Datenstrukturen: list, tuple, dict, set (und wo R-Vektoren geblieben sind) | ⬜ |
 | 03 | Kontrollfluss und Comprehensions | ⬜ |
@@ -47,21 +47,24 @@ Du kannst jederzeit eigenen Code mitbringen: „Erklär mir, was diese Funktion 
 | 11 | In Expressions denken: `select`, `with_columns`, `filter`, `group_by`/`agg`, `when`/`then` | ⬜ |
 | 12 | Lazy API: `LazyFrame`, `scan_*`, `collect`, Query-Plan lesen | ⬜ |
 | 13 | Joins, Reshaping, Fensterfunktionen (`over`) | ⬜ |
-| 14 | Polars in ML-Pipelines: Feature Engineering, Übergabe an Modelle | ⬜ |
+| 14 | Zeitreihen: Datetime, Zeitzonen und Zeitumstellung, `group_by_dynamic`, `join_asof` | ⬜ |
+| 15 | Polars in ML-Pipelines: Feature Engineering, Übergabe an Modelle | ⬜ |
 
 ### Phase 4: Projekte lesen
 
 | # | Lektion | Status |
 |---|---|---|
-| 15 | Projektaufbau: `pyproject.toml`, `src`-Layout, Einstiegspunkte, Config | ⬜ |
-| 16 | Sich in fremdem Code orientieren: Aufrufketten verfolgen | ⬜ |
-| 17 | Tests lesen (pytest) | ⬜ |
-| 18 | KI-generierten Code reviewen: typische Fehlerbilder | ⬜ |
+| 16 | Projektaufbau: `pyproject.toml`, `src`-Layout, Einstiegspunkte, Config | ⬜ |
+| 17 | Sich in fremdem Code orientieren: Aufrufketten verfolgen | ⬜ |
+| 18 | Tests lesen (pytest) | ⬜ |
+| 19 | KI-generierten Code reviewen: typische Fehlerbilder | ⬜ |
 
-### Später
+### Phase 5: Anwendung. ML-Projekt zum kurzfristigen Stromhandel
 
-- PyTorch: Tensoren, `Dataset`/`DataLoader`, `nn.Module`, Trainingsschleife
-- NumPy und scikit-learn nach Bedarf
+Ein durchgängiges Projekt aus deinem Berufsfeld, zum Beispiel eine Preisprognose für Day-Ahead
+oder Intraday: Daten laden, Features bauen (Last, Wind- und PV-Prognosen, Kalender), Modell
+trainieren, auswerten. Den genauen Zuschnitt legen wir gemeinsam fest, wenn es so weit ist.
+Das Übungsprojekt aus Phase 2–4 spielt schon in dieser Domäne (mit synthetischen Daten).
 
 Lektionen werden erst kurz vor ihrem Einsatz geschrieben, damit sie zu deinem Stand passen.
 

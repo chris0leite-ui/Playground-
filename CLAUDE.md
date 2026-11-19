@@ -9,7 +9,10 @@ Code schreiben zu lernen ist ausdrücklich *nicht* das Ziel.
 - Data Science Team Lead in einem ML-Team. Das Team arbeitet viel mit KI-unterstütztem Coding.
 - Schreibt selbst wenig Code, will ihn aber verstehen und reviewen können.
 - Gute R-Erfahrung (tidyverse/dplyr annehmen), Grundkenntnisse in Python.
-- Stack: **zuerst Polars**. Später PyTorch, dann nach Bedarf NumPy oder scikit-learn.
+- Stack: **Polars**. Kein PyTorch (bewusst gestrichen). Für Modelle später nach Bedarf scikit-learn o. Ä.
+- Berufsfeld: **kurzfristiger Stromhandel** (Day-Ahead, Intraday). Beispiele, Übungsprojekt und
+  Abschlussprojekt (Phase 5) in dieser Domäne ansiedeln, z. B. Viertelstundenpreise, Last,
+  Wind-/PV-Prognosen, Zeitumstellung. Nur synthetische Daten.
 - Führt keinen Code lokal aus. **Claude führt allen Code hier aus** und zeigt die echte Ausgabe.
 - Übt möglichst täglich, kurz und ohne festen Plan. Eine Session dauert etwa 10–20 Minuten.
 - Sprache: Erklärungen auf Deutsch, Code und Bezeichner auf Englisch.
@@ -66,7 +69,8 @@ Fälligkeitsdatum immer mitpflegen. Neue Karten entstehen aus Stolpersteinen und
   jeder Python-Block ist eine Übung, fortlaufend nummeriert), `loesungen.md`.
 - `cheatsheets/`: R ↔ Python, dplyr ↔ Polars.
 - `tools/snippet.py`: führt Übungen genau so aus, wie sie in der Datei stehen.
-- `uebungsprojekt/` (geplant ab Phase 2): realistisches Polars-ML-Projekt zum Lesen.
+- `uebungsprojekt/` (geplant ab Phase 2): realistisches Polars-ML-Projekt zum Lesen,
+  angesiedelt im kurzfristigen Stromhandel, mit synthetischen Daten.
 
 ## Neue Lektionen schreiben
 
@@ -75,6 +79,12 @@ Fälligkeitsdatum immer mitpflegen. Neue Karten entstehen aus Stolpersteinen und
   vor dem Committen `python3 tools/snippet.py <datei> --all` ausführen.
 - Lösungen aus der echten Ausgabe übernehmen, nie aus dem Gedächtnis.
 - Dateien kurz halten (etwa 150 Zeilen pro Datei).
+
+## Git
+
+- Standard-Branch ist `main`. Neue Sessions starten von dort.
+- Am Sessionende den Fortschritt auf `main` pushen, sonst findet die nächste Session ihn nicht.
+  Das ist ausdrücklich gewünscht. Den Session-Branch ebenfalls pushen.
 
 ## Hinweis zur Repo-Historie
 
