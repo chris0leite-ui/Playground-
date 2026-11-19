@@ -6,8 +6,8 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 - **Lektion:** 01 Namen und Objekte
 - **Erledigt:** Einstufung (Ü1–Ü9)
-- **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify)
-- **Nächstes Häppchen:** 1b läuft. Ü4–Ü5 und Transfer erledigt. Offen: Ü6–Ü7 (Tupel mit Liste).
+- **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer)
+- **Nächstes Häppchen:** 1c (Ü8–Ü10): Verändert es, oder gibt es etwas Neues zurück?
 
 ### Tempo nach Einstufung
 
@@ -39,6 +39,7 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | `x = 10`, `y = x`, `y = y + 1`: Was ist `x`? Warum anders als bei `b.append(4)`? | 1 | 2026-11-21 |
 | Bei Listen: Was ist der Unterschied zwischen `a = a + [3]` und `a += [3]`? Und bei Zahlen? | 1 | 2026-11-20 |
 | Eine Funktion endet. Was verschwindet: der lokale Name, das Objekt, oder beides? | 1 | 2026-11-21 |
+| `t = ("a", [1])`: Was passiert bei `t[1].append(2)`, was bei `t[0] = "b"`? | 1 | 2026-11-22 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
@@ -54,6 +55,8 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - **2026-11-19, Ü8:** Veränderlicher Default `bucket=[]`: erwartet `['a']`, `['b']`, tatsächlich `['a']`, `['a', 'b']`. → Lektion 01, Häppchen 1d.
 - **2026-11-19, L01 Ü2:** `11 11` erwartet. `y = x` richtig als Referenz erkannt, aber `y = y + 1` als Änderung des gemeinsamen Objekts gelesen. Tatsächlich: neues Objekt, Etikett umgeklebt.
 - **2026-11-19, L01 Ü5:** `a += [3]` wie `a = a + [3]` erwartet. Richtig geraten, aber nur wegen suggestiver Frage. Bei Listen ist `+=` in-place.
+- **2026-11-19, L01 Ü6:** Tupel als komplett unveränderlich angenommen. Die Liste darin bleibt aber veränderbar.
+- **2026-11-19, L01 Ü7:** Erwartet, dass die verbotene Änderung still ignoriert wird. Python wirft einen `TypeError`.
 - **2026-11-19, Ü8:** `add_item` als „Methode“ bezeichnet. Es ist eine Funktion. Methode = Funktion an einem Objekt, `obj.methode()`.
 
 ## Beobachtungen
@@ -87,3 +90,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-19 | 1a Ü3 (`==` vs. `is`): richtig, sehr klar begründet. Häppchen 1a abgeschlossen | Etiketten-Modell sitzt |
 | 2026-11-19 | 1b Ü4 richtig (sauber begründet), Ü5 geraten | `+=` bei Listen in-place |
 | 2026-11-19 | 1b Transfer (`BASE_FEATURES += extra`): richtig, mit guter Frage zu lokalen Namen | Namen lokal, Objekte nicht |
+| 2026-11-19 | 1b Ü6–Ü7 falsch (Tupel). Häppchen 1b abgeschlossen | Unveränderlich = Plätze fest, Inhalt evtl. veränderbar |
