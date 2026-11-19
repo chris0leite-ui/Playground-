@@ -6,7 +6,7 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 - **Lektion:** 01 Namen und Objekte
 - **Erledigt:** Einstufung (Ü1–Ü9)
-- **Nächstes Häppchen:** 1a läuft. Ü1–Ü2 erledigt. Offen: Modify-Frage (`b = [9, 9]` statt `append`), dann Ü3. Danach 1b.
+- **Nächstes Häppchen:** 1a läuft. Ü1, Ü2 und Modify-Frage erledigt. Offen: Ü3. Danach 1b.
 
 ### Tempo nach Einstufung
 
@@ -63,6 +63,7 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - List Comprehension (Ü4) auf Anhieb richtig gelesen.
 - Denkt mathematisch („affin lineare Funktion“). Mathematische Analogien nutzen.
 - Möchte bei Auflösungen die Aufgabe noch einmal sehen.
+- Sagt „b zeigt auf a“. Präziser: Namen zeigen immer auf Objekte, nie auf andere Namen. Darauf achten.
 
 ## Sessionlog
 
@@ -75,3 +76,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-19 | Einstufung Block C: Ü7 und Ü9 richtig, Ü8 falsch. Einstufung abgeschlossen | Tempo festgelegt, siehe oben |
 | 2026-11-19 | Lernstand auf den Standard-Branch übertragen (Spiel-Branch überschrieben) | Neue Sessions starten jetzt direkt hier |
 | 2026-11-19 | Lektion 01 gestartet, 1a: Ü1 richtig, Ü2 falsch (`11 11`) | Zuweisung vs. Veränderung |
+| 2026-11-19 | 1a Modify (`b = [9, 9]`): richtig | Regel „Zuweisung klebt um“ sitzt |
