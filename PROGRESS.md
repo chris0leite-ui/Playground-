@@ -6,7 +6,8 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 - **Lektion:** 01 Namen und Objekte
 - **Erledigt:** Einstufung (Ü1–Ü9)
-- **Nächstes Häppchen:** 1a läuft. Ü1, Ü2 und Modify-Frage erledigt. Offen: Ü3. Danach 1b.
+- **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify)
+- **Nächstes Häppchen:** 1b (Ü4–Ü7): Veränderlich oder nicht?
 
 ### Tempo nach Einstufung
 
@@ -36,6 +37,7 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | Warum braucht `df.group_by(...).agg(...)` in Polars oft ein `.sort(...)` danach? | 1 | 2026-11-22 |
 | Funktion oder Methode: Was ist der Unterschied, woran erkennt man es beim Lesen? | 1 | 2026-11-22 |
 | `x = 10`, `y = x`, `y = y + 1`: Was ist `x`? Warum anders als bei `b.append(4)`? | 1 | 2026-11-21 |
+| Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
 
@@ -77,3 +79,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-19 | Lernstand auf den Standard-Branch übertragen (Spiel-Branch überschrieben) | Neue Sessions starten jetzt direkt hier |
 | 2026-11-19 | Lektion 01 gestartet, 1a: Ü1 richtig, Ü2 falsch (`11 11`) | Zuweisung vs. Veränderung |
 | 2026-11-19 | 1a Modify (`b = [9, 9]`): richtig | Regel „Zuweisung klebt um“ sitzt |
+| 2026-11-19 | 1a Ü3 (`==` vs. `is`): richtig, sehr klar begründet. Häppchen 1a abgeschlossen | Etiketten-Modell sitzt |
