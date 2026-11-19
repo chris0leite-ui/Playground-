@@ -39,6 +39,9 @@ haben Vorrang vor dem Lernpfad. Vertraulichen Firmencode nie committen.
 Übungen zeigen: Code-Block plus kurze Frage („Was wird ausgegeben?“). Bei der Einstufung
 mehrere Übungen auf einmal zeigen, sonst eine bis zwei.
 
+**Bei der Auflösung immer die Aufgabe (den Code) noch einmal zeigen**, direkt über der echten
+Ausgabe und der Erklärung. So lässt sich alles ohne Scrollen zuordnen (ausdrücklicher Wunsch).
+
 ## Sessionende
 
 - `PROGRESS.md` aktualisieren: Log-Eintrag, nächstes Häppchen, Wiederholungskarten, Stolpersteine.
