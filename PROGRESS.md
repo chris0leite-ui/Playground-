@@ -7,7 +7,7 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 - **Lektion:** 01 Namen und Objekte
 - **Erledigt:** Einstufung (Ü1–Ü9)
 - **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify)
-- **Nächstes Häppchen:** 1b läuft. Ü4–Ü5 erledigt. Offen: Transfer-Frage (`BASE_FEATURES += extra`), dann Ü6–Ü7.
+- **Nächstes Häppchen:** 1b läuft. Ü4–Ü5 und Transfer erledigt. Offen: Ü6–Ü7 (Tupel mit Liste).
 
 ### Tempo nach Einstufung
 
@@ -38,6 +38,7 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | Funktion oder Methode: Was ist der Unterschied, woran erkennt man es beim Lesen? | 1 | 2026-11-22 |
 | `x = 10`, `y = x`, `y = y + 1`: Was ist `x`? Warum anders als bei `b.append(4)`? | 1 | 2026-11-21 |
 | Bei Listen: Was ist der Unterschied zwischen `a = a + [3]` und `a += [3]`? Und bei Zahlen? | 1 | 2026-11-20 |
+| Eine Funktion endet. Was verschwindet: der lokale Name, das Objekt, oder beides? | 1 | 2026-11-21 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
@@ -68,6 +69,7 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - Denkt mathematisch („affin lineare Funktion“). Mathematische Analogien nutzen.
 - Möchte bei Auflösungen die Aufgabe noch einmal sehen.
 - Merkt suggestive Fragen sofort. Hinweise neutral formulieren.
+- Fragt von sich aus nach Gültigkeitsbereichen („features lebt nur in der Funktion“). Namen lokal, Objekte nicht: in 1d vertiefen.
 - Sagt „b zeigt auf a“. Präziser: Namen zeigen immer auf Objekte, nie auf andere Namen. Darauf achten.
 
 ## Sessionlog
@@ -84,3 +86,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-19 | 1a Modify (`b = [9, 9]`): richtig | Regel „Zuweisung klebt um“ sitzt |
 | 2026-11-19 | 1a Ü3 (`==` vs. `is`): richtig, sehr klar begründet. Häppchen 1a abgeschlossen | Etiketten-Modell sitzt |
 | 2026-11-19 | 1b Ü4 richtig (sauber begründet), Ü5 geraten | `+=` bei Listen in-place |
+| 2026-11-19 | 1b Transfer (`BASE_FEATURES += extra`): richtig, mit guter Frage zu lokalen Namen | Namen lokal, Objekte nicht |
