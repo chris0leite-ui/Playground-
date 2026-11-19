@@ -6,7 +6,7 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 - **Lektion:** 01 Namen und Objekte
 - **Erledigt:** Einstufung (Ü1–Ü9)
-- **Nächstes Häppchen:** 1a (Ü1–Ü3). Ü1 ist identisch mit Einstufung Ü2 und dient als Aufwärmen.
+- **Nächstes Häppchen:** 1a läuft. Ü1–Ü2 erledigt. Offen: Modify-Frage (`b = [9, 9]` statt `append`), dann Ü3. Danach 1b.
 
 ### Tempo nach Einstufung
 
@@ -35,6 +35,7 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | `def scale(x, factor=2, offset=0)`: Welcher Parameter bekommt die `10` bei `scale(3, 10)`? | 1 | 2026-11-21 |
 | Warum braucht `df.group_by(...).agg(...)` in Polars oft ein `.sort(...)` danach? | 1 | 2026-11-22 |
 | Funktion oder Methode: Was ist der Unterschied, woran erkennt man es beim Lesen? | 1 | 2026-11-22 |
+| `x = 10`, `y = x`, `y = y + 1`: Was ist `x`? Warum anders als bei `b.append(4)`? | 1 | 2026-11-21 |
 
 ## Stolpersteine
 
@@ -47,6 +48,7 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - **2026-11-19, Ü5:** `scale(3, 10)` → 16 statt 30. Zweites Positionsargument `offset` statt `factor` zugeordnet.
 - **2026-11-19, Ü6:** `[1, 2, 3] * 2` als vektorisierte Multiplikation gelesen (R-Vektor). Liste wird aber wiederholt.
 - **2026-11-19, Ü8:** Veränderlicher Default `bucket=[]`: erwartet `['a']`, `['b']`, tatsächlich `['a']`, `['a', 'b']`. → Lektion 01, Häppchen 1d.
+- **2026-11-19, L01 Ü2:** `11 11` erwartet. `y = x` richtig als Referenz erkannt, aber `y = y + 1` als Änderung des gemeinsamen Objekts gelesen. Tatsächlich: neues Objekt, Etikett umgeklebt.
 - **2026-11-19, Ü8:** `add_item` als „Methode“ bezeichnet. Es ist eine Funktion. Methode = Funktion an einem Objekt, `obj.methode()`.
 
 ## Beobachtungen
@@ -72,3 +74,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-19 | Einstufung Block B: Ü4 richtig, Ü5 zwei von drei, Ü6 falsch | Positionsargumente, Liste ≠ Vektor |
 | 2026-11-19 | Einstufung Block C: Ü7 und Ü9 richtig, Ü8 falsch. Einstufung abgeschlossen | Tempo festgelegt, siehe oben |
 | 2026-11-19 | Lernstand auf den Standard-Branch übertragen (Spiel-Branch überschrieben) | Neue Sessions starten jetzt direkt hier |
+| 2026-11-19 | Lektion 01 gestartet, 1a: Ü1 richtig, Ü2 falsch (`11 11`) | Zuweisung vs. Veränderung |
