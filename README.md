@@ -1,109 +1,76 @@
-# Middle-earth: Streets of Minas Tirith
+# Python lesen lernen
 
-A top-down, GTA-2-style action game set in Gondor. Play a Ranger of the North:
-slay orcs, ride Rohirric steeds, gather gold of Erebor, and try not to draw
-the ire of the Citadel Guard.
+Ein Lernpfad, um Python-Code, besonders ML-Code, lesen und verstehen zu können.
+Tutor: Claude. Methode: **vorhersagen → ausführen → verstehen**.
 
-Pure HTML5 Canvas + vanilla JavaScript. No build step, no npm install, no
-external assets — every sprite is drawn from rectangles and circles.
+## So funktioniert's
 
-## Play
+Starte eine Session und sag zum Beispiel **„Lass uns weitermachen“**. Claude
 
-### On a smartphone (recommended)
+1. fragt 1–3 Wiederholungskarten ab,
+2. zeigt dir ein Stück Code, und du sagst voraus, was passiert,
+3. führt den Code aus und bespricht mit dir, wo deine Vorhersage abwich,
+4. hält deinen Fortschritt in [`PROGRESS.md`](PROGRESS.md) fest.
 
-1. Push this branch to GitHub.
-2. On the repo, go to **Settings → Pages**, set source to this branch
-   (`claude/lotr-gta-game-0ydf5`) with folder `/ (root)`, and save.
-3. Wait a minute for Pages to deploy, then open the provided URL on your
-   phone's browser.
-4. For the best experience, tap the browser's share menu and **Add to Home
-   Screen** — it will launch fullscreen without browser chrome.
+Ein Häppchen dauert 10–15 Minuten. Jeden Tag ein kleines Häppchen bringt mehr als einmal pro Woche drei Stunden.
+Du kannst jederzeit eigenen Code mitbringen: „Erklär mir, was diese Funktion macht.“
 
-### On a desktop
+## Lernpfad
 
-Clone the repo, then either:
+⬜ offen · 🟡 läuft · ✅ abgeschlossen
 
-```
-# Option A: open the file directly (works in most browsers)
-open index.html
+### Phase 1: Fundament. Wie Python denkt
 
-# Option B: serve locally (avoids any file:// quirks)
-python3 -m http.server 8000
-# then visit http://localhost:8000
-```
+| # | Lektion | Status |
+|---|---|---|
+| 00 | [Einstufung: Was kann ich schon?](lektionen/00_einstufung/uebungen.md) | ⬜ |
+| 01 | [Namen und Objekte: Warum `b = a` keine Kopie ist](lektionen/01_namen_und_objekte/) | ⬜ |
+| 02 | Datenstrukturen: list, tuple, dict, set (und wo R-Vektoren geblieben sind) | ⬜ |
+| 03 | Kontrollfluss und Comprehensions | ⬜ |
+| 04 | Funktionen: Argumente, Defaults, `*args`/`**kwargs`, `lambda` | ⬜ |
+| 05 | Fehlermeldungen (Tracebacks) lesen | ⬜ |
 
-## Controls
+### Phase 2: Struktur. Wie Code zusammenhängt
 
-### Touch (phone)
+| # | Lektion | Status |
+|---|---|---|
+| 06 | Klassen und Objekte: `self`, `__init__`, Methoden, Vererbung | ⬜ |
+| 07 | Module, Imports, Pakete | ⬜ |
+| 08 | Type Hints und Dataclasses | ⬜ |
+| 09 | Decorators, Context Manager (`with`), Generatoren | ⬜ |
 
-| Control                         | Action                              |
-|---------------------------------|-------------------------------------|
-| Virtual joystick (bottom-left)  | Move / steer horse                  |
-| Red "Attack" button             | Swing sword                         |
-| Green "Mount" button            | Mount or dismount nearest horse     |
-| Pause icon (top-right)          | Pause / resume                      |
+### Phase 3: Polars
 
-The joystick re-centers wherever you first press in its zone, so you don't
-need to aim your thumb.
+| # | Lektion | Status |
+|---|---|---|
+| 10 | Polars aus dplyr-Sicht: DataFrame, Series, Expressions | ⬜ |
+| 11 | In Expressions denken: `select`, `with_columns`, `filter`, `group_by`/`agg`, `when`/`then` | ⬜ |
+| 12 | Lazy API: `LazyFrame`, `scan_*`, `collect`, Query-Plan lesen | ⬜ |
+| 13 | Joins, Reshaping, Fensterfunktionen (`over`) | ⬜ |
+| 14 | Polars in ML-Pipelines: Feature Engineering, Übergabe an Modelle | ⬜ |
 
-### Keyboard (desktop)
+### Phase 4: Projekte lesen
 
-| Key                | Action                            |
-|--------------------|-----------------------------------|
-| W A S D / Arrows   | Move / steer horse                |
-| Space              | Sword attack                      |
-| E                  | Mount / dismount nearest horse    |
-| P                  | Pause / resume                    |
-| Enter              | Restart after death               |
+| # | Lektion | Status |
+|---|---|---|
+| 15 | Projektaufbau: `pyproject.toml`, `src`-Layout, Einstiegspunkte, Config | ⬜ |
+| 16 | Sich in fremdem Code orientieren: Aufrufketten verfolgen | ⬜ |
+| 17 | Tests lesen (pytest) | ⬜ |
+| 18 | KI-generierten Code reviewen: typische Fehlerbilder | ⬜ |
 
-## Goal
+### Später
 
-- **Slay orcs** — each kill earns +50 Renown.
-- **Gather gold** — Gold of Erebor pickups give +10 gold and +5 Renown.
-- **Eat lembas** — restores health.
-- **Mount steeds** — horses roam the streets; riding doubles your speed.
-- **Avoid guards** — killing a Citadel Guard raises your wanted level
-  (shown as red dots). The more dots, the faster and more aggressive
-  the guards become. Wanted level decays over time if you stay peaceful.
+- PyTorch: Tensoren, `Dataset`/`DataLoader`, `nn.Module`, Trainingsschleife
+- NumPy und scikit-learn nach Bedarf
 
-There are no "missions" — it's a sandbox. Your score is your Renown.
+Lektionen werden erst kurz vor ihrem Einsatz geschrieben, damit sie zu deinem Stand passen.
 
-## Project layout
+## Ordner
 
-```
-index.html          Canvas, HUD, touch overlay, message dialog
-style.css           Fullscreen layout, HUD, touch controls
-js/
-  config.js         Constants, tile enum, color palette
-  util.js           Math helpers, tile lookups
-  state.js          Central mutable game state
-  map.js            Concentric Minas Tirith map generation + tile rendering
-  entities.js       Entity factories + initial spawn
-  input.js          Keyboard + touch joystick + action buttons
-  player.js         Player movement, attack, mount/dismount, wanted decay
-  ai.js             Orc, guard, horse, pickup per-frame updates
-  render.js         Procedural entity sprites
-  hud.js            DOM HUD + message overlay
-  game.js           Main loop, camera, boot
-```
-
-All scripts are classic `<script>` tags in dependency order — no ES modules,
-no bundler, no transpile. Every script shares the global scope.
-
-## Design notes
-
-- **World**: 40x40 tiles, 32 px each. The city is concentric rings with eight
-  radial spoke roads (Minas Tirith-inspired), a wall at the outer ring, the
-  Anduin along the east edge, and a Citadel cluster near the top.
-- **Rendering**: each sprite is a function of rectangles and circles using a
-  locked palette. No image loads, so the game works even opened via
-  `file://` with no server.
-- **Scaling**: the canvas resizes to the viewport on load / resize /
-  orientation change, with `devicePixelRatio` handling for crisp rendering on
-  retina phones.
-- **Input**: keyboard and touch run in parallel — both write into the same
-  `state.stick` / `state.keys` / `state.edge` buffers.
-
-## License
-
-MIT. Do what you like.
+| Pfad | Inhalt |
+|---|---|
+| `lektionen/` | Pro Lektion: `README.md` zum Nachlesen, `uebungen.md`, `loesungen.md` |
+| `cheatsheets/` | [R ↔ Python](cheatsheets/r_vs_python.md), [dplyr ↔ Polars](cheatsheets/dplyr_vs_polars.md) |
+| `tools/snippet.py` | Führt Übungen genau so aus, wie sie in der Datei stehen |
+| `PROGRESS.md` | Stand, Wiederholungskarten, Stolpersteine, Sessionlog |
+| `CLAUDE.md` | Anweisungen an Claude als Tutor |

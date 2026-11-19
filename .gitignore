@@ -1,5 +1,4 @@
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-*.log
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
