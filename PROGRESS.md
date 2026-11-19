@@ -71,3 +71,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-19 | Einstufung Block A: Ü1 und Ü3 teilweise richtig, Ü2 falsch | R-Fallen bei `x[-1]`, Slices, `b = a` |
 | 2026-11-19 | Einstufung Block B: Ü4 richtig, Ü5 zwei von drei, Ü6 falsch | Positionsargumente, Liste ≠ Vektor |
 | 2026-11-19 | Einstufung Block C: Ü7 und Ü9 richtig, Ü8 falsch. Einstufung abgeschlossen | Tempo festgelegt, siehe oben |
+| 2026-11-19 | Lernstand auf den Standard-Branch übertragen (Spiel-Branch überschrieben) | Neue Sessions starten jetzt direkt hier |

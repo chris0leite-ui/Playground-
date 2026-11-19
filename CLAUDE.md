@@ -85,14 +85,8 @@ Fälligkeitsdatum immer mitpflegen. Neue Karten entstehen aus Stolpersteinen und
 
 ## Git
 
-- Der Lernstand liegt auf **`main`**. Am Sessionende den Fortschritt auf `main` pushen, sonst
-  findet die nächste Session ihn nicht. Das ist ausdrücklich gewünscht. Den Session-Branch ebenfalls pushen.
-- Der GitHub-Standard-Branch ist (noch) das Spiel. Neue Sessions starten daher oft dort.
-  Beginnt eine Session mit „Python lernen: weiter auf main“ o. Ä., zuerst
-  `git fetch origin main && git checkout -B <session-branch> origin/main` ausführen, dann diese
-  Datei auf `main` lesen und normal mit dem Sessionstart weitermachen.
-
-## Hinweis zur Repo-Historie
-
-Früher lag hier ein Browser-Spiel. Es liegt weiter auf dem Branch `claude/lotr-gta-game-0ydf5`,
-von dem GitHub Pages ausliefert. Diesen Branch nicht anfassen.
+- Der Lernstand liegt auf dem GitHub-Standard-Branch **`claude/lotr-gta-game-0ydf5`**. Neue Sessions
+  starten automatisch dort. Der Name stammt noch aus der Zeit, als hier ein Browser-Spiel lag.
+  Das Spiel wird nicht mehr gebraucht; sein letzter Stand ist Commit `5c35d6d` in der Historie.
+- Am Sessionende den Fortschritt auf `claude/lotr-gta-game-0ydf5` pushen, sonst findet die nächste
+  Session ihn nicht. Das ist ausdrücklich gewünscht. Den Session-Branch ebenfalls pushen.

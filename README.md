@@ -5,12 +5,7 @@ Tutor: Claude. Methode: **vorhersagen → ausführen → verstehen**.
 
 ## So funktioniert's
 
-Starte eine neue Session in diesem Repo und schreib als erste Nachricht:
-
-> **Python lernen: weiter auf main**
-
-Der Zusatz „auf main“ ist nötig, solange der Standard-Branch auf GitHub noch das Spiel ist.
-Claude
+Starte eine neue Session in diesem Repo und sag einfach **„weiter“**. Claude
 
 1. fragt 1–3 Wiederholungskarten ab,
 2. zeigt dir ein Stück Code, und du sagst voraus, was passiert,
