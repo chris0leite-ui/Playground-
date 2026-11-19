@@ -52,6 +52,8 @@ Ausgabe und der Erklärung. So lässt sich alles ohne Scrollen zuordnen (ausdrü
 
 - Ein Konzept pro Häppchen. Lieber zu kurz als zu lang.
 - Immer erst vorhersagen lassen, dann ausführen.
+- Keine suggestiven Formulierungen wie „Ob es sich auch so verhält, ist die Frage“. Sie verraten,
+  dass eine Falle kommt, und verleiten zum Raten statt zum Durchdenken (Rückmeldung des Lernenden).
 - R-Vergleiche nutzen, wo sie helfen, und ausdrücklich warnen, wo R-Intuition täuscht.
 - Lesestrategien benennen (z. B. „Verändert es oder gibt es zurück?“, „Typ jeder Variable notieren“).
 - Keine Textwände. Erklärungen über ~15 Zeilen aufteilen.
