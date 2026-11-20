@@ -6,8 +6,8 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 - **Lektion:** 01 Namen und Objekte
 - **Erledigt:** Einstufung (Ü1–Ü9)
-- **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify)
-- **Nächstes Häppchen:** 1e (Ü14–Ü15): Bewusst kopieren
+- **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer)
+- **Nächstes Häppchen:** 1f (Ü16–Ü18): Transfer zu Polars. Danach Lektion 01 abschließen
 
 ### Tempo nach Einstufung
 
@@ -44,6 +44,7 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | `name.strip()` steht allein in einer Zeile. Was passiert mit `name`, und warum? | 1 | 2026-11-21 |
 | Warum schreibt man `def f(x, history=None)` statt `history=[]`? Wann wird der Default erzeugt? | 1 | 2026-11-21 |
 | Kann eine Funktion ein übergebenes Objekt außen sichtbar verändern? Und in R? | 1 | 2026-11-21 |
+| `grid2 = grid.copy()`, dann `grid2["lr"].append(0.1)`: Ändert sich `grid`? Und bei `grid2["lr"] = [0.1]`? | 1 | 2026-11-21 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
@@ -61,6 +62,7 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - **2026-11-19, L01 Ü5:** `a += [3]` wie `a = a + [3]` erwartet. Richtig geraten, aber nur wegen suggestiver Frage. Bei Listen ist `+=` in-place.
 - **2026-11-19, L01 Ü6:** Tupel als komplett unveränderlich angenommen. Die Liste darin bleibt aber veränderbar.
 - **2026-11-19, L01 Ü7:** Erwartet, dass die verbotene Änderung still ignoriert wird. Python wirft einen `TypeError`.
+- **2026-11-20, L01 Ü15:** `.copy()` bei verschachteltem Dict als vollständige Kopie erwartet. Flache Kopie: innere Listen bleiben gemeinsam.
 - **2026-11-20, L01 Ü8/Ü9:** Genau vertauscht: `sorted()` als in-place, `.sort()` als Rückgabe gelesen. `None` als Rückgabe unbekannt.
 - **2026-11-20, L01 Ü10:** `name.strip()` ohne Zuweisung als in-place erwartet. Strings sind unveränderlich, Rückgabe verfällt.
 - **2026-11-19, Ü8:** `add_item` als „Methode“ bezeichnet. Es ist eine Funktion. Methode = Funktion an einem Objekt, `obj.methode()`.
@@ -102,3 +104,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-20 | 1c Ü10 falsch (`strip` ohne Zuweisung), Modify Verkettung richtig. Häppchen 1c abgeschlossen | Strings unveränderlich; Transfer: Polars gibt immer Neues zurück |
 | 2026-11-20 | 1d Ü11–Ü13 und Modify (`history=None`) alles richtig. Häppchen 1d abgeschlossen | Einstufungs-Stolperstein Ü8 behoben; Scope vs. Veränderung präzisiert |
 | 2026-11-20 | Ab jetzt nur noch auf den Standard-Branch pushen | Wunsch des Lernenden |
+| 2026-11-20 | 1e Ü14 richtig, Ü15 halb (flache Kopie), Modify richtig. Häppchen 1e abgeschlossen | Transfer: `base_config.copy()` in Experiment-Schleifen |
