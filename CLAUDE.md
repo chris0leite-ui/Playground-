@@ -91,4 +91,4 @@ Fälligkeitsdatum immer mitpflegen. Neue Karten entstehen aus Stolpersteinen und
   starten automatisch dort. Der Name stammt noch aus der Zeit, als hier ein Browser-Spiel lag.
   Das Spiel wird nicht mehr gebraucht; sein letzter Stand ist Commit `5c35d6d` in der Historie.
 - Am Sessionende den Fortschritt auf `claude/lotr-gta-game-0ydf5` pushen, sonst findet die nächste
-  Session ihn nicht. Das ist ausdrücklich gewünscht. Den Session-Branch ebenfalls pushen.
+  Session ihn nicht. Das ist ausdrücklich gewünscht. Nur dorthin pushen, den Session-Branch nicht.

@@ -6,8 +6,8 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 - **Lektion:** 01 Namen und Objekte
 - **Erledigt:** Einstufung (Ü1–Ü9)
-- **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify)
-- **Nächstes Häppchen:** 1d (Ü11–Ü13): Funktionen und Objekte
+- **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify)
+- **Nächstes Häppchen:** 1e (Ü14–Ü15): Bewusst kopieren
 
 ### Tempo nach Einstufung
 
@@ -42,6 +42,8 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | `t = ("a", [1])`: Was passiert bei `t[1].append(2)`, was bei `t[0] = "b"`? | 1 | 2026-11-22 |
 | `sorted(x)` vs. `x.sort()`: Was verändert sich, was wird jeweils zurückgegeben? | 1 | 2026-11-21 |
 | `name.strip()` steht allein in einer Zeile. Was passiert mit `name`, und warum? | 1 | 2026-11-21 |
+| Warum schreibt man `def f(x, history=None)` statt `history=[]`? Wann wird der Default erzeugt? | 1 | 2026-11-21 |
+| Kann eine Funktion ein übergebenes Objekt außen sichtbar verändern? Und in R? | 1 | 2026-11-21 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
@@ -98,3 +100,5 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-19 | 1b Ü6–Ü7 falsch (Tupel). Häppchen 1b abgeschlossen | Unveränderlich = Plätze fest, Inhalt evtl. veränderbar |
 | 2026-11-20 | Karten: 3 von 3 richtig (Box 2). 1c Ü8/Ü9 vertauscht, Modify `scores = scores.sort()` richtig | in-place-Methode gibt `None` zurück |
 | 2026-11-20 | 1c Ü10 falsch (`strip` ohne Zuweisung), Modify Verkettung richtig. Häppchen 1c abgeschlossen | Strings unveränderlich; Transfer: Polars gibt immer Neues zurück |
+| 2026-11-20 | 1d Ü11–Ü13 und Modify (`history=None`) alles richtig. Häppchen 1d abgeschlossen | Einstufungs-Stolperstein Ü8 behoben; Scope vs. Veränderung präzisiert |
+| 2026-11-20 | Ab jetzt nur noch auf den Standard-Branch pushen | Wunsch des Lernenden |
