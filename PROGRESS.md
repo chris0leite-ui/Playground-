@@ -4,10 +4,10 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 ## Aktueller Stand
 
-- **Lektion:** 02 Datenstrukturen (noch zu schreiben, Tempo: gründlich bei R-Fallen)
+- **Lektion:** 02 Datenstrukturen (Tempo: gründlich bei R-Fallen)
 - **Erledigt:** Einstufung (Ü1–Ü9)
 - **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer), 1f (Ü16–Ü18). **Lektion 01 abgeschlossen.**
-- **Nächstes Häppchen:** Lektion 02 schreiben (Indizes/Slices, Liste ≠ Vektor, dict, set; Stromhandel-Beispiele), dann 2a
+- **Nächstes Häppchen:** 2a (Ü1–Ü3): Slices, Teil 2. Lektion 02 hat 2a–2f (Ü1–Ü16)
 
 ### Tempo nach Einstufung
 
@@ -112,3 +112,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-20 | 1e Ü14 richtig, Ü15 halb (flache Kopie), Modify richtig. Häppchen 1e abgeschlossen | Transfer: `base_config.copy()` in Experiment-Schleifen |
 | 2026-11-22 | 1f Ü16/Ü17 falsch (in-place angenommen), Ü18 richtig. **Lektion 01 abgeschlossen** | Polars verändert nie in-place |
 | 2026-11-22 | Karten: Slice und Positionsargument richtig (Box 2), `d["x"]` falsch (Box 1) | `KeyError` vs. `.get()` |
+| 2026-11-22 | Lektion 02 geschrieben (6 Häppchen, 16 Übungen) | Slices, Liste ≠ Vektor, dict, set, Auspacken, Polars-Series |
