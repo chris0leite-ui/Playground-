@@ -24,7 +24,7 @@ Du kannst jederzeit eigenen Code mitbringen: „Erklär mir, was diese Funktion 
 | # | Lektion | Status |
 |---|---|---|
 | 00 | [Einstufung: Was kann ich schon?](lektionen/00_einstufung/uebungen.md) | ✅ |
-| 01 | [Namen und Objekte: Warum `b = a` keine Kopie ist](lektionen/01_namen_und_objekte/) | 🟡 |
+| 01 | [Namen und Objekte: Warum `b = a` keine Kopie ist](lektionen/01_namen_und_objekte/) | ✅ |
 | 02 | Datenstrukturen: list, tuple, dict, set (und wo R-Vektoren geblieben sind) | ⬜ |
 | 03 | Kontrollfluss und Comprehensions | ⬜ |
 | 04 | Funktionen: Argumente, Defaults, `*args`/`**kwargs`, `lambda` | ⬜ |

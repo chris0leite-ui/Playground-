@@ -4,10 +4,10 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 ## Aktueller Stand
 
-- **Lektion:** 01 Namen und Objekte
+- **Lektion:** 02 Datenstrukturen (noch zu schreiben, Tempo: gründlich bei R-Fallen)
 - **Erledigt:** Einstufung (Ü1–Ü9)
-- **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer)
-- **Nächstes Häppchen:** 1f (Ü16–Ü18): Transfer zu Polars. Danach Lektion 01 abschließen
+- **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer), 1f (Ü16–Ü18). **Lektion 01 abgeschlossen.**
+- **Nächstes Häppchen:** Lektion 02 schreiben (Indizes/Slices, Liste ≠ Vektor, dict, set; Stromhandel-Beispiele), dann 2a
 
 ### Tempo nach Einstufung
 
@@ -45,6 +45,7 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | Warum schreibt man `def f(x, history=None)` statt `history=[]`? Wann wird der Default erzeugt? | 1 | 2026-11-21 |
 | Kann eine Funktion ein übergebenes Objekt außen sichtbar verändern? Und in R? | 1 | 2026-11-21 |
 | `grid2 = grid.copy()`, dann `grid2["lr"].append(0.1)`: Ändert sich `grid`? Und bei `grid2["lr"] = [0.1]`? | 1 | 2026-11-21 |
+| Was macht `df.with_columns(...)` allein in einer Zeile mit `df`? Was gibt es zurück? | 1 | 2026-11-23 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
@@ -62,6 +63,8 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - **2026-11-19, L01 Ü5:** `a += [3]` wie `a = a + [3]` erwartet. Richtig geraten, aber nur wegen suggestiver Frage. Bei Listen ist `+=` in-place.
 - **2026-11-19, L01 Ü6:** Tupel als komplett unveränderlich angenommen. Die Liste darin bleibt aber veränderbar.
 - **2026-11-19, L01 Ü7:** Erwartet, dass die verbotene Änderung still ignoriert wird. Python wirft einen `TypeError`.
+- **2026-11-22, L01 Ü16/Ü17:** `with_columns` als in-place angenommen, daher `None` für `df2` erwartet. Logik folgerichtig, Prämisse falsch: Polars gibt immer Neues zurück.
+- **2026-11-22, L01 Ü16:** `df.columns` als Ausgabe des DataFrames gelesen. Es liefert nur die Spaltennamen.
 - **2026-11-20, L01 Ü15:** `.copy()` bei verschachteltem Dict als vollständige Kopie erwartet. Flache Kopie: innere Listen bleiben gemeinsam.
 - **2026-11-20, L01 Ü8/Ü9:** Genau vertauscht: `sorted()` als in-place, `.sort()` als Rückgabe gelesen. `None` als Rückgabe unbekannt.
 - **2026-11-20, L01 Ü10:** `name.strip()` ohne Zuweisung als in-place erwartet. Strings sind unveränderlich, Rückgabe verfällt.
@@ -105,3 +108,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-20 | 1d Ü11–Ü13 und Modify (`history=None`) alles richtig. Häppchen 1d abgeschlossen | Einstufungs-Stolperstein Ü8 behoben; Scope vs. Veränderung präzisiert |
 | 2026-11-20 | Ab jetzt nur noch auf den Standard-Branch pushen | Wunsch des Lernenden |
 | 2026-11-20 | 1e Ü14 richtig, Ü15 halb (flache Kopie), Modify richtig. Häppchen 1e abgeschlossen | Transfer: `base_config.copy()` in Experiment-Schleifen |
+| 2026-11-22 | 1f Ü16/Ü17 falsch (in-place angenommen), Ü18 richtig. **Lektion 01 abgeschlossen** | Polars verändert nie in-place |
