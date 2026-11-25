@@ -7,7 +7,8 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 - **Lektion:** 02 Datenstrukturen (Tempo: gründlich bei R-Fallen)
 - **Erledigt:** Einstufung (Ü1–Ü9)
 - **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer), 1f (Ü16–Ü18). **Lektion 01 abgeschlossen.**
-- **Nächstes Häppchen:** 2a (Ü1–Ü3): Slices, Teil 2. Lektion 02 hat 2a–2f (Ü1–Ü16)
+- **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify)
+- **Nächstes Häppchen:** 2b (Ü4–Ü6): Eine Liste ist kein Vektor. Lektion 02 hat 2a–2f (Ü1–Ü16)
 
 ### Tempo nach Einstufung
 
@@ -46,6 +47,7 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | Kann eine Funktion ein übergebenes Objekt außen sichtbar verändern? Und in R? | 1 | 2026-11-21 |
 | `grid2 = grid.copy()`, dann `grid2["lr"].append(0.1)`: Ändert sich `grid`? Und bei `grid2["lr"] = [0.1]`? | 1 | 2026-11-21 |
 | Was macht `df.with_columns(...)` allein in einer Zeile mit `df`? Was gibt es zurück? | 1 | 2026-11-23 |
+| `prices = [52.1, 48.3, 61.0]`: Was liefern `prices[1:10]`, `prices[10]` und `prices[5:10]`? | 1 | 2026-11-26 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
@@ -63,6 +65,8 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - **2026-11-19, L01 Ü5:** `a += [3]` wie `a = a + [3]` erwartet. Richtig geraten, aber nur wegen suggestiver Frage. Bei Listen ist `+=` in-place.
 - **2026-11-19, L01 Ü6:** Tupel als komplett unveränderlich angenommen. Die Liste darin bleibt aber veränderbar.
 - **2026-11-19, L01 Ü7:** Erwartet, dass die verbotene Änderung still ignoriert wird. Python wirft einen `TypeError`.
+- **2026-11-25, L02 Ü3:** `prices[1:10]` bei 3 Elementen als „Element 2, 3 und 4“ gelesen. Listenlänge übersehen.
+- **2026-11-25, L02 Modify:** Leerer Slice als `None` vermutet. Richtig: `[]`, ein Slice gibt immer eine Liste zurück.
 - **2026-11-22, Karte:** `d["x"]` bei fehlendem Schlüssel als `None` geraten. Richtig: `KeyError`. `None` liefert nur `d.get("x")`.
 - **2026-11-22, L01 Ü16/Ü17:** `with_columns` als in-place angenommen, daher `None` für `df2` erwartet. Logik folgerichtig, Prämisse falsch: Polars gibt immer Neues zurück.
 - **2026-11-22, L01 Ü16:** `df.columns` als Ausgabe des DataFrames gelesen. Es liefert nur die Spaltennamen.
@@ -113,3 +117,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-22 | 1f Ü16/Ü17 falsch (in-place angenommen), Ü18 richtig. **Lektion 01 abgeschlossen** | Polars verändert nie in-place |
 | 2026-11-22 | Karten: Slice und Positionsargument richtig (Box 2), `d["x"]` falsch (Box 1) | `KeyError` vs. `.get()` |
 | 2026-11-22 | Lektion 02 geschrieben (6 Häppchen, 16 Übungen) | Slices, Liste ≠ Vektor, dict, set, Auspacken, Polars-Series |
+| 2026-11-25 | 2a Ü1–Ü2 richtig, Ü3 halb (Listenlänge), Modify halb (`None` statt `[]`). Häppchen 2a abgeschlossen | Karten heute übersprungen (Session lief schon) |
