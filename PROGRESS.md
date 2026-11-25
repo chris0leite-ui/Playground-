@@ -9,7 +9,7 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 - **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer), 1f (Ü16–Ü18). **Lektion 01 abgeschlossen.**
 - **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify), 2b (Ü4–Ü6), 2c (Ü7–Ü8 + Modify), 2d (Ü9–Ü11)
 - **Nächstes Häppchen:** 2e (Ü12–Ü14): Tupel auspacken.
-- **Tempo-Vorschlag (offen, Antwort abwarten):** Lernender fragt nach Software-Design. Vorschlag: 03 auf ein Häppchen straffen, 05 nicht als eigene Lektion, sondern einstreuen; 04 gründlich. Dann in ~2 Wochen Phase 2 (Klassen, Übungsprojekt). Lektion 02 hat 2a–2f (Ü1–Ü16)
+- **Tempo (vereinbart 2026-11-25):** 03 auf ein Häppchen straffen, 05 nicht als eigene Lektion, sondern in andere Lektionen einstreuen; 04 gründlich. Ziel: in ~2 Wochen Phase 2 (Klassen, Übungsprojekt). Lektion 02 hat 2a–2f (Ü1–Ü16)
 
 ### Tempo nach Einstufung
 
@@ -51,7 +51,6 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | `prices = [52.1, 48.3, 61.0]`: Was liefern `prices[1:10]`, `prices[10]` und `prices[5:10]`? | 1 | 2026-11-26 |
 | `prices = [50.0, 40.0]`: Was ergeben `prices + 5` und `prices > 45`? Wie filtert man stattdessen? | 1 | 2026-11-26 |
 | `d = {"wind": 12.4}`: Was liefert `for k in d`? Was ergeben `"wind" in d` und `12.4 in d`? | 1 | 2026-11-26 |
-| `set(a) - set(b)` vs. `set(b) - set(a)`: Was liefern die beiden? Ist `-` symmetrisch? | 1 | 2026-11-26 |
 | Was ergibt `["DE", "FR"] == ["FR", "DE"]` in Python, was `c("DE","FR") == c("FR","DE")` in R? | 1 | 2026-11-26 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
@@ -135,3 +134,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-25 | Karten: `strip`, flache Kopie richtig (Box 2), `.sort()`-Rückgabe falsch. 2b: Ü4 halb, Ü5 richtig, Ü6 halb. Häppchen 2b abgeschlossen | Liste + Zahl und Liste > Zahl sind Fehler |
 | 2026-11-25 | 2c Ü7/Ü8 falsch (Werte statt Schlüssel), Modify richtig. Häppchen 2c abgeschlossen | Dict wird über Schlüssel angesprochen |
 | 2026-11-25 | 2d Ü9 richtig, Ü10 halb (`temp` übersehen), Ü11 halb (Listenvergleich). Häppchen 2d abgeschlossen | Tempo-Vorschlag gemacht, Antwort offen |
+| 2026-11-25 | Tempo vereinbart: Phase 1 straffen. Karte zur Mengendifferenz auf Wunsch gestrichen | |

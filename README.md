@@ -28,7 +28,7 @@ Du kannst jederzeit eigenen Code mitbringen: „Erklär mir, was diese Funktion 
 | 02 | [Datenstrukturen: list, tuple, dict, set (und wo R-Vektoren geblieben sind)](lektionen/02_datenstrukturen/) | 🟡 |
 | 03 | Kontrollfluss und Comprehensions | ⬜ |
 | 04 | Funktionen: Argumente, Defaults, `*args`/`**kwargs`, `lambda` | ⬜ |
-| 05 | Fehlermeldungen (Tracebacks) lesen | ⬜ |
+| 05 | Fehlermeldungen (Tracebacks) lesen (keine eigene Lektion, wird in die anderen eingestreut) | ⬜ |
 
 ### Phase 2: Struktur. Wie Code zusammenhängt
 
