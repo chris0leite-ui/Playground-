@@ -7,8 +7,8 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 - **Lektion:** 02 Datenstrukturen (Tempo: gründlich bei R-Fallen)
 - **Erledigt:** Einstufung (Ü1–Ü9)
 - **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer), 1f (Ü16–Ü18). **Lektion 01 abgeschlossen.**
-- **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify)
-- **Nächstes Häppchen:** 2b (Ü4–Ü6): Eine Liste ist kein Vektor. Lektion 02 hat 2a–2f (Ü1–Ü16)
+- **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify), 2b (Ü4–Ü6)
+- **Nächstes Häppchen:** 2c (Ü7–Ü8): Dictionaries. Lektion 02 hat 2a–2f (Ü1–Ü16)
 
 ### Tempo nach Einstufung
 
@@ -41,13 +41,14 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | Bei Listen: Was ist der Unterschied zwischen `a = a + [3]` und `a += [3]`? Und bei Zahlen? | 2 | 2026-11-23 |
 | Eine Funktion endet. Was verschwindet: der lokale Name, das Objekt, oder beides? | 1 | 2026-11-21 |
 | `t = ("a", [1])`: Was passiert bei `t[1].append(2)`, was bei `t[0] = "b"`? | 1 | 2026-11-22 |
-| `sorted(x)` vs. `x.sort()`: Was verändert sich, was wird jeweils zurückgegeben? | 1 | 2026-11-21 |
-| `name.strip()` steht allein in einer Zeile. Was passiert mit `name`, und warum? | 1 | 2026-11-21 |
+| `sorted(x)` vs. `x.sort()`: Was verändert sich, was wird jeweils zurückgegeben? | 1 | 2026-11-26 |
+| `name.strip()` steht allein in einer Zeile. Was passiert mit `name`, und warum? | 2 | 2026-11-28 |
 | Warum schreibt man `def f(x, history=None)` statt `history=[]`? Wann wird der Default erzeugt? | 1 | 2026-11-21 |
 | Kann eine Funktion ein übergebenes Objekt außen sichtbar verändern? Und in R? | 1 | 2026-11-21 |
-| `grid2 = grid.copy()`, dann `grid2["lr"].append(0.1)`: Ändert sich `grid`? Und bei `grid2["lr"] = [0.1]`? | 1 | 2026-11-21 |
+| `grid2 = grid.copy()`, dann `grid2["lr"].append(0.1)`: Ändert sich `grid`? Und bei `grid2["lr"] = [0.1]`? | 2 | 2026-11-28 |
 | Was macht `df.with_columns(...)` allein in einer Zeile mit `df`? Was gibt es zurück? | 1 | 2026-11-23 |
 | `prices = [52.1, 48.3, 61.0]`: Was liefern `prices[1:10]`, `prices[10]` und `prices[5:10]`? | 1 | 2026-11-26 |
+| `prices = [50.0, 40.0]`: Was ergeben `prices + 5` und `prices > 45`? Wie filtert man stattdessen? | 1 | 2026-11-26 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
@@ -65,6 +66,9 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - **2026-11-19, L01 Ü5:** `a += [3]` wie `a = a + [3]` erwartet. Richtig geraten, aber nur wegen suggestiver Frage. Bei Listen ist `+=` in-place.
 - **2026-11-19, L01 Ü6:** Tupel als komplett unveränderlich angenommen. Die Liste darin bleibt aber veränderbar.
 - **2026-11-19, L01 Ü7:** Erwartet, dass die verbotene Änderung still ignoriert wird. Python wirft einen `TypeError`.
+- **2026-11-25, Karte:** `b = scores.sort()` als sortierte Liste erwartet. Richtig: `None`.
+- **2026-11-25, L02 Ü4:** `prices + 5` als elementweise Addition erwartet (R-Vektor). Richtig: `TypeError`.
+- **2026-11-25, L02 Ü6:** `prices > 45` nach R-Logik erwartet, Fehler nur wegen suggestiver Frage geraten.
 - **2026-11-25, L02 Ü3:** `prices[1:10]` bei 3 Elementen als „Element 2, 3 und 4“ gelesen. Listenlänge übersehen.
 - **2026-11-25, L02 Modify:** Leerer Slice als `None` vermutet. Richtig: `[]`, ein Slice gibt immer eine Liste zurück.
 - **2026-11-22, Karte:** `d["x"]` bei fehlendem Schlüssel als `None` geraten. Richtig: `KeyError`. `None` liefert nur `d.get("x")`.
@@ -90,6 +94,7 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - Merkt suggestive Fragen sofort. Hinweise neutral formulieren.
 - Fragt von sich aus nach Gültigkeitsbereichen („features lebt nur in der Funktion“). Namen lokal, Objekte nicht: in 1d vertiefen.
 - Karten-Antworten oft nur zur Hälfte (R-Teil, Zahlen-Teil fehlten). Bei Karten auf alle Teilfragen achten.
+- Keine Ankündigungen wie „zwei der drei Fallen“: verrät, dass noch eine kommt (L02 Ü6).
 - Kartentexte dürfen die Antwort nicht verraten (alte Karte „warum genau zwei Elemente“ umformuliert).
 - Sagt „b zeigt auf a“. Präziser: Namen zeigen immer auf Objekte, nie auf andere Namen. Darauf achten.
 
@@ -118,3 +123,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-22 | Karten: Slice und Positionsargument richtig (Box 2), `d["x"]` falsch (Box 1) | `KeyError` vs. `.get()` |
 | 2026-11-22 | Lektion 02 geschrieben (6 Häppchen, 16 Übungen) | Slices, Liste ≠ Vektor, dict, set, Auspacken, Polars-Series |
 | 2026-11-25 | 2a Ü1–Ü2 richtig, Ü3 halb (Listenlänge), Modify halb (`None` statt `[]`). Häppchen 2a abgeschlossen | Karten heute übersprungen (Session lief schon) |
+| 2026-11-25 | Karten: `strip`, flache Kopie richtig (Box 2), `.sort()`-Rückgabe falsch. 2b: Ü4 halb, Ü5 richtig, Ü6 halb. Häppchen 2b abgeschlossen | Liste + Zahl und Liste > Zahl sind Fehler |
