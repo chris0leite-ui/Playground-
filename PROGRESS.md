@@ -7,8 +7,8 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 - **Lektion:** 02 Datenstrukturen (Tempo: gründlich bei R-Fallen)
 - **Erledigt:** Einstufung (Ü1–Ü9)
 - **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer), 1f (Ü16–Ü18). **Lektion 01 abgeschlossen.**
-- **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify), 2b (Ü4–Ü6)
-- **Nächstes Häppchen:** 2c (Ü7–Ü8): Dictionaries. Lektion 02 hat 2a–2f (Ü1–Ü16)
+- **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify), 2b (Ü4–Ü6), 2c (Ü7–Ü8 + Modify)
+- **Nächstes Häppchen:** 2d (Ü9–Ü11): Sets. Lektion 02 hat 2a–2f (Ü1–Ü16)
 
 ### Tempo nach Einstufung
 
@@ -49,6 +49,7 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | Was macht `df.with_columns(...)` allein in einer Zeile mit `df`? Was gibt es zurück? | 1 | 2026-11-23 |
 | `prices = [52.1, 48.3, 61.0]`: Was liefern `prices[1:10]`, `prices[10]` und `prices[5:10]`? | 1 | 2026-11-26 |
 | `prices = [50.0, 40.0]`: Was ergeben `prices + 5` und `prices > 45`? Wie filtert man stattdessen? | 1 | 2026-11-26 |
+| `d = {"wind": 12.4}`: Was liefert `for k in d`? Was ergeben `"wind" in d` und `12.4 in d`? | 1 | 2026-11-26 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
@@ -66,6 +67,7 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - **2026-11-19, L01 Ü5:** `a += [3]` wie `a = a + [3]` erwartet. Richtig geraten, aber nur wegen suggestiver Frage. Bei Listen ist `+=` in-place.
 - **2026-11-19, L01 Ü6:** Tupel als komplett unveränderlich angenommen. Die Liste darin bleibt aber veränderbar.
 - **2026-11-19, L01 Ü7:** Erwartet, dass die verbotene Änderung still ignoriert wird. Python wirft einen `TypeError`.
+- **2026-11-25, L02 Ü7/Ü8:** Schleife über Dict als Schleife über Werte erwartet, `12.4 in d` als Fehler. Richtig: beides betrifft nur die Schlüssel (`False`, kein Fehler).
 - **2026-11-25, Karte:** `b = scores.sort()` als sortierte Liste erwartet. Richtig: `None`.
 - **2026-11-25, L02 Ü4:** `prices + 5` als elementweise Addition erwartet (R-Vektor). Richtig: `TypeError`.
 - **2026-11-25, L02 Ü6:** `prices > 45` nach R-Logik erwartet, Fehler nur wegen suggestiver Frage geraten.
@@ -124,3 +126,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-22 | Lektion 02 geschrieben (6 Häppchen, 16 Übungen) | Slices, Liste ≠ Vektor, dict, set, Auspacken, Polars-Series |
 | 2026-11-25 | 2a Ü1–Ü2 richtig, Ü3 halb (Listenlänge), Modify halb (`None` statt `[]`). Häppchen 2a abgeschlossen | Karten heute übersprungen (Session lief schon) |
 | 2026-11-25 | Karten: `strip`, flache Kopie richtig (Box 2), `.sort()`-Rückgabe falsch. 2b: Ü4 halb, Ü5 richtig, Ü6 halb. Häppchen 2b abgeschlossen | Liste + Zahl und Liste > Zahl sind Fehler |
+| 2026-11-25 | 2c Ü7/Ü8 falsch (Werte statt Schlüssel), Modify richtig. Häppchen 2c abgeschlossen | Dict wird über Schlüssel angesprochen |
