@@ -4,11 +4,11 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 ## Aktueller Stand
 
-- **Lektion:** 02 Datenstrukturen (Tempo: gründlich bei R-Fallen)
+- **Lektion:** 03 Comprehensions (noch zu schreiben, gestrafft auf ein Häppchen)
 - **Erledigt:** Einstufung (Ü1–Ü9)
 - **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer), 1f (Ü16–Ü18). **Lektion 01 abgeschlossen.**
-- **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify), 2b (Ü4–Ü6), 2c (Ü7–Ü8 + Modify), 2d (Ü9–Ü11), 2e (Ü12–Ü14 + Modify)
-- **Nächstes Häppchen:** 2f (Ü15–Ü16): Transfer zu Polars. Danach Lektion 02 abschließen, dann 03 (gestrafft, ein Häppchen).
+- **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify), 2b (Ü4–Ü6), 2c (Ü7–Ü8 + Modify), 2d (Ü9–Ü11), 2e (Ü12–Ü14 + Modify), 2f (Ü15–Ü16). **Lektion 02 abgeschlossen.**
+- **Nächstes Häppchen:** Lektion 03 schreiben (ein Häppchen: Comprehension mit Filter, dict-Comprehension, verschachtelt lesen), dann 3a. Danach 04 gründlich.
 - **Tempo (vereinbart 2026-11-25):** 03 auf ein Häppchen straffen, 05 nicht als eigene Lektion, sondern in andere Lektionen einstreuen; 04 gründlich. Ziel: in ~2 Wochen Phase 2 (Klassen, Übungsprojekt). Lektion 02 hat 2a–2f (Ü1–Ü16)
 
 ### Tempo nach Einstufung
@@ -37,15 +37,15 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | Was ergibt `[1, 2, 3] * 2` in Python? Wie bekommt man `[2, 4, 6]`? | 2 | 2026-11-23 |
 | `def scale(x, factor=2, offset=0)`: Welcher Parameter bekommt die `10` bei `scale(3, 10)`? | 2 | 2026-11-25 |
 | Warum braucht `df.group_by(...).agg(...)` in Polars oft ein `.sort(...)` danach? | 1 | 2026-11-22 |
-| Funktion oder Methode: Was ist der Unterschied, woran erkennt man es beim Lesen? | 1 | 2026-11-22 |
+| Funktion oder Methode: Was ist der Unterschied, woran erkennt man es beim Lesen? | 2 | 2026-11-29 |
 | `x = 10`, `y = x`, `y = y + 1`: Was ist `x`? Warum anders als bei `b.append(4)`? | 1 | 2026-11-21 |
 | Bei Listen: Was ist der Unterschied zwischen `a = a + [3]` und `a += [3]`? Und bei Zahlen? | 2 | 2026-11-23 |
 | Eine Funktion endet. Was verschwindet: der lokale Name, das Objekt, oder beides? | 1 | 2026-11-21 |
 | `t = ("a", [1])`: Was passiert bei `t[1].append(2)`, was bei `t[0] = "b"`? | 1 | 2026-11-22 |
 | `sorted(x)` vs. `x.sort()`: Was verändert sich, was wird jeweils zurückgegeben? | 1 | 2026-11-26 |
 | `name.strip()` steht allein in einer Zeile. Was passiert mit `name`, und warum? | 2 | 2026-11-28 |
-| Warum schreibt man `def f(x, history=None)` statt `history=[]`? Wann wird der Default erzeugt? | 1 | 2026-11-21 |
-| Kann eine Funktion ein übergebenes Objekt außen sichtbar verändern? Und in R? | 1 | 2026-11-21 |
+| Warum schreibt man `def f(x, history=None)` statt `history=[]`? Wann wird der Default erzeugt? | 2 | 2026-11-29 |
+| Kann eine Funktion ein übergebenes Objekt außen sichtbar verändern? Und in R? | 2 | 2026-11-29 |
 | `grid2 = grid.copy()`, dann `grid2["lr"].append(0.1)`: Ändert sich `grid`? Und bei `grid2["lr"] = [0.1]`? | 2 | 2026-11-28 |
 | Was macht `df.with_columns(...)` allein in einer Zeile mit `df`? Was gibt es zurück? | 1 | 2026-11-23 |
 | `prices = [52.1, 48.3, 61.0]`: Was liefern `prices[1:10]`, `prices[10]` und `prices[5:10]`? | 1 | 2026-11-26 |
@@ -53,6 +53,7 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | `d = {"wind": 12.4}`: Was liefert `for k in d`? Was ergeben `"wind" in d` und `12.4 in d`? | 1 | 2026-11-26 |
 | Was ergibt `["DE", "FR"] == ["FR", "DE"]` in Python, was `c("DE","FR") == c("FR","DE")` in R? | 1 | 2026-11-26 |
 | `zip([17, 18, 19], [89.5, 95.0])`: Was passiert mit der 19? Was würde R tun? Wie erzwingt man gleiche Längen? | 1 | 2026-11-27 |
+| `s = df["price"]`: Was ergeben `s + 5`, `s.to_list() + [5]` und `s.to_list() + 5`? | 1 | 2026-11-27 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
@@ -70,6 +71,7 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - **2026-11-19, L01 Ü5:** `a += [3]` wie `a = a + [3]` erwartet. Richtig geraten, aber nur wegen suggestiver Frage. Bei Listen ist `+=` in-place.
 - **2026-11-19, L01 Ü6:** Tupel als komplett unveränderlich angenommen. Die Liste darin bleibt aber veränderbar.
 - **2026-11-19, L01 Ü7:** Erwartet, dass die verbotene Änderung still ignoriert wird. Python wirft einen `TypeError`.
+- **2026-11-26, L02 Ü15:** `+ [5]` als `+ 5` gelesen und Fehler erwartet. Typ beider Seiten von `+` prüfen.
 - **2026-11-26, L02 Ü14:** Bei `zip` mit ungleich langen Listen Recycling (R) oder leeren Partner vermutet. Richtig: Ende wird still abgeschnitten.
 - **2026-11-25, L02 Ü10:** `temp` übersehen, zweite Differenzmenge als leer erwartet (Flüchtigkeitsfehler).
 - **2026-11-25, L02 Ü11:** `==` bei Listen unbekannt (Fehler oder Unique-Vergleich geraten). Richtig: elementweise in Reihenfolge, ein einziges `False`.
@@ -138,3 +140,5 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-25 | 2d Ü9 richtig, Ü10 halb (`temp` übersehen), Ü11 halb (Listenvergleich). Häppchen 2d abgeschlossen | Tempo-Vorschlag gemacht, Antwort offen |
 | 2026-11-25 | Tempo vereinbart: Phase 1 straffen. Karte zur Mengendifferenz auf Wunsch gestrichen | |
 | 2026-11-26 | 2e Ü12, Ü13 und Modify (`return a, b` = Tupel) richtig, Ü14 halb (zip schneidet ab). Häppchen 2e abgeschlossen | `strict=True` |
+| 2026-11-26 | Karten: `history=None`, Funktion verändert Objekt (data.table erwähnt), Funktion vs. Methode richtig (Box 2) | |
+| 2026-11-26 | 2f Ü15 halb (`+ [5]` übersehen), Ü16 richtig. **Lektion 02 abgeschlossen** | Series vs. Liste bei `+` |
