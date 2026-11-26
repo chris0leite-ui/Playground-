@@ -4,11 +4,11 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 ## Aktueller Stand
 
-- **Lektion:** 03 Comprehensions (noch zu schreiben, gestrafft auf ein Häppchen)
+- **Lektion:** 03 Comprehensions (gestrafft auf ein Häppchen)
 - **Erledigt:** Einstufung (Ü1–Ü9)
 - **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer), 1f (Ü16–Ü18). **Lektion 01 abgeschlossen.**
 - **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify), 2b (Ü4–Ü6), 2c (Ü7–Ü8 + Modify), 2d (Ü9–Ü11), 2e (Ü12–Ü14 + Modify), 2f (Ü15–Ü16). **Lektion 02 abgeschlossen.**
-- **Nächstes Häppchen:** Lektion 03 schreiben (ein Häppchen: Comprehension mit Filter, dict-Comprehension, verschachtelt lesen), dann 3a. Danach 04 gründlich.
+- **Nächstes Häppchen:** 3a (Ü1–Ü4). Danach 04 gründlich.
 - **Tempo (vereinbart 2026-11-25):** 03 auf ein Häppchen straffen, 05 nicht als eigene Lektion, sondern in andere Lektionen einstreuen; 04 gründlich. Ziel: in ~2 Wochen Phase 2 (Klassen, Übungsprojekt). Lektion 02 hat 2a–2f (Ü1–Ü16)
 
 ### Tempo nach Einstufung
@@ -142,3 +142,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-26 | 2e Ü12, Ü13 und Modify (`return a, b` = Tupel) richtig, Ü14 halb (zip schneidet ab). Häppchen 2e abgeschlossen | `strict=True` |
 | 2026-11-26 | Karten: `history=None`, Funktion verändert Objekt (data.table erwähnt), Funktion vs. Methode richtig (Box 2) | |
 | 2026-11-26 | 2f Ü15 halb (`+ [5]` übersehen), Ü16 richtig. **Lektion 02 abgeschlossen** | Series vs. Liste bei `+` |
+| 2026-11-26 | Lektion 03 geschrieben (ein Häppchen, 4 Übungen) | Filter vs. Ersetzen, dict-Comprehension, zwei `for`, Generator |
