@@ -4,13 +4,13 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 ## Aktueller Stand
 
-- **Lektion:** 04 Funktionen (gründlich)
+- **Lektion:** 06 Klassen und Objekte (Phase 2, noch zu schreiben)
 - **Erledigt:** Einstufung (Ü1–Ü9)
 - **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer), 1f (Ü16–Ü18). **Lektion 01 abgeschlossen.**
 - **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify), 2b (Ü4–Ü6), 2c (Ü7–Ü8 + Modify), 2d (Ü9–Ü11), 2e (Ü12–Ü14 + Modify), 2f (Ü15–Ü16). **Lektion 02 abgeschlossen.**
 - **Erledigt in Lektion 03:** 3a (Ü1–Ü4 + Modify). **Lektion 03 abgeschlossen.**
-- **Erledigt in Lektion 04:** 4a (Ü1–Ü3 + Modify), 4b (Ü4–Ü5 + Modify), 4c (Ü6–Ü8 + Modify + Transfer)
-- **Nächstes Häppchen:** 4d (Ü9–Ü10): Funktionen als Werte, `lambda`. Danach Lektion 04 abschließen und Phase 2 beginnen (06 Klassen schreiben, Übungsprojekt anlegen). Lektion 04 hat 4a–4d (Ü1–Ü10). Danach Phase 2.
+- **Erledigt in Lektion 04:** 4a (Ü1–Ü3 + Modify), 4b (Ü4–Ü5 + Modify), 4c (Ü6–Ü8 + Modify + Transfer), 4d (Ü9–Ü10 + Modify). **Lektion 04 und Phase 1 abgeschlossen.**
+- **Nächstes Häppchen:** Lektion 06 schreiben (Klassen: `__init__`, `self`, Attribute vs. Methoden, Zustand verändern vs. zurückgeben, Vererbung kurz; Stromhandel-Beispiele). Übungsprojekt `uebungsprojekt/` anlegen, sobald Klassen sitzen. Einstufung Ü7 (Klassen) war richtig: zügig. Lektion 04 hat 4a–4d (Ü1–Ü10). Danach Phase 2.
 - **Tempo (vereinbart 2026-11-25):** 03 auf ein Häppchen straffen, 05 nicht als eigene Lektion, sondern in andere Lektionen einstreuen; 04 gründlich. Ziel: in ~2 Wochen Phase 2 (Klassen, Übungsprojekt). Lektion 02 hat 2a–2f (Ü1–Ü16)
 
 ### Tempo nach Einstufung
@@ -62,6 +62,8 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | Eine Funktion ruft `print(x)` auf, hat aber kein `return`. Was zeigt `r = f(...)` an, was steht danach in `r`? | 1 | 2026-11-28 |
 | `def f(*a, **k)` vs. Aufruf `f(*liste, **d)`: Was bewirken die Sterne jeweils? Welche Typen haben `a` und `k`? | 1 | 2026-11-28 |
 | `train("lgbm", **{"max_depth": 5})`: Was passiert ohne und was mit `**kwargs` in der Definition von `train`? | 1 | 2026-11-28 |
+| `f = double` vs. `g = double(4)`: Was steht jeweils in `f` und `g`? | 1 | 2026-11-28 |
+| `sorted(d, key=lambda k: d[k])` vs. `sorted(d.items(), key=lambda kv: kv[1])`: Was kommt jeweils heraus? | 1 | 2026-11-28 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
@@ -162,3 +164,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-27 | 4a Ü1 richtig, Ü2 falsch (R-Logik), Ü3 halb (Fehlertyp), Modify richtig und sauber begründet. Häppchen 4a abgeschlossen | SyntaxError vs. TypeError |
 | 2026-11-27 | 4b Ü4 halb (`print` in Funktion übersehen), Ü5 und Modify richtig. Häppchen 4b abgeschlossen | return vs. print, Notebook-Falle |
 | 2026-11-27 | 4c Ü6 halb (Liste statt Tupel), Ü7, Ü8 und Modify richtig. Häppchen 4c abgeschlossen | `**kwargs` schluckt falsche Namen |
+| 2026-11-27 | 4d Ü9 richtig, Ü10 richtig (unsicher), Modify richtig. **Lektion 04 und Phase 1 abgeschlossen** | `.items()` als Tupel-Paare geklärt |
