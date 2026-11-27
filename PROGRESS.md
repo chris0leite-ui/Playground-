@@ -4,12 +4,12 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 ## Aktueller Stand
 
-- **Lektion:** 04 Funktionen (noch zu schreiben, gründlich)
+- **Lektion:** 04 Funktionen (gründlich)
 - **Erledigt:** Einstufung (Ü1–Ü9)
 - **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer), 1f (Ü16–Ü18). **Lektion 01 abgeschlossen.**
 - **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify), 2b (Ü4–Ü6), 2c (Ü7–Ü8 + Modify), 2d (Ü9–Ü11), 2e (Ü12–Ü14 + Modify), 2f (Ü15–Ü16). **Lektion 02 abgeschlossen.**
 - **Erledigt in Lektion 03:** 3a (Ü1–Ü4 + Modify). **Lektion 03 abgeschlossen.**
-- **Nächstes Häppchen:** Lektion 04 schreiben (gründlich: Positions-/Schlüsselwortargumente, Defaults, `*args`/`**kwargs`, `lambda`, Rückgabe vs. Ausgabe; Tracebacks einstreuen), dann 4a. Danach Phase 2.
+- **Nächstes Häppchen:** 4a (Ü1–Ü3): Argumente zuordnen. Lektion 04 hat 4a–4d (Ü1–Ü10). Danach Phase 2.
 - **Tempo (vereinbart 2026-11-25):** 03 auf ein Häppchen straffen, 05 nicht als eigene Lektion, sondern in andere Lektionen einstreuen; 04 gründlich. Ziel: in ~2 Wochen Phase 2 (Klassen, Übungsprojekt). Lektion 02 hat 2a–2f (Ü1–Ü16)
 
 ### Tempo nach Einstufung
@@ -147,3 +147,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-26 | 2f Ü15 halb (`+ [5]` übersehen), Ü16 richtig. **Lektion 02 abgeschlossen** | Series vs. Liste bei `+` |
 | 2026-11-26 | Lektion 03 geschrieben (ein Häppchen, 4 Übungen) | Filter vs. Ersetzen, dict-Comprehension, zwei `for`, Generator |
 | 2026-11-27 | 3a Ü1, Ü2, Ü4 richtig, Ü3 falsch (zwei `for` als `zip` gelesen), Modify richtig. **Lektion 03 abgeschlossen** | Dict-Comprehension ohne Vorwissen richtig gelesen |
+| 2026-11-27 | Lektion 04 geschrieben (4 Häppchen, 10 Übungen) | Argumente, return vs. print, *args/**kwargs, Funktionen als Werte |

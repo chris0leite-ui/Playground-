@@ -27,7 +27,7 @@ Du kannst jederzeit eigenen Code mitbringen: „Erklär mir, was diese Funktion 
 | 01 | [Namen und Objekte: Warum `b = a` keine Kopie ist](lektionen/01_namen_und_objekte/) | ✅ |
 | 02 | [Datenstrukturen: list, tuple, dict, set (und wo R-Vektoren geblieben sind)](lektionen/02_datenstrukturen/) | ✅ |
 | 03 | [Kontrollfluss und Comprehensions](lektionen/03_comprehensions/) | ✅ |
-| 04 | Funktionen: Argumente, Defaults, `*args`/`**kwargs`, `lambda` | ⬜ |
+| 04 | [Funktionen: Argumente, Defaults, `*args`/`**kwargs`, `lambda`](lektionen/04_funktionen/) | 🟡 |
 | 05 | Fehlermeldungen (Tracebacks) lesen (keine eigene Lektion, wird in die anderen eingestreut) | ⬜ |
 
 ### Phase 2: Struktur. Wie Code zusammenhängt
