@@ -9,7 +9,8 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 - **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer), 1f (Ü16–Ü18). **Lektion 01 abgeschlossen.**
 - **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify), 2b (Ü4–Ü6), 2c (Ü7–Ü8 + Modify), 2d (Ü9–Ü11), 2e (Ü12–Ü14 + Modify), 2f (Ü15–Ü16). **Lektion 02 abgeschlossen.**
 - **Erledigt in Lektion 03:** 3a (Ü1–Ü4 + Modify). **Lektion 03 abgeschlossen.**
-- **Nächstes Häppchen:** 4a (Ü1–Ü3): Argumente zuordnen. Lektion 04 hat 4a–4d (Ü1–Ü10). Danach Phase 2.
+- **Erledigt in Lektion 04:** 4a (Ü1–Ü3 + Modify)
+- **Nächstes Häppchen:** 4b (Ü4–Ü5): Rückgabe oder Ausgabe? Lektion 04 hat 4a–4d (Ü1–Ü10). Danach Phase 2.
 - **Tempo (vereinbart 2026-11-25):** 03 auf ein Häppchen straffen, 05 nicht als eigene Lektion, sondern in andere Lektionen einstreuen; 04 gründlich. Ziel: in ~2 Wochen Phase 2 (Klassen, Übungsprojekt). Lektion 02 hat 2a–2f (Ü1–Ü16)
 
 ### Tempo nach Einstufung
@@ -56,6 +57,8 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | `zip([17, 18, 19], [89.5, 95.0])`: Was passiert mit der 19? Was würde R tun? Wie erzwingt man gleiche Längen? | 1 | 2026-11-27 |
 | `s = df["price"]`: Was ergeben `s + 5`, `s.to_list() + [5]` und `s.to_list() + 5`? | 1 | 2026-11-27 |
 | `[... for h in hours for q in qs]` vs. `[... for h, q in zip(hours, qs)]`: Was liefern die beiden? | 1 | 2026-11-28 |
+| Ist `f(lag=4, "price")` in Python erlaubt? Und in R? Was passiert mit Zeilen davor? | 1 | 2026-11-28 |
+| `SyntaxError` vs. `TypeError`: Wann wird welcher bemerkt, und woran erkennt man ihn? | 1 | 2026-11-28 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
@@ -73,6 +76,8 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - **2026-11-19, L01 Ü5:** `a += [3]` wie `a = a + [3]` erwartet. Richtig geraten, aber nur wegen suggestiver Frage. Bei Listen ist `+=` in-place.
 - **2026-11-19, L01 Ü6:** Tupel als komplett unveränderlich angenommen. Die Liste darin bleibt aber veränderbar.
 - **2026-11-19, L01 Ü7:** Erwartet, dass die verbotene Änderung still ignoriert wird. Python wirft einen `TypeError`.
+- **2026-11-27, L04 Ü2:** `make_feature(lag=4, "price")` nach R-Logik als gültig gelesen. Richtig: `SyntaxError`, und auch die Zeile davor läuft nicht.
+- **2026-11-27, L04 Ü3:** Fehlendes Pflichtargument als `SyntaxError` erwartet. Richtig: `TypeError` zur Laufzeit.
 - **2026-11-26, L03 Ü3:** Zwei `for` in einer Comprehension parallel gelesen (wie `zip`). Richtig: verschachtelt, alle Kombinationen.
 - **2026-11-26, L02 Ü15:** `+ [5]` als `+ 5` gelesen und Fehler erwartet. Typ beider Seiten von `+` prüfen.
 - **2026-11-26, L02 Ü14:** Bei `zip` mit ungleich langen Listen Recycling (R) oder leeren Partner vermutet. Richtig: Ende wird still abgeschnitten.
@@ -149,3 +154,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-27 | 3a Ü1, Ü2, Ü4 richtig, Ü3 falsch (zwei `for` als `zip` gelesen), Modify richtig. **Lektion 03 abgeschlossen** | Dict-Comprehension ohne Vorwissen richtig gelesen |
 | 2026-11-27 | Lektion 04 geschrieben (4 Häppchen, 10 Übungen) | Argumente, return vs. print, *args/**kwargs, Funktionen als Werte |
 | 2026-11-27 | Karten: `y = y + 1`, Funktionsende, Tupel richtig (Box 2). Ab jetzt bis zu 5 Karten pro Session | Kartenstau (20 fällig) |
+| 2026-11-27 | 4a Ü1 richtig, Ü2 falsch (R-Logik), Ü3 halb (Fehlertyp), Modify richtig und sauber begründet. Häppchen 4a abgeschlossen | SyntaxError vs. TypeError |
