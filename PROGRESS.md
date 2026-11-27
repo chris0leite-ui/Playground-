@@ -33,13 +33,12 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 
 | Frage | Box | fällig |
 |---|---|---|
-| `x = [10, 20, 30]`: Was liefert `x[-1]`? Was würde `x[-1]` in R tun? | 2 | 2026-11-23 |
 | `x = [10, 20, 30, 40, 50]`: Was liefert `x[1:3]`? Begründe die Anzahl der Elemente. | 2 | 2026-11-25 |
-| `a = [1, 2, 3]`, `b = a`, `b.append(4)`: Was ist `a`? | 1 | 2026-11-21 |
-| Was gibt `d.get("x", "fehlt")` zurück, wenn `"x"` nicht im dict ist? Und `d["x"]`? | 1 | 2026-11-23 |
+| `a = [1, 2, 3]`, `b = a`, `b.append(4)`: Was ist `a`? | 2 | 2026-11-30 |
+| Was gibt `d.get("x", "fehlt")` zurück, wenn `"x"` nicht im dict ist? Und `d["x"]`? | 2 | 2026-11-30 |
 | Was ergibt `[1, 2, 3] * 2` in Python? Wie bekommt man `[2, 4, 6]`? | 2 | 2026-11-23 |
 | `def scale(x, factor=2, offset=0)`: Welcher Parameter bekommt die `10` bei `scale(3, 10)`? | 2 | 2026-11-25 |
-| Warum braucht `df.group_by(...).agg(...)` in Polars oft ein `.sort(...)` danach? | 1 | 2026-11-22 |
+| Warum braucht `df.group_by(...).agg(...)` in Polars oft ein `.sort(...)` danach? | 2 | 2026-11-30 |
 | Funktion oder Methode: Was ist der Unterschied, woran erkennt man es beim Lesen? | 2 | 2026-11-29 |
 | `x = 10`, `y = x`, `y = y + 1`: Was ist `x`? Warum anders als bei `b.append(4)`? | 2 | 2026-11-30 |
 | Bei Listen: Was ist der Unterschied zwischen `a = a + [3]` und `a += [3]`? Und bei Zahlen? | 2 | 2026-11-23 |
@@ -67,7 +66,7 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | `sorted(d, key=lambda k: d[k])` vs. `sorted(d.items(), key=lambda kv: kv[1])`: Was kommt jeweils heraus? | 1 | 2026-11-28 |
 | `p2 = p1`, dann `p2.volume = 0.0`: Was ist `p1.volume`? Braucht man dafür eine Methode? | 1 | 2026-11-28 |
 | Zwei Objekte einer eigenen Klasse mit gleichen Attributen: Was ergibt `==`, und warum? | 1 | 2026-11-28 |
-| Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
+| Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 1 | 2026-11-28 |
 
 ## Stolpersteine
 
@@ -171,3 +170,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-27 | 4d Ü9 richtig, Ü10 richtig (unsicher), Modify richtig. **Lektion 04 und Phase 1 abgeschlossen** | `.items()` als Tupel-Paare geklärt |
 | 2026-11-27 | Lektion 06 geschrieben (4 Häppchen, 8 Übungen) | self, Methoden, Klassenattribut-Falle, Vererbung, fit/predict |
 | 2026-11-27 | 6a Ü1 richtig, Ü2 falsch (Attribut am gemeinsamen Objekt), Modify richtig. Häppchen 6a abgeschlossen | `==` bei eigenen Klassen = Identität |
+| 2026-11-27 | Karten: `b.append`, `group_by`-Sortierung, `d.get` richtig (Box 2); `==`/`is` halb (Box 1); `x[-1]` auf Wunsch gestrichen (R-Teil noch verwechselt) | |
