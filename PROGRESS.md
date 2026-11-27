@@ -39,10 +39,10 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | `def scale(x, factor=2, offset=0)`: Welcher Parameter bekommt die `10` bei `scale(3, 10)`? | 2 | 2026-11-25 |
 | Warum braucht `df.group_by(...).agg(...)` in Polars oft ein `.sort(...)` danach? | 1 | 2026-11-22 |
 | Funktion oder Methode: Was ist der Unterschied, woran erkennt man es beim Lesen? | 2 | 2026-11-29 |
-| `x = 10`, `y = x`, `y = y + 1`: Was ist `x`? Warum anders als bei `b.append(4)`? | 1 | 2026-11-21 |
+| `x = 10`, `y = x`, `y = y + 1`: Was ist `x`? Warum anders als bei `b.append(4)`? | 2 | 2026-11-30 |
 | Bei Listen: Was ist der Unterschied zwischen `a = a + [3]` und `a += [3]`? Und bei Zahlen? | 2 | 2026-11-23 |
-| Eine Funktion endet. Was verschwindet: der lokale Name, das Objekt, oder beides? | 1 | 2026-11-21 |
-| `t = ("a", [1])`: Was passiert bei `t[1].append(2)`, was bei `t[0] = "b"`? | 1 | 2026-11-22 |
+| Eine Funktion endet. Was verschwindet: der lokale Name, das Objekt, oder beides? | 2 | 2026-11-30 |
+| `t = ("a", [1])`: Was passiert bei `t[1].append(2)`, was bei `t[0] = "b"`? | 2 | 2026-11-30 |
 | `sorted(x)` vs. `x.sort()`: Was verändert sich, was wird jeweils zurückgegeben? | 1 | 2026-11-26 |
 | `name.strip()` steht allein in einer Zeile. Was passiert mit `name`, und warum? | 2 | 2026-11-28 |
 | Warum schreibt man `def f(x, history=None)` statt `history=[]`? Wann wird der Default erzeugt? | 2 | 2026-11-29 |
@@ -148,3 +148,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-26 | Lektion 03 geschrieben (ein Häppchen, 4 Übungen) | Filter vs. Ersetzen, dict-Comprehension, zwei `for`, Generator |
 | 2026-11-27 | 3a Ü1, Ü2, Ü4 richtig, Ü3 falsch (zwei `for` als `zip` gelesen), Modify richtig. **Lektion 03 abgeschlossen** | Dict-Comprehension ohne Vorwissen richtig gelesen |
 | 2026-11-27 | Lektion 04 geschrieben (4 Häppchen, 10 Übungen) | Argumente, return vs. print, *args/**kwargs, Funktionen als Werte |
+| 2026-11-27 | Karten: `y = y + 1`, Funktionsende, Tupel richtig (Box 2). Ab jetzt bis zu 5 Karten pro Session | Kartenstau (20 fällig) |

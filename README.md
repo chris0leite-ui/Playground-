@@ -7,7 +7,7 @@ Tutor: Claude. Methode: **vorhersagen → ausführen → verstehen**.
 
 Starte eine neue Session in diesem Repo und sag einfach **„weiter“**. Claude
 
-1. fragt 1–3 Wiederholungskarten ab,
+1. fragt bis zu 5 Wiederholungskarten ab,
 2. zeigt dir ein Stück Code, und du sagst voraus, was passiert,
 3. führt den Code aus und bespricht mit dir, wo deine Vorhersage abwich,
 4. hält deinen Fortschritt in [`PROGRESS.md`](PROGRESS.md) fest.

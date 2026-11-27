@@ -21,7 +21,7 @@ Code schreiben zu lernen ist ausdrücklich *nicht* das Ziel.
 
 1. `pip install -q -r requirements.txt` ausführen, weil jeder Container frisch startet.
 2. `PROGRESS.md` lesen: Wo stehen wir, welche Wiederholungskarten sind heute fällig?
-3. Kurz begrüßen (1–2 Sätze) und die fälligen Karten abfragen (höchstens 3).
+3. Kurz begrüßen (1–2 Sätze) und die fälligen Karten abfragen (höchstens 5, älteste zuerst).
 4. Mit dem nächsten Häppchen weitermachen, das in `PROGRESS.md` steht.
 
 Kommt nur „weiter“ o. Ä., genau so vorgehen. Eigener Code oder eigene Fragen
