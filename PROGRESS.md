@@ -10,7 +10,8 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 - **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify), 2b (Ü4–Ü6), 2c (Ü7–Ü8 + Modify), 2d (Ü9–Ü11), 2e (Ü12–Ü14 + Modify), 2f (Ü15–Ü16). **Lektion 02 abgeschlossen.**
 - **Erledigt in Lektion 03:** 3a (Ü1–Ü4 + Modify). **Lektion 03 abgeschlossen.**
 - **Erledigt in Lektion 04:** 4a (Ü1–Ü3 + Modify), 4b (Ü4–Ü5 + Modify), 4c (Ü6–Ü8 + Modify + Transfer), 4d (Ü9–Ü10 + Modify). **Lektion 04 und Phase 1 abgeschlossen.**
-- **Nächstes Häppchen:** 6a (Ü1–Ü2). Lektion 06 hat 6a–6d (Ü1–Ü8). Übungsprojekt `uebungsprojekt/` anlegen, sobald Klassen sitzen. Lektion 04 hat 4a–4d (Ü1–Ü10). Danach Phase 2.
+- **Erledigt in Lektion 06:** 6a (Ü1–Ü2 + Modify)
+- **Nächstes Häppchen:** 6b (Ü3–Ü5): Methoden. Lektion 06 hat 6a–6d (Ü1–Ü8). Übungsprojekt `uebungsprojekt/` anlegen, sobald Klassen sitzen. Lektion 04 hat 4a–4d (Ü1–Ü10). Danach Phase 2.
 - **Tempo (vereinbart 2026-11-25):** 03 auf ein Häppchen straffen, 05 nicht als eigene Lektion, sondern in andere Lektionen einstreuen; 04 gründlich. Ziel: in ~2 Wochen Phase 2 (Klassen, Übungsprojekt). Lektion 02 hat 2a–2f (Ü1–Ü16)
 
 ### Tempo nach Einstufung
@@ -64,6 +65,8 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | `train("lgbm", **{"max_depth": 5})`: Was passiert ohne und was mit `**kwargs` in der Definition von `train`? | 1 | 2026-11-28 |
 | `f = double` vs. `g = double(4)`: Was steht jeweils in `f` und `g`? | 1 | 2026-11-28 |
 | `sorted(d, key=lambda k: d[k])` vs. `sorted(d.items(), key=lambda kv: kv[1])`: Was kommt jeweils heraus? | 1 | 2026-11-28 |
+| `p2 = p1`, dann `p2.volume = 0.0`: Was ist `p1.volume`? Braucht man dafür eine Methode? | 1 | 2026-11-28 |
+| Zwei Objekte einer eigenen Klasse mit gleichen Attributen: Was ergibt `==`, und warum? | 1 | 2026-11-28 |
 | Was fragt `==`, was fragt `is`? Wofür benutzt man `is` in der Praxis fast ausschließlich? | 2 | 2026-11-22 |
 
 ## Stolpersteine
@@ -81,6 +84,7 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - **2026-11-19, L01 Ü5:** `a += [3]` wie `a = a + [3]` erwartet. Richtig geraten, aber nur wegen suggestiver Frage. Bei Listen ist `+=` in-place.
 - **2026-11-19, L01 Ü6:** Tupel als komplett unveränderlich angenommen. Die Liste darin bleibt aber veränderbar.
 - **2026-11-19, L01 Ü7:** Erwartet, dass die verbotene Änderung still ignoriert wird. Python wirft einen `TypeError`.
+- **2026-11-27, L06 Ü2:** `p2.volume = 0.0` nach `p2 = p1` als Umkleben ohne Wirkung auf `p1` gelesen. Richtig: Das Attribut hängt am gemeinsamen Objekt, also ändert sich `p1` mit. Dachte, Attribute ändern brauche eine Methode.
 - **2026-11-27, L04 Ü6:** `*volumes` als Liste erwartet. Richtig: Tupel.
 - **2026-11-27, L04 Ü4:** `None` richtig, aber das `print` innerhalb der Funktion (`60.0`) übersehen.
 - **2026-11-27, L04 Ü2:** `make_feature(lag=4, "price")` nach R-Logik als gültig gelesen. Richtig: `SyntaxError`, und auch die Zeile davor läuft nicht.
@@ -166,3 +170,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-27 | 4c Ü6 halb (Liste statt Tupel), Ü7, Ü8 und Modify richtig. Häppchen 4c abgeschlossen | `**kwargs` schluckt falsche Namen |
 | 2026-11-27 | 4d Ü9 richtig, Ü10 richtig (unsicher), Modify richtig. **Lektion 04 und Phase 1 abgeschlossen** | `.items()` als Tupel-Paare geklärt |
 | 2026-11-27 | Lektion 06 geschrieben (4 Häppchen, 8 Übungen) | self, Methoden, Klassenattribut-Falle, Vererbung, fit/predict |
+| 2026-11-27 | 6a Ü1 richtig, Ü2 falsch (Attribut am gemeinsamen Objekt), Modify richtig. Häppchen 6a abgeschlossen | `==` bei eigenen Klassen = Identität |
