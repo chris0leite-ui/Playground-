@@ -34,7 +34,7 @@ Du kannst jederzeit eigenen Code mitbringen: „Erklär mir, was diese Funktion 
 
 | # | Lektion | Status |
 |---|---|---|
-| 06 | Klassen und Objekte: `self`, `__init__`, Methoden, Vererbung | ⬜ |
+| 06 | [Klassen und Objekte: `self`, `__init__`, Methoden, Vererbung](lektionen/06_klassen/) | 🟡 |
 | 07 | Module, Imports, Pakete | ⬜ |
 | 08 | Type Hints und Dataclasses | ⬜ |
 | 09 | Decorators, Context Manager (`with`), Generatoren | ⬜ |

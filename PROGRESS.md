@@ -4,13 +4,13 @@ _Gedächtnis zwischen den Sessions. Claude aktualisiert diese Datei am Ende jede
 
 ## Aktueller Stand
 
-- **Lektion:** 06 Klassen und Objekte (Phase 2, noch zu schreiben)
+- **Lektion:** 06 Klassen und Objekte (Phase 2, zügig)
 - **Erledigt:** Einstufung (Ü1–Ü9)
 - **Erledigt in Lektion 01:** Häppchen 1a (Ü1–Ü3 + Modify), 1b (Ü4–Ü7 + Transfer), 1c (Ü8–Ü10 + 2× Modify), 1d (Ü11–Ü13 + Modify), 1e (Ü14–Ü15 + Modify + Transfer), 1f (Ü16–Ü18). **Lektion 01 abgeschlossen.**
 - **Erledigt in Lektion 02:** 2a (Ü1–Ü3 + Modify), 2b (Ü4–Ü6), 2c (Ü7–Ü8 + Modify), 2d (Ü9–Ü11), 2e (Ü12–Ü14 + Modify), 2f (Ü15–Ü16). **Lektion 02 abgeschlossen.**
 - **Erledigt in Lektion 03:** 3a (Ü1–Ü4 + Modify). **Lektion 03 abgeschlossen.**
 - **Erledigt in Lektion 04:** 4a (Ü1–Ü3 + Modify), 4b (Ü4–Ü5 + Modify), 4c (Ü6–Ü8 + Modify + Transfer), 4d (Ü9–Ü10 + Modify). **Lektion 04 und Phase 1 abgeschlossen.**
-- **Nächstes Häppchen:** Lektion 06 schreiben (Klassen: `__init__`, `self`, Attribute vs. Methoden, Zustand verändern vs. zurückgeben, Vererbung kurz; Stromhandel-Beispiele). Übungsprojekt `uebungsprojekt/` anlegen, sobald Klassen sitzen. Einstufung Ü7 (Klassen) war richtig: zügig. Lektion 04 hat 4a–4d (Ü1–Ü10). Danach Phase 2.
+- **Nächstes Häppchen:** 6a (Ü1–Ü2). Lektion 06 hat 6a–6d (Ü1–Ü8). Übungsprojekt `uebungsprojekt/` anlegen, sobald Klassen sitzen. Lektion 04 hat 4a–4d (Ü1–Ü10). Danach Phase 2.
 - **Tempo (vereinbart 2026-11-25):** 03 auf ein Häppchen straffen, 05 nicht als eigene Lektion, sondern in andere Lektionen einstreuen; 04 gründlich. Ziel: in ~2 Wochen Phase 2 (Klassen, Übungsprojekt). Lektion 02 hat 2a–2f (Ü1–Ü16)
 
 ### Tempo nach Einstufung
@@ -165,3 +165,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-27 | 4b Ü4 halb (`print` in Funktion übersehen), Ü5 und Modify richtig. Häppchen 4b abgeschlossen | return vs. print, Notebook-Falle |
 | 2026-11-27 | 4c Ü6 halb (Liste statt Tupel), Ü7, Ü8 und Modify richtig. Häppchen 4c abgeschlossen | `**kwargs` schluckt falsche Namen |
 | 2026-11-27 | 4d Ü9 richtig, Ü10 richtig (unsicher), Modify richtig. **Lektion 04 und Phase 1 abgeschlossen** | `.items()` als Tupel-Paare geklärt |
+| 2026-11-27 | Lektion 06 geschrieben (4 Häppchen, 8 Übungen) | self, Methoden, Klassenattribut-Falle, Vererbung, fit/predict |
