@@ -33,15 +33,15 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 
 | Frage | Box | fällig |
 |---|---|---|
-| `x = [10, 20, 30, 40, 50]`: Was liefert `x[1:3]`? Begründe die Anzahl der Elemente. | 2 | 2026-11-25 |
+| `x = [10, 20, 30, 40, 50]`: Was liefert `x[1:3]`? Begründe die Anzahl der Elemente. | 3 | 2026-12-05 |
 | `a = [1, 2, 3]`, `b = a`, `b.append(4)`: Was ist `a`? | 2 | 2026-11-30 |
 | Was gibt `d.get("x", "fehlt")` zurück, wenn `"x"` nicht im dict ist? Und `d["x"]`? | 2 | 2026-11-30 |
-| Was ergibt `[1, 2, 3] * 2` in Python? Wie bekommt man `[2, 4, 6]`? | 2 | 2026-11-23 |
-| `def scale(x, factor=2, offset=0)`: Welcher Parameter bekommt die `10` bei `scale(3, 10)`? | 2 | 2026-11-25 |
+| Was ergibt `[1, 2, 3] * 2` in Python? Wie bekommt man `[2, 4, 6]`? | 3 | 2026-12-05 |
+| `def scale(x, factor=2, offset=0)`: Welcher Parameter bekommt die `10` bei `scale(3, 10)`? | 3 | 2026-12-05 |
 | Warum braucht `df.group_by(...).agg(...)` in Polars oft ein `.sort(...)` danach? | 2 | 2026-11-30 |
 | Funktion oder Methode: Was ist der Unterschied, woran erkennt man es beim Lesen? | 2 | 2026-11-29 |
 | `x = 10`, `y = x`, `y = y + 1`: Was ist `x`? Warum anders als bei `b.append(4)`? | 2 | 2026-11-30 |
-| Bei Listen: Was ist der Unterschied zwischen `a = a + [3]` und `a += [3]`? Und bei Zahlen? | 2 | 2026-11-23 |
+| Bei Listen: Was ist der Unterschied zwischen `a = a + [3]` und `a += [3]`? Und bei Zahlen? | 3 | 2026-12-05 |
 | Eine Funktion endet. Was verschwindet: der lokale Name, das Objekt, oder beides? | 2 | 2026-11-30 |
 | `t = ("a", [1])`: Was passiert bei `t[1].append(2)`, was bei `t[0] = "b"`? | 2 | 2026-11-30 |
 | `sorted(x)` vs. `x.sort()`: Was verändert sich, was wird jeweils zurückgegeben? | 1 | 2026-11-26 |
@@ -49,7 +49,7 @@ Box 1 = täglich · Box 2 = alle 3 Tage · Box 3 = wöchentlich
 | Warum schreibt man `def f(x, history=None)` statt `history=[]`? Wann wird der Default erzeugt? | 2 | 2026-11-29 |
 | Kann eine Funktion ein übergebenes Objekt außen sichtbar verändern? Und in R? | 2 | 2026-11-29 |
 | `grid2 = grid.copy()`, dann `grid2["lr"].append(0.1)`: Ändert sich `grid`? Und bei `grid2["lr"] = [0.1]`? | 2 | 2026-11-28 |
-| Was macht `df.with_columns(...)` allein in einer Zeile mit `df`? Was gibt es zurück? | 1 | 2026-11-23 |
+| Was macht `df.with_columns(...)` allein in einer Zeile mit `df`? Was gibt es zurück? | 1 | 2026-11-29 |
 | `prices = [52.1, 48.3, 61.0]`: Was liefern `prices[1:10]`, `prices[10]` und `prices[5:10]`? | 1 | 2026-11-26 |
 | `prices = [50.0, 40.0]`: Was ergeben `prices + 5` und `prices > 45`? Wie filtert man stattdessen? | 1 | 2026-11-26 |
 | `d = {"wind": 12.4}`: Was liefert `for k in d`? Was ergeben `"wind" in d` und `12.4 in d`? | 1 | 2026-11-26 |
@@ -84,6 +84,7 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 - **2026-11-19, L01 Ü5:** `a += [3]` wie `a = a + [3]` erwartet. Richtig geraten, aber nur wegen suggestiver Frage. Bei Listen ist `+=` in-place.
 - **2026-11-19, L01 Ü6:** Tupel als komplett unveränderlich angenommen. Die Liste darin bleibt aber veränderbar.
 - **2026-11-19, L01 Ü7:** Erwartet, dass die verbotene Änderung still ignoriert wird. Python wirft einen `TypeError`.
+- **2026-11-28, Karte:** Erneut `df.with_columns(...)` als in-place mit Rückgabe `None` gelesen. Polars-Regel sitzt noch nicht: „Polars verhält sich wie Strings.“
 - **2026-11-27, L06 Ü5:** Klassenattribut `trades = []` als eigene Liste pro Objekt gelesen. Richtig: eine geteilte Liste (wie `history=[]`).
 - **2026-11-27, L06 Ü2:** `p2.volume = 0.0` nach `p2 = p1` als Umkleben ohne Wirkung auf `p1` gelesen. Richtig: Das Attribut hängt am gemeinsamen Objekt, also ändert sich `p1` mit. Dachte, Attribute ändern brauche eine Methode.
 - **2026-11-27, L04 Ü6:** `*volumes` als Liste erwartet. Richtig: Tupel.
@@ -174,3 +175,4 @@ _Wo eine Vorhersage danebenlag. Daraus werden Wiederholungskarten._
 | 2026-11-27 | 6a Ü1 richtig, Ü2 falsch (Attribut am gemeinsamen Objekt), Modify richtig. Häppchen 6a abgeschlossen | `==` bei eigenen Klassen = Identität |
 | 2026-11-27 | Karten: `b.append`, `group_by`-Sortierung, `d.get` richtig (Box 2); `==`/`is` halb (Box 1); `x[-1]` auf Wunsch gestrichen (R-Teil noch verwechselt) | |
 | 2026-11-27 | 6b Ü3, Ü4 richtig, Ü5 falsch (Klassenattribut geteilt), Modify richtig. Häppchen 6b abgeschlossen | Traceback mit zwei Ebenen gelesen |
+| 2026-11-28 | Karten: 4 von 5 richtig (Box 3), `with_columns` erneut falsch (Box 1) | Polars in-place-Irrtum wiederholt |
